@@ -1,4 +1,8 @@
 import axios from 'axios';
+import ProductDetails from './Components/ProductDetails/ProductDetails.js';
+import RatingsAndReviews from './Components/RatingsAndReviews/RatingsAndReviews.js';
+import QuestionsAndAnswers from './Components/QuestionsAndAnswers/QuestionsAndAnswers.js';
+
 
 function App() {
 
@@ -10,7 +14,10 @@ function App() {
 
   return (
     <div>
-     Welcome to our app!
+      Welcome to our app!
+      <ProductDetails />
+      <RatingsAndReviews />
+      <QuestionsAndAnswers />
     </div>
   );
 }
