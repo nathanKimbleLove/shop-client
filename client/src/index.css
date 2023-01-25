@@ -14,3 +14,24 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#root {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 0 5%;
+}
+
+.accentColor {
+  color: #cf6679;
+}
+
+.mainTextColor {
+  color: #1e1e1e;
+}
+
+.secondaryTextColor {
+  color: darkgrey;
+}
+
+

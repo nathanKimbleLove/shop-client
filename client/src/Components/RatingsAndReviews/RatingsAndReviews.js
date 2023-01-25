@@ -2,7 +2,11 @@ import './RatingsAndReviews.css';
 
 function RatingsAndReviews() {
   return (
-    <div>I am ratings and reviews.</div>
+    <div className="ratingsAndReviews">
+      <h1 className="mainTextColor">
+      I am the RatingsAndReviews
+      </h1>
+    </div>
   );
 }
 

@@ -2,7 +2,12 @@ import './QuestionsAndAnswers.css';
 
 function QuestionsAndAnswers() {
   return (
-    <div>I am the QuestionsAndAnswers.</div>
+    <div className="questionsAndAnswers">
+      <h1 className="mainTextColor">
+        I am the QuestionsAndAnswers
+      </h1>
+    </div>
+
   );
 }
 

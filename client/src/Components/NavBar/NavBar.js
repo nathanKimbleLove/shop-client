@@ -2,8 +2,8 @@ import './NavBar.css';
 
 function NavBar({ changeProduct }) {
   return (
-  <div>I am the NavBar.
-    <button onClick={changeProduct}></button>
+  <div className="navbar">
+    <button onClick={changeProduct}>Change Product!</button>
   </div>
   );
 }

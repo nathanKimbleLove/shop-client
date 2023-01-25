@@ -2,7 +2,11 @@ import './ProductDetails.css';
 
 function ProductDetails() {
   return (
-  <div>I am the ProductDetails.</div>
+    <div className="productDetails">
+      <h1 className="mainTextColor">
+        I am the ProductDetails
+      </h1>
+    </div>
   );
 }
 

@@ -26,14 +26,13 @@ function App() {
   }
 
   return (
-    <div>
-      Welcome to our app!
+    <>
       <NavBar changeProduct={changeProduct}/>
       <ProductDetails product={product} />
       <QuestionsAndAnswers product={product} />
       <RatingsAndReviews product={product} />
-      <p>Current Product is {JSON.stringify(product)}</p>
-    </div>
+      <p className="secondaryTextColor">Current Product is {JSON.stringify(product)}</p>
+    </>
   );
 }
 
