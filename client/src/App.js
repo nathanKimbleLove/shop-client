@@ -12,25 +12,25 @@ function App() {
 
   useEffect(() => {
     axios.get('http://localhost:8080/products')
-    .then(res => {
-      console.log(res);
-      setProducts(res.data);
-    })
-    .catch(err => console.log(err));
-  }, [])
+      .then(res => {
+        console.log(res);
+        const clothing = res.data;
 
-  useEffect(() => {
-    changeProduct();
-  }, [products])
+        setProducts(clothing);
+        const random = Math.floor(Math.random() * clothing.length);
+        setProduct(clothing[random]);
+      })
+      .catch(err => console.log(err));
+  }, []);
 
-  const changeProduct = () => {
+  const handleChangeProduct = () => {
     const random = Math.floor(Math.random() * products.length);
     setProduct(products[random]);
-  }
+  };
 
   return (
     <>
-      <NavBar changeProduct={changeProduct}/>
+      <NavBar changeProduct={handleChangeProduct}/>
       <ProductDetails product={product} />
       <QuestionsAndAnswers product={product} />
       <RatingsAndReviews product={product} />
