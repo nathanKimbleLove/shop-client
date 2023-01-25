@@ -26,6 +26,10 @@ code {
   color: #cf6679;
 }
 
+.borderColor {
+  border-color: #bbb
+}
+
 .mainTextColor {
   color: #1e1e1e;
 }
