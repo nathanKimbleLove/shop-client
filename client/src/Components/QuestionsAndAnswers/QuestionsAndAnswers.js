@@ -2,8 +2,8 @@ import './QuestionsAndAnswers.css';
 
 function QuestionsAndAnswers() {
   return (
-
+    <div>I am the QuestionsAndAnswers.</div>
   );
 }
 
-export default RatingsAndReviews;
+export default QuestionsAndAnswers;
