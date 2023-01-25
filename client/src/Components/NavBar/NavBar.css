@@ -1,0 +1,25 @@
+.changeProduct {
+  border: 1px solid;
+  padding: 10px 0 10px 10px;
+  width: 60%;
+}
+
+.darkModeToggle {
+  background-color: none;
+  border-color: none;
+}
+
+.navbar {
+  align-items: center;
+  border-bottom: 1px solid;
+  display: flex;
+  height: 100px;
+  width: 100%;
+}
+
+.spider {
+  height: 50px;
+  margin-right: 20px;
+  width: 50px;
+}
+
