@@ -11,14 +11,17 @@ function App() {
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
-    axios.get('http://localhost:8080/products'/*, { body: 'What is a chicken?', name: 'Jimothy' }*/)
+    axios.get('http://localhost:8080/products')
     .then(res => {
       console.log(res);
       setProducts(res.data);
-      setProduct(products[0]); //fix this
     })
     .catch(err => console.log(err));
   }, [])
+
+  useEffect(() => {
+    changeProduct();
+  }, [products])
 
   const changeProduct = () => {
     const random = Math.floor(Math.random() * products.length);
@@ -36,5 +39,4 @@ function App() {
   );
 }
 
-// this is Neb testing if I can push and pull from the remote repo
 export default App;
