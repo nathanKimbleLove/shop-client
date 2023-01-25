@@ -1,5 +1,3 @@
-//i am nayt
-
 function App() {
   return (
     <div>
