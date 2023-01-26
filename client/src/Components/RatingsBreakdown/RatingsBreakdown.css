@@ -1,0 +1,13 @@
+.ratingsBreakdown {
+  border: 5px solid red;
+  display: flex;
+  flex-direction: column;
+  width: 275px
+ }
+
+@media(max-width: 900px) {
+  .ratingsBreakdown {
+    flex: 1;
+    width: auto;
+  }
+}

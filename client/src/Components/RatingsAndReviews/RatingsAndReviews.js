@@ -1,11 +1,13 @@
 import './RatingsAndReviews.css';
+import RatingsBreakdown from '../RatingsBreakdown/RatingsBreakdown.js';
+import Reviews from '../Reviews/Reviews.js';
 
 function RatingsAndReviews() {
+
   return (
     <div className="ratingsAndReviews">
-      <h1 className="mainTextColor">
-      I am the RatingsAndReviews
-      </h1>
+      <RatingsBreakdown />
+      <Reviews />
     </div>
   );
 }

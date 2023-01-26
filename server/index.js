@@ -18,7 +18,7 @@ app.post('/', (req, res) => {
 
   axios.post(process.env.REACT_APP_API + req.url, req.body, authOptions)
   .then(answer => {
-    res.status(202);
+    res.status(202);q
   })
   .catch(err => console.log(err));
 
