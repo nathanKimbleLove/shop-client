@@ -34,7 +34,7 @@ function App() {
       <ProductDetails product={product} />
       <QuestionsAndAnswers product={product} />
       <RatingsAndReviews product={product} />
-      <p className="secondaryTextColor">Current Product is {JSON.stringify(product)}</p>
+      <p className="accentColor">Current Product is {JSON.stringify(product)}</p>
     </>
   );
 }

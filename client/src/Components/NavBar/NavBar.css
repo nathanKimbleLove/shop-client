@@ -1,25 +1,28 @@
 .changeProduct {
   border: 1px solid;
+  border-radius: 20px;
   padding: 10px 0 10px 10px;
   width: 60%;
 }
 
 .darkModeToggle {
-  background-color: none;
-  border-color: none;
+  background-color: transparent;
+  border: none;
 }
 
 .navbar {
   align-items: center;
   border-bottom: 1px solid;
+  border-bottom: 1px solid;
   display: flex;
   height: 100px;
+  justify-content: space-between;
   width: 100%;
 }
 
 .spider {
-  height: 50px;
+  height: 70px;
   margin-right: 20px;
-  width: 50px;
+  width: 70px;
 }
 
