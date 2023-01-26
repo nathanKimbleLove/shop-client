@@ -1,5 +1,39 @@
+.sortOptions {
+  background-color: transparent;
+  border: 0px;
+  font-size: 18px;
+}
+
 .reviews {
-  border: 5px solid green;
   display: flex;
+  flex-direction:column;
   flex: 1;
+  padding: 0 2%;
+}
+
+.reviewAdder {
+  background-color: transparent;
+  border: 1px solid #bbb;
+  border-radius: 15px;
+  font-size: 15px;
+  padding: 3px 12px;
+}
+
+.reviewArray {
+  overflow-y: scroll;
+  padding: 0 10px 0 0;
+}
+
+.reviewsInteractions {
+  border-bottom: 1px solid #bbb;
+  display:flex;
+  justify-content: space-between;
+  padding: 20px 10px 20px 10px;
+  width: 100%;
+}
+
+.reviewSorter {
+  font-size: 18px;
+  min-width: 310px;
+  width: 66%;
 }

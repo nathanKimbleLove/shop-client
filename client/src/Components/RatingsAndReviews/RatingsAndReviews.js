@@ -5,9 +5,12 @@ import Reviews from '../Reviews/Reviews.js';
 function RatingsAndReviews() {
 
   return (
-    <div className="ratingsAndReviews">
-      <RatingsBreakdown />
-      <Reviews />
+    <div>
+      <h4>RATINGS & REVIEWS</h4>
+      <div className="ratingsAndReviews">
+        <RatingsBreakdown />
+        <Reviews />
+      </div>
     </div>
   );
 }
