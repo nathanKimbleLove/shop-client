@@ -13,13 +13,10 @@ function NavBar({ changeProduct }) {
       ></img>
 
       <div className="changeProduct borderColor" onClick={changeProduct}>
-        {" "}
         <GiMagnifyingGlass /> Search for a product or brand
       </div>
-
       <button className="darkModeToggle">
-        {" "}
-        <MdDarkMode size={50} />{" "}
+        <MdDarkMode size={50} />
       </button>
     </div>
   );
