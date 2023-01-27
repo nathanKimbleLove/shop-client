@@ -3,20 +3,21 @@ import QuestionsAndAnswersList from "./QuestionsAndAnswersList/QuestionsAndAnswe
 import { GiMagnifyingGlass } from "react-icons/gi";
 //import { useState, useEffect } from 'react';
 
-function QuestionsAndAnswers(product, questionsAndAnswers) {
+function QuestionsAndAnswers({ product, questionsAndAnswers }) {
   return (
     <div className="questionsAndAnswers">
-      <div className="widgetName">Questions and Answers</div>
+      <h1>Questions and Answers</h1>
       <input
         type="text"
         placeholder="Search for a question or answer"
       ></input>{" "}
       <GiMagnifyingGlass />
-      {/*placeholder for q/a list*/}
       <QuestionsAndAnswersList
         product={product}
         questionsAndAnswers={questionsAndAnswers}
       />
+      <button>More answered questions</button>
+      <button>Add a question</button>
     </div>
   );
 }

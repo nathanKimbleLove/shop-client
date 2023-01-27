@@ -8,42 +8,53 @@ import { useState, useEffect } from "react";
 function App() {
   const [products, setProducts] = useState([]);
   const [product, setProduct] = useState(null);
-  const { questionsAndAnswers, setQuestionsAndAnswers } = useState([]);
-  console.log("the initial product is here" + product.id);
+  const [questionsAndAnswers, setQuestionsAndAnswers] = useState([]);
 
   useEffect(() => {
     axios
       .get("http://localhost:8080/products")
       .then((res) => {
-        console.log(res);
-        setProducts(res.data);
+        // console.log(res);
+        const clothing = res.data;
+
+        setProducts(clothing);
+        const random = Math.floor(Math.random() * clothing.length);
+        setProduct(clothing[random]);
+
+        axios
+          .get(
+            "http://localhost:8080/qa/questions?product_id=" +
+              clothing[random].id
+          )
+          .then((res) => {
+            setQuestionsAndAnswers(res.data.results);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       })
       .catch((err) => console.log(err));
-
-    // get request for questions and answers
-    // axios
-    //   .get("http://localhost:8080/qa/questions?product_id=" + product.id)
-    //   .then((res) => {
-    //     console.log(res);
-    //     setQuestionsAndAnswers(res.data);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
   }, []);
 
-  useEffect(() => {
-    changeProduct();
-  }, [products]);
-
-  const changeProduct = () => {
+  const handleChangeProduct = () => {
     const random = Math.floor(Math.random() * products.length);
     setProduct(products[random]);
+
+    axios
+      .get(
+        "http://localhost:8080/qa/questions?product_id=" + products[random].id
+      )
+      .then((res) => {
+        setQuestionsAndAnswers(res.data.results);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
     <>
-      <NavBar changeProduct={changeProduct} />
+      <NavBar changeProduct={handleChangeProduct} />
       <ProductDetails product={product} />
       <QuestionsAndAnswers
         product={product}
