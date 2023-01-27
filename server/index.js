@@ -9,7 +9,7 @@ const axios = require('axios');
 const port = process.env.PORT || 8080;
 const app = express();
 
-app.use(cors({origin: 'http://localhost:3001'}));
+app.use(cors({origin: 'http://localhost:3000'}));
 app.use(express.json());
 
 app.post('/', (req, res) => {
@@ -18,7 +18,7 @@ app.post('/', (req, res) => {
 
   axios.post(process.env.REACT_APP_API + req.url, req.body, authOptions)
   .then(answer => {
-    res.status(202);
+    res.status(202);q
   })
   .catch(err => console.log(err));
 

@@ -1,0 +1,60 @@
+.averageStars {
+  display: flex;
+  padding: 0 0 20px 0;
+  color: #bbb;
+}
+
+.averageStarsNumber {
+  font-size: 50px;
+}
+
+.averageStarsStars {
+  font-size: 15px;
+  padding-top: 13px;
+}
+
+.emptyBar {
+  background-color: #bbb;
+  flex: 1;
+  margin: 4px;
+  z-index: 1;
+}
+
+.fullBar {
+  background-color: #555;
+  height: 8px;
+}
+
+.sizeBar {
+  background-color: #bbb;
+  height: 7px;
+  margin: 5px 5px 5px 5px;
+  flex:1;
+}
+
+.sizeBarRatings {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+}
+
+.spacing {
+  padding-top: 20px;
+}
+
+.stars {
+  display:flex;
+}
+
+.ratingsBreakdown {
+  display: flex;
+  flex-direction: column;
+  width: 275px
+ }
+
+@media(max-width: 900px) {
+  .ratingsBreakdown {
+    flex: 1;
+    width: auto;
+  }
+}
