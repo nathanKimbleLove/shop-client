@@ -1,0 +1,26 @@
+.review {
+  border-bottom: 1px solid #bbb;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.reviewBottomBar {
+  font-size: 12px;
+  padding: 0 10px 5px 10px;
+}
+
+.reviewContent {
+  padding: 2px 10px
+}
+
+.reviewTitle {
+  font-size: 20px;
+  padding: 0 10px;
+}
+
+.reviewTopBar {
+  display:flex;
+  justify-content: space-between;
+  padding: 5px 10px 0 10px;
+}
