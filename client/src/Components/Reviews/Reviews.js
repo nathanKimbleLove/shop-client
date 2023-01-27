@@ -1,7 +1,30 @@
-import './Reviews.css';
-import Review from '../Review/Review.js'
-function Reviews() {
+import axios from 'axios';
+import { useState, useEffect} from 'react';
 
+import './Reviews.css';
+import Review from '../Review/Review.js';
+
+function Reviews({ product })  {
+
+  let [reviewsArr, setReviewsArr] = useState([]);
+
+  useEffect(() => {
+    if (product) {
+      try {
+        axios.get(`http://localhost:8080/reviews?product_id=${product.id}`)
+        .then(res => {
+
+          let temp = res.data.results.map((element, index) => {
+            return <Review review={element} key={index} />
+          })
+          setReviewsArr(<div>{temp}</div>);
+
+        })
+        .catch(err => console.log(err));
+      } catch(err) { console.log('will try again'); }
+    }
+
+  }, [product])
 
   return (
     <div className="reviews">
@@ -18,12 +41,7 @@ function Reviews() {
         <button className="reviewAdder borderColor">Write a Review!</button>
       </div>
       <div className="reviewArray">
-        <Review />
-        <Review />
-        <Review />
-        <Review />
-        <Review />
-        <Review />
+        {reviewsArr.length !== 0 && reviewsArr}
       </div>
     </div>
   );

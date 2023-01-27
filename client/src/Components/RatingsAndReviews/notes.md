@@ -1,1 +1,3 @@
 - css in reviews and ratings breakdown hardcodes color instead of using border-color and reviews^^
+
+-npm install react-moments
