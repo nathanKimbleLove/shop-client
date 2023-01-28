@@ -9,8 +9,6 @@ function Reviews({ product })  {
   let [reviewsArr, setReviewsArr] = useState([]);
 
   useEffect(() => {
-    if (product) {
-      try {
         axios.get(`http://localhost:8080/reviews?product_id=${product.id}`)
         .then(res => {
 
@@ -21,9 +19,6 @@ function Reviews({ product })  {
 
         })
         .catch(err => console.log(err));
-      } catch(err) { console.log('will try again'); }
-    }
-
   }, [product])
 
   return (

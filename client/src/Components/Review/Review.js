@@ -8,7 +8,6 @@ import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import { BsMegaphoneFill } from 'react-icons/bs'
 
 function Review( {review} ) {
-  console.log(review);
 
   return (
     <div className="review borderColor">

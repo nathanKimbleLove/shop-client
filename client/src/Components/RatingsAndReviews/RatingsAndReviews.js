@@ -11,12 +11,22 @@ import Reviews from '../Reviews/Reviews.js';
 
 function RatingsAndReviews({product}) {
 
+  let [divs, setDivs] = useState(<></>)
+
+  useEffect(() => {
+    if(product) {
+      setDivs(<>
+      <RatingsBreakdown product={product} />
+      <Reviews product={product} />
+      </>)
+    }
+  }, [product])
+
   return (
-    <div>
+    <div className="BIGDIV">
       <h4>RATINGS & REVIEWS</h4>
       <div className="ratingsAndReviews">
-        <RatingsBreakdown product={product} />
-        <Reviews product={product} />
+        {divs}
       </div>
     </div>
   );
