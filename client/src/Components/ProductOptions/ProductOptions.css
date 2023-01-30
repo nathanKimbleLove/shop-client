@@ -1,0 +1,10 @@
+.ProductOptions {
+  border: 5px solid red;
+  width: 50%;
+}
+
+@media(max-width: 900px) {
+  .ProductOptions {
+    height: 200px;
+  }
+}

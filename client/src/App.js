@@ -1,9 +1,9 @@
-import axios from "axios";
-import ProductDetails from "./Components/ProductDetails/ProductDetails.js";
-import RatingsAndReviews from "./Components/RatingsAndReviews/RatingsAndReviews.js";
-import QuestionsAndAnswers from "./Components/QuestionsAndAnswers/QuestionsAndAnswers.js";
-import NavBar from "./Components/NavBar/NavBar.js";
-import { useState, useEffect } from "react";
+import axios from 'axios';
+import ProductWidget from './Components/ProductWidget/ProductWidget.js';
+import RatingsAndReviews from './Components/RatingsAndReviews/RatingsAndReviews.js';
+import QuestionsAndAnswers from './Components/QuestionsAndAnswers/QuestionsAndAnswers.js';
+import NavBar from './Components/NavBar/NavBar.js';
+import { useState, useEffect } from 'react';
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -49,9 +49,9 @@ function App() {
 
   return (
     <>
-      <NavBar changeProduct={handleChangeProduct} />
-      <ProductDetails product={product} />
-      <QuestionsAndAnswers product={product} questionsAndAnswers={questionsAndAnswers} />
+      <NavBar changeProduct={handleChangeProduct}/>
+      <ProductWidget product={product} />
+      <QuestionsAndAnswers product={product} />
       <RatingsAndReviews product={product} />
       <p className="accentColor">Current Product is {JSON.stringify(product)}</p>
     </>
