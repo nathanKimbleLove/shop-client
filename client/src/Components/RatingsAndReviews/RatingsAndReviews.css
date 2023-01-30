@@ -1,3 +1,7 @@
+.BIGDIV {
+  width: 100%;
+}
+
 .ratingsAndReviews {
   display: flex;
   height: 500px;

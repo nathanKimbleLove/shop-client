@@ -9,8 +9,8 @@ import convertToStars from '../convertToStars.js'
 import { BsStarFill, BsStarHalf, BsStar} from 'react-icons/bs';
 import { IoMdArrowDropdown } from 'react-icons/io';
 
-
 function RatingsBreakdown({product}) {
+
 
   let [breakDown, setBreakDown] = useState(<></>)
 
