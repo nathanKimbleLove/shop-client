@@ -11,7 +11,6 @@ function BarRatings({ data, dataName })  {
     if(data) {
       let num = data.value;
       let temp = (num * 85 /4)
-      console.log(temp);
       return {"paddingLeft": `${temp}%`}
     }
   }

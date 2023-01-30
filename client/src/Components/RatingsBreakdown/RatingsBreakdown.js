@@ -36,7 +36,6 @@ function RatingsBreakdown({product}) {
   useEffect(() => {
     axios.get(`http://localhost:8080/reviews/meta?product_id=${product.id}`)
     .then(res => {
-      console.log(res.data)
       let tempNum = calculateStars(res.data.ratings);
 
       let chars = res.data.characteristics

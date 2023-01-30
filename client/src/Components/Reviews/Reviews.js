@@ -8,15 +8,22 @@ function Reviews({ product })  {
 
   let [reviewsArr, setReviewsArr] = useState([]);
 
+  let addReviews = (reviews) => {
+    let temp = reviews.map((element, index) => {
+      return <Review review={element} key={index} />
+    })
+    temp = [...reviewsArr, temp]
+    setReviewsArr(<>{temp}</>);
+  }
+
+  let test = (e) => {
+    console.log(e.scrollY)
+  };
+
   useEffect(() => {
-        axios.get(`http://localhost:8080/reviews?product_id=${product.id}`)
+        axios.get(`http://localhost:8080/reviews?product_id=${product.id}&count=15`)
         .then(res => {
-
-          let temp = res.data.results.map((element, index) => {
-            return <Review review={element} key={index} />
-          })
-          setReviewsArr(<div>{temp}</div>);
-
+          addReviews(res.data.results)
         })
         .catch(err => console.log(err));
   }, [product])
@@ -35,7 +42,7 @@ function Reviews({ product })  {
         </span>
         <button className="reviewAdder borderColor">Write a Review!</button>
       </div>
-      <div className="reviewArray">
+      <div className="reviewArray" onScroll={test}>
         {reviewsArr.length !== 0 && reviewsArr}
       </div>
     </div>

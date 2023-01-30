@@ -17,7 +17,7 @@
 .ratingsBreakdown {
   display: flex;
   flex-direction: column;
-  width: 275px
+  min-width: 275px
  }
 
 @media(max-width: 900px) {
