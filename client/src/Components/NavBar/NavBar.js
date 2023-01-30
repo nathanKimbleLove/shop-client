@@ -27,6 +27,7 @@ function NavBar({ changeProduct }) {
       ></img>
 
       <div className="changeProduct borderColor" onClick={changeProduct}>
+      
         <GiMagnifyingGlass /> Search for a product or brand
       </div>
 
