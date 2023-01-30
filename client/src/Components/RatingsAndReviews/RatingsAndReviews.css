@@ -1,0 +1,15 @@
+.BIGDIV {
+  width: 100%;
+}
+
+.ratingsAndReviews {
+  display: flex;
+  height: 500px;
+  width: 100%;
+}
+
+@media(max-width: 900px) {
+  .ratingsAndReviews {
+    flex-direction: column;
+  }
+}

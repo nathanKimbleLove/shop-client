@@ -1,0 +1,30 @@
+.answer {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+
+.answerLabel {
+  margin-right: 10px;
+}
+
+.answerRightSide {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.questionsAndAnswers {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+}
+
+.questionOptions, .helpAndAdd {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+

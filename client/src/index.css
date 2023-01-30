@@ -22,8 +22,11 @@ code {
   padding: 0 5%;
 }
 
+/* our stylings */
+
 .accentColor {
   color: #b90e0a;
+  text-decoration-line: underline;
 }
 
 .borderColor {
@@ -32,6 +35,11 @@ code {
 
 .mainTextColor {
   color: #1e1e1e;
+}
+
+.primaryText {
+  font-family: 'Merriweather', serif;
+  font-weight: 700;
 }
 
 .secondaryTextColor {
