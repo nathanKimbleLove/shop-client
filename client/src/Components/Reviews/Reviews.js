@@ -4,13 +4,13 @@ import { useState, useEffect} from 'react';
 import './Reviews.css';
 import Review from '../Review/Review.js';
 
-function Reviews({ product })  {
+function Reviews({ product, setShowModal })  {
 
   let [reviewsArr, setReviewsArr] = useState([]);
 
   let addReviews = (reviews) => {
     let temp = reviews.map((element, index) => {
-      return <Review review={element} key={index} />
+      return <Review review={element} key={index} setShowModal={setShowModal}/>
     })
     temp = [...reviewsArr, temp]
     setReviewsArr(<>{temp}</>);

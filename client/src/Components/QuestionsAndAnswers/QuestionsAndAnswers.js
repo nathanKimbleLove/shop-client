@@ -39,7 +39,7 @@ function QuestionsAndAnswers({ product, questionsAndAnswers }) {
           <GiMagnifyingGlass />
         </form>{" "}
       </div>
-      <QuestionsAndAnswersList product={product} questionsAndAnswers={questionsAndAnswers} />
+      {/* <QuestionsAndAnswersList product={product} questionsAndAnswers={questionsAndAnswers} /> */}
       <div>
         <button>More answered questions</button>
         <button onClick={handleNewQuestionClick}>Add a question</button>

@@ -9,7 +9,7 @@ import Reviews from '../Reviews/Reviews.js';
   // give Reviews component an array of reviews
   //give RatingsBreakdown review meta data?
 
-function RatingsAndReviews({product}) {
+function RatingsAndReviews({product, setShowModal}) {
 
   let [divs, setDivs] = useState(<></>)
 
@@ -17,7 +17,7 @@ function RatingsAndReviews({product}) {
     if(product) {
       setDivs(<>
       <RatingsBreakdown product={product} />
-      <Reviews product={product} />
+      <Reviews product={product} setShowModal={setShowModal}/>
       </>)
     }
   }, [product])

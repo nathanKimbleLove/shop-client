@@ -7,7 +7,11 @@ import { BsStarFill, BsStar} from 'react-icons/bs';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import { BsMegaphoneFill } from 'react-icons/bs'
 
-function Review( {review} ) {
+function Review({ review, setShowModal }) {
+
+  let modalHandler = () =>  {
+    setShowModal("Review", review);
+  }
 
   return (
     <div className="review borderColor">
@@ -20,6 +24,7 @@ function Review( {review} ) {
       <div className="reviewBottomBar">
         <button className="heartOutline"><AiOutlineHeart /></button>
         <button className="report"><BsMegaphoneFill /></button>
+        <button className="showModalTemp" onClick={modalHandler}>Temp -- Show Modal</button>
       </div>
     </div>
   );
