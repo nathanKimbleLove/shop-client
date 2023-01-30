@@ -1,6 +1,8 @@
 import './Review.css';
 
 import { BsStarFill, BsStarHalf, BsStar} from 'react-icons/bs';
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
+import { BsMegaphoneFill } from 'react-icons/bs'
 
 function Review() {
 
@@ -14,9 +16,8 @@ function Review() {
       <div className="reviewTitle primaryText">I am the very, very, ve...</div>
       <div className="reviewContent">...ry long title. <br></br>so that's all folks. Have an excellent day, and I'll see ya when I see ya!!! </div>
       <div className="reviewBottomBar">
-        <span>Helpful? Yes! (10)</span>
-        <span> | </span>
-        <span>Report</span>
+        <button className="heartOutline"><AiOutlineHeart /></button>
+        <button className="report"><BsMegaphoneFill /></button>
       </div>
     </div>
   );
