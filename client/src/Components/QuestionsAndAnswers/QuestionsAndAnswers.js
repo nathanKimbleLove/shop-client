@@ -1,13 +1,24 @@
-import './QuestionsAndAnswers.css';
+import "./QuestionsAndAnswers.css";
+import QuestionsAndAnswersList from "./QuestionsAndAnswersList/QuestionsAndAnswersList";
+import { GiMagnifyingGlass } from "react-icons/gi";
+//import { useState, useEffect } from 'react';
 
-function QuestionsAndAnswers() {
+function QuestionsAndAnswers({ product, questionsAndAnswers }) {
   return (
     <div className="questionsAndAnswers">
-      <h1 className="mainTextColor">
-        I am the QuestionsAndAnswers
-      </h1>
+      <h1>Questions and Answers</h1>
+      <input
+        type="text"
+        placeholder="Search for a question or answer"
+      ></input>{" "}
+      <GiMagnifyingGlass />
+      <QuestionsAndAnswersList
+        product={product}
+        questionsAndAnswers={questionsAndAnswers}
+      />
+      <button>More answered questions</button>
+      <button>Add a question</button>
     </div>
-
   );
 }
 
