@@ -14,7 +14,7 @@ function App() {
   const [modal, setModal] = useState(<></>);
 
   let setShowModal = (comp, content) => {
-    setModal(<Modal serve={comp} content={content}/>);
+    setModal(<Modal serve={comp} content={content} setModal={setModal}/>);
   }
 
   useEffect(() => {

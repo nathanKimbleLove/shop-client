@@ -11,7 +11,7 @@ import Review from '../Review/Review.js';
   //may want to create Modal versions of these
   // components to fit style
 
-let Modal = ({ serve, content }) => {
+let Modal = ({ serve, content, setModal }) => {
 
   let components = {
     'Review': <Review review={content}/>,
@@ -22,7 +22,7 @@ let Modal = ({ serve, content }) => {
   }
 
   let exit = () => {
-
+    setModal(<></>)
   }
 
   return (

@@ -16,9 +16,6 @@ function Reviews({ product, setShowModal })  {
     setReviewsArr(<>{temp}</>);
   }
 
-  let test = (e) => {
-    console.log(e.scrollY)
-  };
 
   useEffect(() => {
         axios.get(`http://localhost:8080/reviews?product_id=${product.id}&count=15`)
@@ -42,7 +39,7 @@ function Reviews({ product, setShowModal })  {
         </span>
         <button className="reviewAdder borderColor">Write a Review!</button>
       </div>
-      <div className="reviewArray" onScroll={test}>
+      <div className="reviewArray">
         {reviewsArr.length !== 0 && reviewsArr}
       </div>
     </div>
