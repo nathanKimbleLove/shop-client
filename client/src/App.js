@@ -20,12 +20,9 @@ function App() {
         setProducts(clothing);
         const random = Math.floor(Math.random() * clothing.length);
         setProduct(clothing[random]);
-
+        console.log("product is ", clothing[random]);
         axios
-          .get(
-            "http://localhost:8080/qa/questions?product_id=" +
-              clothing[random].id
-          )
+          .get("http://localhost:8080/qa/questions?product_id=" + clothing[random].id)
           .then((res) => {
             setQuestionsAndAnswers(res.data.results);
           })
@@ -41,9 +38,7 @@ function App() {
     setProduct(products[random]);
 
     axios
-      .get(
-        "http://localhost:8080/qa/questions?product_id=" + products[random].id
-      )
+      .get("http://localhost:8080/qa/questions?product_id=" + products[random].id)
       .then((res) => {
         setQuestionsAndAnswers(res.data.results);
       })
@@ -56,14 +51,9 @@ function App() {
     <>
       <NavBar changeProduct={handleChangeProduct} />
       <ProductDetails product={product} />
-      <QuestionsAndAnswers
-        product={product}
-        questionsAndAnswers={questionsAndAnswers}
-      />
+      <QuestionsAndAnswers product={product} questionsAndAnswers={questionsAndAnswers} />
       <RatingsAndReviews product={product} />
-      <p className="accentColor">
-        Current Product is {JSON.stringify(product)}
-      </p>
+      <p className="accentColor">Current Product is {JSON.stringify(product)}</p>
     </>
   );
 }

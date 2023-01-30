@@ -11,6 +11,7 @@ import { IoMdArrowDropdown } from 'react-icons/io';
 
 function RatingsBreakdown({product}) {
 
+
   let [breakDown, setBreakDown] = useState(<></>)
 
   const calculateStars = (ratings) => {
@@ -46,10 +47,8 @@ function RatingsBreakdown({product}) {
 
       setBreakDown(<>
       <div className="averageStars">
-      
         <span className="primaryText averageStarsNumber">{tempNum}</span>
         <span className="averageStarsStars">{convertToStars(tempNum)}</span>
-
       </div>
       <StarCounts data={res.data.ratings}/>
       {charMap}
