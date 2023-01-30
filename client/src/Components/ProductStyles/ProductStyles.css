@@ -1,0 +1,4 @@
+.productStyles {
+  border: 5px solid darkblue;
+  height: calc(100% / 3);
+}

@@ -1,0 +1,4 @@
+.productHeader {
+  border: 5px solid darkgreen;
+  height: calc(100% / 3);
+}
