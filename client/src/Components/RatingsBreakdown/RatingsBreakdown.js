@@ -9,7 +9,6 @@ import convertToStars from '../convertToStars.js'
 import { BsStarFill, BsStarHalf, BsStar} from 'react-icons/bs';
 import { IoMdArrowDropdown } from 'react-icons/io';
 
-
 function RatingsBreakdown({product}) {
 
   let [breakDown, setBreakDown] = useState(<></>)
@@ -47,8 +46,10 @@ function RatingsBreakdown({product}) {
 
       setBreakDown(<>
       <div className="averageStars">
+      
         <span className="primaryText averageStarsNumber">{tempNum}</span>
         <span className="averageStarsStars">{convertToStars(tempNum)}</span>
+
       </div>
       <StarCounts data={res.data.ratings}/>
       {charMap}
