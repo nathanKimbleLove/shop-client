@@ -48,24 +48,21 @@ function QuestionsAndAnswersList({ product, questionsAndAnswers }) {
     axios
       .put(`http://localhost:8080/qa/questions/${question_id}/helpful`)
       .then((res) => {
-        console.log("successfully made helpful question click ");
         res.send(res.status);
       })
       .catch((err) => {
-        console.log("failed to handle helpful question click");
+        console.log(err);
       });
   }
 
   function handleReportQuestionClick(question_id) {
-    console.log("in handler for report question.. question id " + question_id);
     axios
       .put(`http://localhost:8080/qa/questions/${question_id}/report`)
       .then((res) => {
-        console.log("successfully made report question click ");
         res.send(res.status);
       })
       .catch((err) => {
-        console.log("failed to handle report question click");
+        console.log(err);
       });
   }
 
@@ -78,7 +75,6 @@ function QuestionsAndAnswersList({ product, questionsAndAnswers }) {
             <div>Helpful?</div>{" "}
             <button
               onClick={(e) => {
-                console.log("handling click.. question.question_id");
                 handleHelpfulQuestionClick(question.question_id);
               }}
             >

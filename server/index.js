@@ -4,7 +4,7 @@ const path = require("path");
 require("dotenv").config({ path: path.join(__dirname, "./.env") });
 const cors = require("cors");
 const axios = require("axios");
-const { application } = require("express");
+// const { application } = require("express"); // what is this doing?
 
 const port = process.env.PORT || 8080;
 const app = express();
@@ -14,7 +14,6 @@ app.use(express.json());
 const authOptions = { headers: { Authorization: process.env.REACT_APP_AUTH } };
 
 app.post("/", (req, res) => {
-  // console.log("app.post request url: ", req.url);
   axios
     .post(process.env.REACT_APP_API + req.url, req.body, authOptions)
     .then((answer) => {
@@ -24,7 +23,6 @@ app.post("/", (req, res) => {
 });
 
 app.get("/*", (req, res) => {
-  // console.log("app.get request url: ", req.url);
   axios
     .get(process.env.REACT_APP_API + req.url, authOptions)
     .then((answer) => {
@@ -37,9 +35,6 @@ app.get("/*", (req, res) => {
 // enables posting a question
 app.post("/qa/questions*", (req, res) => {
   let url = process.env.REACT_APP_API + req.url;
-  console.log("in app.post at server/index url is " + url);
-  console.log("in app.post req.body is ", req.body);
-  console.log(typeof req.body);
   axios
     .post(url, req.body, authOptions)
     .then((answer) => {
@@ -52,12 +47,9 @@ app.post("/qa/questions*", (req, res) => {
     });
 });
 
-// enables marking question helpful
+// enables marking questions helpful / reporting
 app.put("/*", (req, res) => {
   let url = process.env.REACT_APP_API + req.url;
-  console.log("in app.put at server/index url is " + url);
-  console.log("in app.put req.body is ", req.body);
-  console.log(typeof req.body);
   axios
     .put(url, {}, authOptions)
     .then((answer) => {
@@ -66,37 +58,8 @@ app.put("/*", (req, res) => {
       res.send(answer.statusText);
     })
     .catch((err) => {
-      console.log("failed to put in server/index app.put");
+      console.log(err);
     });
 });
-
-// app.get("/qa/questions/", (req, res) => {
-//   let url = process.env.REACT_APP_API + req.url;
-//   console.log(url);
-//   axios
-//     .post(url, req.body, authOptions)
-//     .then((answer) => {
-//       res.statusCode = answer.status;
-//       res.send(answer.statusText);
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// });
-
-// unneecessary for app.post answers to work
-// app.post("/qa/questions/*", (req, res) => {
-//   let url = process.env.REACT_APP_API + req.url;
-//   console.log("app.post in server/index " + url);
-//   axios
-//     .post(url, req.body, authOptions)
-//     .then((answer) => {
-//       res.statusCode = answer.status;
-//       res.send(answer.statusText);
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// });
 
 app.listen(port, () => console.log("listening on ", port));

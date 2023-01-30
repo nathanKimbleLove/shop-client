@@ -3,28 +3,24 @@ import "../../QuestionsAndAnswers.css";
 
 function Answers({ product, questionsAndAnswers, answersObject }) {
   function handleReportAnswerClick(answer) {
-    console.log("in handler for report answer id " + answer.id);
     axios
       .put(`http://localhost:8080/qa/answers/${answer.id}/report`)
       .then((res) => {
-        console.log("successfully made report answer click ");
         res.send(res.status);
       })
       .catch((err) => {
-        console.log("failed to handle report answer click");
+        console.log(err);
       });
   }
 
   function handleHelpfulAnswerClick(answer) {
-    console.log("in handler for helpful answer id " + answer.id);
     axios
       .put(`http://localhost:8080/qa/answers/${answer.id}/helpful`)
       .then((res) => {
-        console.log("successfully made helpful answer click ");
         res.send(res.status);
       })
       .catch((err) => {
-        console.log("failed to handle helpful answer click");
+        console.log(err);
       });
   }
   let answers = Object.values(answersObject).map((answer) => {
