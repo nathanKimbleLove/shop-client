@@ -24,8 +24,9 @@ function Answers({ product, questionsAndAnswers, answersObject }) {
       });
   }
   let answers = Object.values(answersObject).map((answer) => {
+    // console.log("answer name is ", answer);
     return (
-      <div className="answer" key={answer.answer_name}>
+      <div className="answer" key={answer.id}>
         <h3 className="answerLabel">A: </h3>
         <div className="answerRightSide">
           <div>{answer.body}</div>
@@ -53,7 +54,7 @@ function Answers({ product, questionsAndAnswers, answersObject }) {
     );
   });
   return (
-    <div className="answerCard" key={answersObject.asker_name}>
+    <div className="answerCard" key="answerCard">
       {answers}
       <button>Load more answers</button>
     </div>
