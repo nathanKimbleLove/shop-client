@@ -1,6 +1,6 @@
 import Moment from 'react-moment'; //npm install react-moment
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import './Review.css';
 import convertToStars from '../convertToStars.js';
@@ -11,11 +11,12 @@ import { BsMegaphoneFill } from 'react-icons/bs'
 
 function Review({ review, setShowModal }) {
 
+  let [photos, setPhotos] = useState(<></>)
+
   let helpfulHandler = (e) => {
     // review.review_id
     axios.put(`http://localhost:8080/reviews/${review.review_id}/helpful`)
       .then(res => {
-        console.log(res)
         setHelpful(<button className="heartOutline heartFilled" ><AiFillHeart /></button>)
       })
       .catch(err => console.log(err));
@@ -25,7 +26,6 @@ function Review({ review, setShowModal }) {
     // review.review_id
     axios.put(`http://localhost:8080/reviews/${review.review_id}/report`)
       .then(res => {
-        console.log(res)
         setReport(<button className="report reported"><BsMegaphoneFill /></button>)
       })
       .catch(err => console.log(err));
@@ -38,6 +38,15 @@ function Review({ review, setShowModal }) {
     setShowModal("Review", review);
   }
 
+  useEffect(() => {
+    if (review.photos[0]) {
+      let temp = review.photos.map((element, index) => {
+        return <img className="reviewPhoto" key={index} src={element.url} alt="photo"></img>
+      })
+      setPhotos(temp)
+    }
+  }, [review])
+
   return (
     <div className="review borderColor">
       <div className= "reviewTopBar">
@@ -46,6 +55,9 @@ function Review({ review, setShowModal }) {
       </div>
       <div className="reviewTitle primaryText">{review.summary}</div>
       <div className="reviewContent">{review.body}</div>
+      <div className="reviewPhotos">
+        {photos}
+      </div>
       <div className="reviewBottomBar">
         {helpful}
         {report}
