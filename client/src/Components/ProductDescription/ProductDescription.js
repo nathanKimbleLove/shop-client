@@ -1,13 +1,33 @@
 import './ProductDescription.css';
 
-function ProductDescription() {
+function ProductDescription({ product }) {
+
+  const getProductSlogan = () => {
+    if (product === null) {
+      return
+    }
+    else {
+      return product.slogan;
+    }
+  };
+
+  const getProductDescription = () => {
+    if (product === null) {
+      return
+    }
+    else {
+      return product.description;
+    }
+  };
+
+
   return (
     <div className="productDescription">
       <h3>
-        I am the product description
+        {getProductSlogan()}
       </h3>
       <p>
-        And I am more info
+        {getProductDescription()}
       </p>
     </div>
   )

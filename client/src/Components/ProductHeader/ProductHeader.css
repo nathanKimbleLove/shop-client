@@ -2,3 +2,8 @@
   border: 5px solid darkgreen;
   height: calc(100% / 3);
 }
+
+.productHeader h2,
+.productHeader h3 {
+  margin: 10px 0;
+}
