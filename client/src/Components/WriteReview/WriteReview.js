@@ -21,7 +21,6 @@ let WriteReview = ({ product, exit }) => {
   let handleStarClick = (e) => {
     e.preventDefault();
     let num = e.target.getAttribute('num')
-    console.log(num);
     setStarsNum(parseInt(num)+1);
     let temp = [...stars];
     for (let i = 0; i <= num; i++) {
@@ -57,7 +56,6 @@ let WriteReview = ({ product, exit }) => {
         photos: photos,
         characteristics: characteristics
       }
-      console.log(body);
       axios.post("http://localhost:8080/reviews", body)
       .then(res => {
         console.log(res);
