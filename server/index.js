@@ -13,11 +13,13 @@ app.use(cors({ origin: "http://localhost:3000" }));
 app.use(express.json());
 const authOptions = { headers: { Authorization: process.env.REACT_APP_AUTH } };
 
-app.post("/", (req, res) => {
+app.post("/*", (req, res) => {
   axios
     .post(process.env.REACT_APP_API + req.url, req.body, authOptions)
     .then((answer) => {
       res.status(202);
+      res.send('confirmed')
+      console.log(answer);
     })
     .catch((err) => console.log(err));
 });

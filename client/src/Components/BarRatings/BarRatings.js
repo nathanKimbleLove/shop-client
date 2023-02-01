@@ -4,6 +4,8 @@ import { IoMdArrowDropdown } from 'react-icons/io';
 
 import './BarRatings.css'
 
+// CHANGE ALL OF THIS TO DISABLED SLIDERS
+
 function BarRatings({ data, dataName })  {
 
 

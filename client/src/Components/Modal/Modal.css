@@ -1,5 +1,5 @@
 .backdrop {
-  position: absolute;
+  position: absolute; /* try fixed */
   height: 100vh;
   width: 100%;
   z-index: 3;
@@ -8,26 +8,31 @@
 }
 
 .Modal {
-  background-color: white;
-
-  border: 1px solid #bbb;
-  border-radius: 2%;
-  position: absolute;
   height: 90vh;
   left: 5%;
+  position: absolute; /* try fixed */
   top: 5vh;
   width: 90%;
+
+  display: flex;
+  flex-direction: column;
+
+  background-color: white;
+  border: 1px solid #bbb;
+  border-radius: 2%;
   z-index: 4;
 
-  overflow: hidden;
+  overflow: auto;
 }
 
 .modal-topbar {
   display: flex;
   justify-content: space-between;
   height: 3%;
+  min-height: 25px;
   border-bottom: 1px solid #bbb;
   background-color: #777;
+  width: 100%;
 }
 
 .modal-topbar button {

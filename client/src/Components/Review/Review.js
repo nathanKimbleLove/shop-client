@@ -30,4 +30,8 @@ function Review({ review, setShowModal }) {
   );
 }
 
+// need to display photos somewhere
+  // review.photos =  [ { id, url }, { id, url }, { id, url }]
+  // url is http://res.cloudinary.com/abcdefg
+
 export default Review;

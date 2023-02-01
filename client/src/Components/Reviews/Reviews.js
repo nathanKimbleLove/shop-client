@@ -8,7 +8,7 @@ function Reviews({ product, setShowModal })  {
 
   let [reviewsArr, setReviewsArr] = useState([]);
 
-  let addReviews = (reviews) => {
+  let loadReviews = (reviews) => {
     let temp = reviews.map((element, index) => {
       return <Review review={element} key={index} setShowModal={setShowModal}/>
     })
@@ -16,11 +16,14 @@ function Reviews({ product, setShowModal })  {
     setReviewsArr(<>{temp}</>);
   }
 
+  let modalHandler = () => {
+    setShowModal("WriteReview", product);
+  }
 
   useEffect(() => {
         axios.get(`http://localhost:8080/reviews?product_id=${product.id}&count=15`)
         .then(res => {
-          addReviews(res.data.results)
+          loadReviews(res.data.results)
         })
         .catch(err => console.log(err));
   }, [product])
@@ -37,7 +40,7 @@ function Reviews({ product, setShowModal })  {
             <option value="sickness">sickness</option>
           </select>
         </span>
-        <button className="reviewAdder borderColor">Write a Review!</button>
+        <button className="reviewAdder borderColor" onClick={modalHandler}>Write a Review!</button>
       </div>
       <div className="reviewArray">
         {reviewsArr.length !== 0 && reviewsArr}

@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 
 import './Modal.css';
 import Review from '../Review/Review.js';
+import WriteReview from '../WriteReview/WriteReview.js';
 
 
 //is passed a component to serve, and the content
@@ -13,17 +14,19 @@ import Review from '../Review/Review.js';
 
 let Modal = ({ serve, content, setModal }) => {
 
+  let exit = () => {
+    setModal(<></>)
+  }
+
   let components = {
     'Review': <Review review={content}/>,
+    'WriteReview': <WriteReview product={content} exit={exit}/>
   };
 
   let serveComponent = () => {
     return components[serve]
   }
 
-  let exit = () => {
-    setModal(<></>)
-  }
 
   return (
     <>
