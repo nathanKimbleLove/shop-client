@@ -30,6 +30,21 @@
   padding: 2px 10px
 }
 
+.reviewPhoto {
+  border-radius: 15%;
+  max-height: 100px;
+  width: auto;
+  padding:5px;
+}
+
+.reviewPhotos {
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+  width: 100%;
+  flex-flow: row wrap;
+}
+
 .reviewTitle {
   font-size: 20px;
   padding: 0 10px;
