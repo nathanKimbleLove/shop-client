@@ -16,15 +16,19 @@
 
 .questionsAndAnswers {
   display: flex;
+  flex: 1;
   flex-direction: column;
   height: auto;
 }
 
-.questionOptions, .helpAndAdd {
+.questionOptions {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: baseline;
 }
 
-
+.helpAndAdd {
+  display: flex;
+  align-items: baseline;
+}
