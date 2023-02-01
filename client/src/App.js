@@ -20,7 +20,7 @@ function App() {
         setProducts(clothing);
         const random = Math.floor(Math.random() * clothing.length);
         setProduct(clothing[random]);
-        console.log("product is ", clothing[random]);
+        // console.log("product is ", clothing[random]);
         axios
           .get("http://localhost:8080/qa/questions?product_id=" + clothing[random].id)
           .then((res) => {
