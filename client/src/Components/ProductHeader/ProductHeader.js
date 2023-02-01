@@ -1,14 +1,71 @@
 import './ProductHeader.css';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
-function ProductHeader() {
+function ProductHeader({ product }) {
+  const [totalRatings, setTotalRatings] = useState(null);
+
+  useEffect(() => {
+    console.log('use effect ran, product is:', product)
+    if (product) {
+       axios.get(
+      `http://localhost:8080/reviews/meta?product_id=${product.id}`
+      ).then(
+        (res) => {
+          let summedRatings = 0;
+          for (let key in res.data.ratings) {
+            summedRatings += parseInt(res.data.ratings[key]);
+          }
+          setTotalRatings(summedRatings);
+        }
+      ).catch(
+        (err) => {
+          console.log(err);
+        }
+      )
+    }
+  }, [product]);
+
+  const getProductName = () => {
+    if (product === null) {
+      return
+    }
+    else {
+      return product.name;
+    }
+  };
+
+  const getProductCategory = () => {
+    if (product === null) {
+      return
+    }
+    else {
+      return product.category;
+    }
+  };
+
+  const getProductPrice = () => {
+    if (product === null) {
+      return
+    }
+    else {
+      return product.default_price;
+    }
+  };
+
+
+
   return (
     <div className="productHeader">
+      {totalRatings > 0 &&
+        (<><span>total ratings:</span><a href="#testscroll">{totalRatings}</a></>)}
       <h2>
-        Category
+        {getProductCategory()}
       </h2>
       <h3>
-        Expanded Product Name
+        {getProductName()}
       </h3>
+      ${getProductPrice()}
     </div>
   );
 }

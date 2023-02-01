@@ -1,8 +1,15 @@
 import './ProductCirclePhoto.css';
 
-function ProductCirclePhoto() {
+function ProductCirclePhoto({ photo, id, setSelectedStyle }) {
+
+  function handleImageclick() {
+    setSelectedStyle(id);
+  }
+
   return (
-    <span className="productCirclePhoto">i am a circle</span>
+    <div className="productCircleContainer">
+      <img className="productCirclePhoto" src={photo} alt="product photos" onClick={handleImageclick} />
+    </div>
   );
 }
 

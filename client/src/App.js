@@ -11,6 +11,12 @@ function App() {
   const [questionsAndAnswers, setQuestionsAndAnswers] = useState([]);
 
   useEffect(() => {
+    if (product) {
+      console.log(JSON.stringify(product));
+    }
+  }, [product]);
+
+  useEffect(() => {
     axios
       .get("http://localhost:8080/products")
       .then((res) => {
@@ -51,8 +57,8 @@ function App() {
     <>
       <NavBar changeProduct={handleChangeProduct}/>
       <ProductWidget product={product} />
-      <QuestionsAndAnswers product={product} />
-      <RatingsAndReviews product={product} />
+      {/* <QuestionsAndAnswers product={product} /> */}
+      {/* <RatingsAndReviews product={product} /> */}
       <p className="accentColor">Current Product is {JSON.stringify(product)}</p>
     </>
   );
