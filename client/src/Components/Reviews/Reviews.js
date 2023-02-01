@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 
 import './Reviews.css';
 import Review from '../Review/Review.js';
@@ -9,6 +9,7 @@ function Reviews({ product, setShowModal, filterOptions })  {
   let baseQuery;
   let [reviewsArr, setReviewsArr] = useState([]);
   let [query, setQuery] = useState(null);
+  let [reviewsArrLength, setReviewsArrLength] = useState(0);
 
   const modalHandler = () => {
     setShowModal("WriteReview", product);
@@ -43,11 +44,13 @@ function Reviews({ product, setShowModal, filterOptions })  {
   }
 
   const loadReviews = (reviews, add) => {
+    // console.log('hello from loadReveiws')
     if (!add) {
       reviewsArr = [];
     }
 
     let newArr = filterReviews(reviews);
+    setReviewsArrLength(newArr.length);
 
     let temp = newArr.map((element, index) => {
       return <Review review={element} key={element.review_id} setShowModal={setShowModal}/>
@@ -57,8 +60,10 @@ function Reviews({ product, setShowModal, filterOptions })  {
   }
 
   let addReviews = () => {
+    // console.log('hello from addReviews')
     axios.get(query)
     .then(res => {
+      // console.log('hello')
       loadReviews(res.data.results, true);
     })
     .catch(err => console.log(err));
@@ -66,7 +71,7 @@ function Reviews({ product, setShowModal, filterOptions })  {
 
   useEffect(() => {
     if (product) {
-      baseQuery = `http://localhost:8080/reviews?product_id=${product.id}&count=30`;
+      baseQuery = `http://localhost:8080/reviews?product_id=${product.id}&count=5`;
       let query = baseQuery + '&sort=relevant'
       setQuery(baseQuery + '&sort=relevant');
       axios.get(query)
@@ -77,11 +82,22 @@ function Reviews({ product, setShowModal, filterOptions })  {
     }
   }, [product, query, filterOptions])
 
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      if (entry.isIntersecting) {
+        // console.log('hit the bottom');
+        // addReviews();
+      }
+    });
+      observer.observe(document.querySelector('#loadMoreDetector'));
+  }, []);
+
   return (
-    <div className="reviews">
+    <div className="reviews" >
       <div className="reviewsInteractions">
         <span className="reviewSorter primaryText">
-          248 reviews, sorted by
+          {reviewsArrLength} reviews, sorted by
           <select name="sort-options" className="sortOptions accentColor primaryText" onChange={sortByHandler}>
             <option value="relevant">relevance</option>
             <option value="newest">newness</option>
@@ -90,8 +106,9 @@ function Reviews({ product, setShowModal, filterOptions })  {
         </span>
         <button className="reviewAdder borderColor" onClick={modalHandler}>Write a Review!</button>
       </div>
-      <div className="reviewArray">
+      <div id="reviewArray" >
         {reviewsArr.length !== 0 && reviewsArr}
+        <div id="loadMoreDetector"></div>
       </div>
     </div>
   );
