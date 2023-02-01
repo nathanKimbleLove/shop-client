@@ -1,20 +1,21 @@
 import axios from 'axios';
+import { useState, useEffect } from 'react';
+
 import ProductWidget from './Components/ProductWidget/ProductWidget.js';
 import RatingsAndReviews from './Components/RatingsAndReviews/RatingsAndReviews.js';
 import QuestionsAndAnswers from './Components/QuestionsAndAnswers/QuestionsAndAnswers.js';
 import NavBar from './Components/NavBar/NavBar.js';
-import { useState, useEffect } from 'react';
+import Modal from './Components/Modal/Modal.js';
 
 function App() {
   const [products, setProducts] = useState([]);
   const [product, setProduct] = useState(null);
   const [questionsAndAnswers, setQuestionsAndAnswers] = useState([]);
+  const [modal, setModal] = useState(<></>);
 
-  useEffect(() => {
-    if (product) {
-      console.log(JSON.stringify(product));
-    }
-  }, [product]);
+  let setShowModal = (comp, content) => {
+    setModal(<Modal serve={comp} content={content} setModal={setModal}/>);
+  }
 
   useEffect(() => {
     axios
@@ -26,7 +27,7 @@ function App() {
         setProducts(clothing);
         const random = Math.floor(Math.random() * clothing.length);
         setProduct(clothing[random]);
-        console.log("product is ", clothing[random]);
+        // console.log("product is ", clothing[random]);
         axios
           .get("http://localhost:8080/qa/questions?product_id=" + clothing[random].id)
           .then((res) => {
@@ -55,10 +56,11 @@ function App() {
 
   return (
     <>
+      {modal}
       <NavBar changeProduct={handleChangeProduct}/>
       <ProductWidget product={product} />
-      {/* <QuestionsAndAnswers product={product} /> */}
-      {/* <RatingsAndReviews product={product} /> */}
+      <QuestionsAndAnswers product={product} />
+      <RatingsAndReviews product={product} setShowModal={setShowModal}/>
       <p className="accentColor">Current Product is {JSON.stringify(product)}</p>
     </>
   );

@@ -19,7 +19,7 @@
   padding: 3px 12px;
 }
 
-.reviewArray {
+#reviewArray {
   overflow-y: scroll;
   padding: 0 10px 0 0;
 }

@@ -1,0 +1,77 @@
+.writeReviewStars {
+  font-size: 8vw;
+  width: 50%;
+  max-width: 350px;
+}
+
+.submission {
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  padding: 7px;
+}
+
+.writeBottombar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.writeEmail {
+  height: 40%;
+  width: 80%;
+}
+
+.writeMidbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.writeName {
+  height: 40%;
+  width: 60%;
+}
+
+.writeTopbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0 15px 0;
+}
+
+.writeReviewContent {
+  border-radius: 10px;
+  flex:1;
+  font-size: 150%;
+  min-height: 20vh;
+  margin: 0 0 15px 0;
+  padding: 7px;
+}
+
+.writeReviewForm {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-between;
+}
+
+.writeReviewTitle {
+  border-radius: 10px;
+  margin: 0 0 15px 0;
+  font-size: 150%;
+  padding: 7px;
+  width: 70%;
+}
+
+.writeUserInfo {
+  align-items: flex-end;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.WriteReview {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 15px;
+}

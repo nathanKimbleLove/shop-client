@@ -9,7 +9,7 @@ import convertToStars from '../convertToStars.js'
 import { BsStarFill, BsStarHalf, BsStar} from 'react-icons/bs';
 import { IoMdArrowDropdown } from 'react-icons/io';
 
-function RatingsBreakdown({product}) {
+function RatingsBreakdown({ product, filterOptions, setFilterOptions }) {
 
 
   let [breakDown, setBreakDown] = useState(<></>)
@@ -32,30 +32,31 @@ function RatingsBreakdown({product}) {
     //spits out average score to the nearest half
   }
 
-
   useEffect(() => {
-    axios.get(`http://localhost:8080/reviews/meta?product_id=${product.id}`)
-    .then(res => {
-      let tempNum = calculateStars(res.data.ratings);
+    if (product) {
+      axios.get(`http://localhost:8080/reviews/meta?product_id=${product.id}`)
+      .then(res => {
+        let tempNum = calculateStars(res.data.ratings);
 
-      let chars = res.data.characteristics
-      let keys = Object.keys(chars);
-      let charMap = [];
-      for (let i = 0; i < keys.length; i++) {
-        charMap.push(<BarRatings data={chars[keys[i]]} dataName={keys[i]} key={keys[i]} />)
-      }
+        let chars = res.data.characteristics
+        let keys = Object.keys(chars);
+        let charMap = [];
+        for (let i = 0; i < keys.length; i++) {
+          charMap.push(<BarRatings data={chars[keys[i]]} dataName={keys[i]} key={keys[i]} />)
+        }
 
-      setBreakDown(<>
-      <div className="averageStars">
-        <span className="primaryText averageStarsNumber">{tempNum}</span>
-        <span className="averageStarsStars">{convertToStars(tempNum)}</span>
-      </div>
-      <StarCounts data={res.data.ratings}/>
-      {charMap}
-      </>)
+        setBreakDown(<>
+        <div className="averageStars">
+          <span className="primaryText averageStarsNumber">{tempNum}</span>
+          <span className="averageStarsStars">{convertToStars(tempNum)}</span>
+        </div>
+        <StarCounts data={res.data.ratings} filterOptions={filterOptions} setFilterOptions={setFilterOptions}/>
+        {charMap}
+        </>)
 
-    })
-  }, [product])
+      })
+    }
+  }, [product, filterOptions])
 
   return (
     <div className="ratingsBreakdown">

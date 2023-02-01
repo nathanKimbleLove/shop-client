@@ -1,6 +1,5 @@
 .emptyBar {
   background-color: #bbb;
-  flex: 1;
   margin: 4px;
   z-index: 1;
 }
