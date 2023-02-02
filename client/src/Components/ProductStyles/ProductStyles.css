@@ -1,0 +1,10 @@
+.productStyles {
+  border: 5px solid darkblue;
+  height: calc(100% / 3);
+}
+
+.productCirclePhotos {
+  width: 70%;
+  display: flex;
+  flex-wrap: wrap;
+}

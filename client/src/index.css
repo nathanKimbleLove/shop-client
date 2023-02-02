@@ -19,8 +19,13 @@ code {
   align-items: center;
   display: flex;
   flex-direction: column;
+  height: 100vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
   padding: 0 5%;
 }
+
+/* our stylings */
 
 .accentColor {
   color: #b90e0a;

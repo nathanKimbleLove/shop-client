@@ -1,0 +1,10 @@
+.productCirclePhoto {
+  width: 100%;
+  aspect-ratio : 1 / 1;
+  border-radius: 100%;
+}
+
+.productCircleContainer {
+  width: 25%;
+  padding: 5px;
+}

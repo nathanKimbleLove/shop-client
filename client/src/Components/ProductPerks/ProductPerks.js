@@ -1,0 +1,14 @@
+import './ProductPerks.css';
+
+function ProductPerks() {
+  return (
+    <div className="productPerks">
+      <p id="testscroll">GMO and pesticide free</p>
+      <p>This doesn't really matter</p>
+      <p>Let's go team black widow</p>
+      <p>I am a perk</p>
+    </div>
+  );
+}
+
+export default ProductPerks;

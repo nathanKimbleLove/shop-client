@@ -1,30 +1,74 @@
+import Moment from 'react-moment'; //npm install react-moment
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+
 import './Review.css';
+import convertToStars from '../convertToStars.js';
 
-import { BsStarFill, BsStarHalf, BsStar} from 'react-icons/bs';
+import { BsStarFill, BsStar} from 'react-icons/bs';
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
+import { BsMegaphoneFill } from 'react-icons/bs'
 
-function Review() {
+function Review({ review, setShowModal }) {
 
+  let [photos, setPhotos] = useState(<></>)
+
+  let helpfulHandler = (e) => {
+    // review.review_id
+    axios.put(`http://localhost:8080/reviews/${review.review_id}/helpful`)
+      .then(res => {
+        setHelpful(<button className="heartOutline heartFilled" ><AiFillHeart /></button>)
+      })
+      .catch(err => console.log(err));
+  }
+
+  let reportHandler = (e) => {
+    // review.review_id
+    axios.put(`http://localhost:8080/reviews/${review.review_id}/report`)
+      .then(res => {
+        setReport(<button className="report reported"><BsMegaphoneFill /></button>)
+      })
+      .catch(err => console.log(err));
+  }
+
+  let [helpful, setHelpful] = useState(<button className="heartOutline" onClick={helpfulHandler}><AiOutlineHeart /></button>)
+  let [report, setReport] = useState(<button className="report" onClick={reportHandler}><BsMegaphoneFill /></button>)
+
+  let modalHandler = () =>  {
+    setShowModal("Review", review);
+  }
+
+  useEffect(() => {
+    if (review.photos[0]) {
+      let temp = review.photos.map((element, index) => {
+        return <img className="reviewPhoto" key={index} src={element.url} alt="photo"></img>
+      })
+      setPhotos(temp)
+    }
+  }, [review])
 
   return (
     <div className="review borderColor">
       <div className= "reviewTopBar">
-        <span><BsStarFill /><BsStarFill /><BsStarFill /><BsStarHalf /><BsStar /></span>
-        <span className="secondaryTextColor">@random-a-username, June 27th, 2002</span>
+        <span>{convertToStars(review.rating)}</span>
+        <span className="secondaryTextColor">{review.reviewer_name}, <Moment fromNow>{review.date}</Moment> </span>
       </div>
-      <div className="reviewTitle primaryText">I am the very, very, ve...</div>
-      <div className="reviewContent">...ry long title. <br></br>so that's all folks. Have an excellent day, and I'll see ya when I see ya!!! </div>
+      <div className="reviewTitle primaryText">{review.summary}</div>
+      <div className="reviewContent">{review.body}</div>
+      <div className="reviewPhotos">
+        {photos}
+      </div>
       <div className="reviewBottomBar">
-        <span>Helpful? Yes! (10)</span>
-        <span> | </span>
-        <span>Report</span>
+        {helpful}
+        {report}
+        <button className="showModalTemp" onClick={modalHandler}>Temp -- Show Modal</button>
       </div>
     </div>
   );
 }
 
-export default Review;
+// need to display photos somewhere
+  // review.photos =  [ { id, url }, { id, url }, { id, url }]
+  // url is http://res.cloudinary.com/abcdefg
 
-// long content for testing later
-/*
-I wish that it wasn't so long, fr. I am going to write a whole lot of content here just to see what it looks like. I'm not really sure what my solution will be, should any problems arise. I guess we'll cross that bridge when we get to it. Hopefully it won't look to bad. <br></br><br></br> Anyway, I had a pretty good day, hbu?
-*/
+export default Review;

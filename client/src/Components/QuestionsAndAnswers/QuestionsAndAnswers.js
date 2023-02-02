@@ -8,17 +8,19 @@ function QuestionsAndAnswers({ product, questionsAndAnswers }) {
   // get questions from API
   const [questions, setQuestions] = useState([]);
   const [searchTerms, setSearchTerms] = useState("");
-  // useEffect(() => {
-  //   console.log("in questionsAndAnswers the product is ", product);
-  //   axios
-  //     .get("http://localhost:8080/qa/questions?product_id=" + product.id)
-  //     .then((res) => {
-  //       setQuestions(res.data.results);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, [product]);
+
+  useEffect(() => {
+    if (product) {
+      axios
+        .get("http://localhost:8080/qa/questions?product_id=" + product.id)
+        .then((res) => {
+          setQuestions(res.data.results);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [product]);
 
   function handleNewQuestionClick() {
     let username = prompt("What is your username");
@@ -68,7 +70,7 @@ function QuestionsAndAnswers({ product, questionsAndAnswers }) {
       </div>
       <QuestionsAndAnswersList
         product={product}
-        questionsAndAnswers={questionsAndAnswers}
+        questionsAndAnswers={questions}
         searchTerms={searchTerms}
       />
       <div>

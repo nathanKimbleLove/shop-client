@@ -5,6 +5,10 @@
   width: 60%;
 }
 
+.darkTest {
+  background-color: black;
+}
+
 .darkModeToggle {
   background-color: transparent;
   border: none;
