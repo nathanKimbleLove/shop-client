@@ -4,6 +4,10 @@
   align-items: baseline;
 }
 
+.answerDetails {
+  padding-top: 2%;
+}
+
 .answerLabel {
   margin-right: 10px;
 }
@@ -14,9 +18,12 @@
 
 }
 
+.lastButtons {
+  padding-top: 2%;
+}
+
 .questionsAndAnswers {
   display: flex;
-  flex: 1;
   flex-direction: column;
   height: auto;
 }

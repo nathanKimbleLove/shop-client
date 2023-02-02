@@ -57,13 +57,14 @@ function QuestionsAndAnswers({ product, questionsAndAnswers }) {
   return (
     <div className="questionsAndAnswers">
       <h4>Questions and Answers</h4>
-      <div>
+      <div className="qaSearchBar">
         <form>
           <input
             type="text"
             value={searchTerms}
             onChange={handleSearchTermChange}
-            placeholder="Search for a question or answer"
+            placeholder="Have a question? Search for answers…"
+            size="34"
           ></input>
           <GiMagnifyingGlass />
         </form>{" "}
@@ -73,7 +74,7 @@ function QuestionsAndAnswers({ product, questionsAndAnswers }) {
         questionsAndAnswers={questions}
         searchTerms={searchTerms}
       />
-      <div>
+      <div className="lastButtons">
         <button>More answered questions</button>
         <button onClick={handleNewQuestionClick}>Add a question</button>
       </div>

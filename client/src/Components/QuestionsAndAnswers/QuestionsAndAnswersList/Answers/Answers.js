@@ -73,7 +73,7 @@ function Answers({ product, questionsAndAnswers, answersObject, question }) {
   return (
     <div className="answerCard" key="answerCard">
       {answers}
-      <button>Load more answers</button>
+      <button className="loadAnswers">Load more answers</button>
     </div>
   );
 }
