@@ -4,6 +4,10 @@
   align-items: baseline;
 }
 
+.answerDetails {
+  padding-top: 2%;
+}
+
 .answerLabel {
   margin-right: 10px;
 }
@@ -14,17 +18,24 @@
 
 }
 
+.lastButtons {
+  padding-top: 2%;
+}
+
 .questionsAndAnswers {
   display: flex;
   flex-direction: column;
   height: auto;
 }
 
-.questionOptions, .helpAndAdd {
+.questionOptions {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: baseline;
 }
 
-
+.helpAndAdd {
+  display: flex;
+  align-items: baseline;
+}
