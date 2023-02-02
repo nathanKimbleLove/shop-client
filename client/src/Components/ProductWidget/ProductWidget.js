@@ -20,13 +20,13 @@ function ProductDetails({ product }) {
 
   useEffect(() => {
     if (product) {
-      console.log(`new product id: ${product.id}`);
+      // console.log(`new product id: ${product.id}`);
 
      axios
         .get(`http://localhost:8080/products/${product.id}/styles`)
        .then((res) => {
-        console.log('product details use effect results:');
-         console.log(res.data.results);
+        // console.log('product details use effect results:');
+        //  console.log(res.data.results);
          setProductStyles(res.data.results);
           })
        .catch((err) => {
@@ -38,9 +38,9 @@ function ProductDetails({ product }) {
 
   }, [product]);
 
-  useEffect(() => {
-    console.log('selected style: ', selectedStyle);
-  }, [selectedStyle]);
+  // useEffect(() => {
+  //   console.log('selected style: ', selectedStyle);
+  // }, [selectedStyle]);
 
   return (
     <div className="productWidget">

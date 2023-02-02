@@ -53,7 +53,6 @@ function RatingsBreakdown({ product, filterOptions, setFilterOptions }) {
         <StarCounts data={res.data.ratings} filterOptions={filterOptions} setFilterOptions={setFilterOptions}/>
         {charMap}
         </>)
-
       })
     }
   }, [product, filterOptions])

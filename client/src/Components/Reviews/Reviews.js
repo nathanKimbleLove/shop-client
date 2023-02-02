@@ -71,9 +71,8 @@ function Reviews({ product, setShowModal, filterOptions })  {
 
   useEffect(() => {
     if (product) {
-      baseQuery = `http://localhost:8080/reviews?product_id=${product.id}&count=5`;
+      baseQuery = `http://localhost:8080/reviews?product_id=${product.id}&count=30`;
       let query = baseQuery + '&sort=relevant'
-      setQuery(baseQuery + '&sort=relevant');
       axios.get(query)
       .then(res => {
         loadReviews(res.data.results)
@@ -86,8 +85,8 @@ function Reviews({ product, setShowModal, filterOptions })  {
     const observer = new IntersectionObserver((entries) => {
       const entry = entries[0];
       if (entry.isIntersecting) {
-        // console.log('hit the bottom');
-        // addReviews();
+        console.log('hit the bottom');
+        addReviews();
       }
     });
       observer.observe(document.querySelector('#loadMoreDetector'));

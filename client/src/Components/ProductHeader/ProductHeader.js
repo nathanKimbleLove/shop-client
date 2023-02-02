@@ -6,7 +6,7 @@ function ProductHeader({ product }) {
   const [totalRatings, setTotalRatings] = useState(null);
 
   useEffect(() => {
-    console.log('use effect ran, product is:', product)
+    // console.log('use effect ran, product is:', product)
     if (product) {
        axios.get(
       `http://localhost:8080/reviews/meta?product_id=${product.id}`
