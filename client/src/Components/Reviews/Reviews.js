@@ -20,14 +20,12 @@ function Reviews({ product, setShowModal, filterOptions })  {
   }
 
   const sortByHandler = (e) => {
-    console.log(e.target.value)
     setSort(`&sort=${e.target.value}`)
   }
 
 
 
   const addReviews = useCallback((add = true) => {
-    console.log(page)
 
     axios.get(`http://localhost:8080/reviews/?product_id=${product.id}&count=10&page=${page}${sort}`)
     .then(res => {
@@ -47,9 +45,10 @@ function Reviews({ product, setShowModal, filterOptions })  {
   // reset state / call add reviews
   useEffect(() => {
     if (sort && product) {
+      console.log('ayo i have been called')
       addReviews(false)
     }
-  }, [sort])
+  }, [sort, product])
 
   // create observer which calls addReviews when @ btm of list
   useEffect(() => {
