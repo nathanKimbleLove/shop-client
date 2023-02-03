@@ -12,6 +12,7 @@ import { BsMegaphoneFill } from 'react-icons/bs'
 function Review({ review, setShowModal }) {
 
   let [photos, setPhotos] = useState(<></>)
+  let [reviewStars, setReviewStars] = useState(<></>)
 
   let helpfulHandler = (e) => {
     // review.review_id
@@ -45,12 +46,13 @@ function Review({ review, setShowModal }) {
       })
       setPhotos(temp)
     }
+    setReviewStars(<span>{convertToStars(review.rating)}</span>);
   }, [review])
 
   return (
     <div className="review borderColor">
       <div className= "reviewTopBar">
-        <span>{convertToStars(review.rating)}</span>
+        {reviewStars}
         <span className="secondaryTextColor">{review.reviewer_name}, <Moment fromNow>{review.date}</Moment> </span>
       </div>
       <div className="reviewTitle primaryText">{review.summary}</div>
@@ -59,16 +61,12 @@ function Review({ review, setShowModal }) {
         {photos}
       </div>
       <div className="reviewBottomBar">
-        {helpful}
+        {helpful} ({review.helpfulness})
         {report}
         <button className="showModalTemp" onClick={modalHandler}>Temp -- Show Modal</button>
       </div>
     </div>
   );
 }
-
-// need to display photos somewhere
-  // review.photos =  [ { id, url }, { id, url }, { id, url }]
-  // url is http://res.cloudinary.com/abcdefg
 
 export default Review;

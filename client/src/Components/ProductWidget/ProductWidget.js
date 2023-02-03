@@ -29,9 +29,9 @@ function ProductDetails({ product }) {
     }
   }, [product]);
 
-  useEffect(() => {
-    // console.log('selected style: ', selectedStyle);
-  }, [selectedStyle]);
+  // useEffect(() => {
+  //   console.log('selected style: ', selectedStyle);
+  // }, [selectedStyle]);
 
   return (
     <div className="productWidget">
