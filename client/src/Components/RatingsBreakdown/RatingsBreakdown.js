@@ -26,7 +26,7 @@ function RatingsBreakdown({ product, filterOptions, setFilterOptions }) {
      total += num;
      sum += keys[i] * num;
    }
-   let returnVal = Math.round(2 * sum/total) / 2;
+   let returnVal = Math.round(10 * sum/total) / 10;
    return returnVal;
 
     //spits out average score to the nearest half
@@ -48,7 +48,7 @@ function RatingsBreakdown({ product, filterOptions, setFilterOptions }) {
         setBreakDown(<>
         <div className="averageStars">
           <span className="primaryText averageStarsNumber">{tempNum}</span>
-          <span className="averageStarsStars">{convertToStars(tempNum)}</span>
+          <span className="averageStarsStars">{convertToStars(Math.round(2 * tempNum) / 2)}</span>
         </div>
         <StarCounts data={res.data.ratings} filterOptions={filterOptions} setFilterOptions={setFilterOptions}/>
         {charMap}
