@@ -67,4 +67,10 @@ function StarCounts({ data, filterOptions, setFilterOptions })  {
   );
 }
 
+/*
+  .starFilter.true {
+    color: red;
+  }
+*/
+
 export default StarCounts;

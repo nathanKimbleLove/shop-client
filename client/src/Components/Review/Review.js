@@ -61,16 +61,12 @@ function Review({ review, setShowModal }) {
         {photos}
       </div>
       <div className="reviewBottomBar">
-        {helpful}
+        {helpful} ({review.helpfulness})
         {report}
         <button className="showModalTemp" onClick={modalHandler}>Temp -- Show Modal</button>
       </div>
     </div>
   );
 }
-
-// need to display photos somewhere
-  // review.photos =  [ { id, url }, { id, url }, { id, url }]
-  // url is http://res.cloudinary.com/abcdefg
 
 export default Review;

@@ -21,3 +21,7 @@
   padding: 1px 6px 1px 0;
   text-decoration-line: underline;
 }
+
+.starFilter.true {
+  color: red;
+}
