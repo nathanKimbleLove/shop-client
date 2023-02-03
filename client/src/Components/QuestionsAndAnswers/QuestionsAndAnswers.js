@@ -4,7 +4,7 @@ import { GiMagnifyingGlass } from "react-icons/gi";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-function QuestionsAndAnswers({ product, questionsAndAnswers }) {
+function QuestionsAndAnswers({ product, questionsAndAnswers, setShowModal }) {
   // get questions from API
   const [questions, setQuestions] = useState([]);
   const [searchTerms, setSearchTerms] = useState("");
@@ -73,10 +73,17 @@ function QuestionsAndAnswers({ product, questionsAndAnswers }) {
         product={product}
         questionsAndAnswers={questions}
         searchTerms={searchTerms}
+        setShowModal={setShowModal}
       />
       <div className="lastButtons">
         <button>More answered questions</button>
-        <button onClick={handleNewQuestionClick}>Add a question</button>
+        <button
+          onClick={(e) => {
+            setShowModal("QuestionModal", product);
+          }}
+        >
+          Add a question
+        </button>
       </div>
     </div>
   );
