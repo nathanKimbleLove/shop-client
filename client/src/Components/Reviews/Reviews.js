@@ -43,6 +43,7 @@ function Reviews({ product, setShowModal, filterOptions })  {
     })
   }, [product, page, reviewsArr]);
 
+
   // reset state / call add reviews
   useEffect(() => {
     if (sort && product) {
@@ -86,29 +87,6 @@ function Reviews({ product, setShowModal, filterOptions })  {
       setDisplayedReviews(reviewsArr);
     }
   }, [addReviews, filterOptions])
-
-  // const filterReviews = (reviews) => {
-  //   // takes in a gaggle of reviews
-  //   // returns all reviews that meet the criteria in the same order
-  //   let accept = []
-  //   for (let option in filterOptions) {
-  //     if (filterOptions[option]) {
-  //       accept.push(parseInt(option));
-  //     }
-  //   }
-
-  //   if (accept.length > 0) {
-  //     let temp = [];
-  //     for (let i = 0; i < reviews.length; i++) {
-  //       if (accept.indexOf(reviews[i].rating) !== -1) {
-  //         temp.push(reviews[i])
-  //       }
-  //     }
-  //     return temp;
-  //   } else {
-  //     return reviews;
-  //   }
-  // }
 
   return (
     <div className="reviews" >
