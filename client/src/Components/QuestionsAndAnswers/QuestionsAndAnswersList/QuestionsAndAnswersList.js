@@ -2,7 +2,7 @@ import "../QuestionsAndAnswers.css";
 import Answers from "./Answers/Answers";
 import axios from "axios";
 
-function QuestionsAndAnswersList({ product, questionsAndAnswers, searchTerms }) {
+function QuestionsAndAnswersList({ product, questionsAndAnswers, searchTerms, setShowModal }) {
   // questionsAndAnswers is an array of objects for all of the questions related to the current product.
   // Each object is a question. The answers are stored in questionsAndAnswers.answers
   // let questionCards = questionsAndAnswers;
@@ -103,7 +103,14 @@ function QuestionsAndAnswersList({ product, questionsAndAnswers, searchTerms }) 
             <button onClick={(e) => handleReportQuestionClick(question.question_id)}>
               Report Question
             </button>{" "}
-            <button onClick={(e) => handleNewAnswerClick(question)}>Add Answer</button>
+            <button
+              onClick={(e) => {
+                // handleNewAnswerClick(question);
+                setShowModal("AnswerModal", question);
+              }}
+            >
+              Add Answer
+            </button>
           </div>
         </div>
         <div className="answers">
@@ -112,6 +119,7 @@ function QuestionsAndAnswersList({ product, questionsAndAnswers, searchTerms }) 
             answers={questionsAndAnswers}
             answersObject={question.answers}
             question={question}
+            setShowModal={setShowModal}
           />
         </div>
       </div>

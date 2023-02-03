@@ -48,7 +48,7 @@ function App() {
       {modal}
       <NavBar changeProduct={handleChangeProduct} />
       <ProductWidget product={product} />
-      <QuestionsAndAnswers product={product} />
+      <QuestionsAndAnswers product={product} setShowModal={setShowModal} />
       <RatingsAndReviews product={product} setShowModal={setShowModal} />
       <p className="accentColor">Current Product is {JSON.stringify(product)}</p>
     </>
