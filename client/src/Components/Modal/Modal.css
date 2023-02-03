@@ -1,3 +1,8 @@
+.answerModal {
+  display: flex;
+  flex: 1;
+}
+
 .backdrop {
   position: absolute; /* try fixed */
   height: 100vh;

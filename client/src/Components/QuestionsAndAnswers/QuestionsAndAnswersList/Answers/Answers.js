@@ -2,8 +2,10 @@ import axios from "axios";
 import "../../QuestionsAndAnswers.css";
 import { useState, useEffect } from "react";
 
-function Answers({ product, questionsAndAnswers, answersObject, question }) {
+function Answers({ product, questionsAndAnswers, answersObject, question, setShowModal }) {
   const [answersContainer, setAnswersContainer] = useState([]);
+  const [answersRendered, shownAnswersRendered] = useState(0);
+  const [answersShown, setAnswersShown] = useState(2);
   // this makes a lot of API requests? Seems fixed for now
   useEffect(() => {
     axios
@@ -38,6 +40,7 @@ function Answers({ product, questionsAndAnswers, answersObject, question }) {
         console.log(err);
       });
   }
+
   let answers = Object.values(answersContainer).map((answer) => {
     // console.log("answer name is ", answer);
     // console.log("answer id is ", answer.answer_id);
