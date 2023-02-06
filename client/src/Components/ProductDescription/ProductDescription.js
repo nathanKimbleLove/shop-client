@@ -1,7 +1,8 @@
-import './ProductDescription.css';
+import './ProductDescription.scss';
+import { BsFacebook, BsPinterest } from 'react-icons/bs';
+import { AiFillTwitterCircle } from 'react-icons/ai';
 
 function ProductDescription({ product }) {
-
   const getProductSlogan = () => {
     if (product === null) {
       return
@@ -29,6 +30,21 @@ function ProductDescription({ product }) {
       <p>
         {getProductDescription()}
       </p>
+      <a className="socialMediaButton"
+          href="https://www.facebook.com">
+      <BsFacebook />
+      </a>
+
+      <a className="socialMediaButton"
+          href="https://www.twitter.com">
+      <AiFillTwitterCircle />
+      </a>
+
+      <a className="socialMediaButton"
+          href="https://www.pinterest.com">
+
+      <BsPinterest />
+      </a>
     </div>
   )
 }

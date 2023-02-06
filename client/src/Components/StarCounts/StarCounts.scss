@@ -1,5 +1,7 @@
+@use '../../index' as i;
+
 .emptyBar {
-  background-color: #bbb;
+  background-color: i.$backgroundColor;
   margin: 4px;
   z-index: 1;
 }

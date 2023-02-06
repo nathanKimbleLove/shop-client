@@ -1,7 +1,9 @@
+@use '../../index' as i;
+
 .heartOutline {
   background-color: transparent;
   border: 0px;
-  color: #bbb;
+  color: i.$borderColor;
   font-size: 20px;
   padding:0 5px;
 }
@@ -9,13 +11,13 @@
 .report {
   background-color: transparent;
   border: 0px;
-  color: #bbb;
+  color: i.$borderColor;
   font-size: 20px;
   padding:0 5px;
 }
 
 .review {
-  border-bottom: 1px solid #bbb;
+  border-bottom: 1px solid i.$borderColor;
   display: flex;
   flex-direction: column;
   width: 100%;

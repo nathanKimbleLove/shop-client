@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import './RatingsBreakdown.css';
+import './RatingsBreakdown.scss';
 import StarCounts from '../StarCounts/StarCounts.js'
 import BarRatings from '../BarRatings/BarRatings.js'
 import convertToStars from '../convertToStars.js'

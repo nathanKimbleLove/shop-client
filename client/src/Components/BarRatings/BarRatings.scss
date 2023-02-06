@@ -1,3 +1,5 @@
+$backgroundColor: #bbb;
+
 .pointer {
   bottom: 13px;
   font-size: 38px;
@@ -7,7 +9,7 @@
 }
 
 .sizeBar {
-  background-color: #bbb;
+  background-color: $backgroundColor;
   flex-direction: row;
   height: 7px;
   margin: 5px 5px 5px 5px;

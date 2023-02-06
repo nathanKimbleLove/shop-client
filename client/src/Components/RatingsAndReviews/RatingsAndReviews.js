@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import './RatingsAndReviews.css';
+import './RatingsAndReviews.scss';
 import RatingsBreakdown from '../RatingsBreakdown/RatingsBreakdown.js';
 import Reviews from '../Reviews/Reviews.js';
 

@@ -1,3 +1,5 @@
+@use '../../index' as i;
+
 .backdrop {
   position: absolute; /* try fixed */
   height: 100vh;
@@ -18,7 +20,7 @@
   flex-direction: column;
 
   background-color: white;
-  border: 1px solid #bbb;
+  border: 1px solid i.$borderColor;
   border-radius: 2%;
   z-index: 4;
 
@@ -30,7 +32,7 @@
   justify-content: space-between;
   height: 3%;
   min-height: 25px;
-  border-bottom: 1px solid #bbb;
+  border-bottom: 1px solid i.$borderColor;
   background-color: #777;
   width: 100%;
 }

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import './WriteCharacteristics.css';
+import './WriteCharacteristics.scss';
 
 let WriteCharacteristics = ({ product, characteristics, setCharacteristics }) => {
 

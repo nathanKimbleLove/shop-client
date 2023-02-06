@@ -1,6 +1,7 @@
-import './ProductHeader.css';
+import './ProductHeader.scss';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import convertToStars from '../convertToStars';
 
 function ProductHeader({ product }) {
   const [totalRatings, setTotalRatings] = useState(null);
@@ -57,6 +58,7 @@ function ProductHeader({ product }) {
 
   return (
     <div className="productHeader">
+      <div>{convertToStars(4)}</div>
       {totalRatings > 0 &&
         (<><span>total ratings:</span><a href="#testscroll">{totalRatings}</a></>)}
       <h2>

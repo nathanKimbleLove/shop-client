@@ -1,4 +1,4 @@
-import "../QuestionsAndAnswers.css";
+import "../QuestionsAndAnswers.scss";
 import Answers from "./Answers/Answers";
 import axios from "axios";
 

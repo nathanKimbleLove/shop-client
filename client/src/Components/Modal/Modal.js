@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import './Modal.css';
+import './Modal.scss';
 import Review from '../Review/Review.js';
 import WriteReview from '../WriteReview/WriteReview.js';
 

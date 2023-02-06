@@ -2,7 +2,7 @@ import { useState, useEffect} from 'react';
 
 import { IoMdArrowDropdown } from 'react-icons/io';
 
-import './BarRatings.css'
+import './BarRatings.scss'
 
 // CHANGE ALL OF THIS TO DISABLED SLIDERS
 

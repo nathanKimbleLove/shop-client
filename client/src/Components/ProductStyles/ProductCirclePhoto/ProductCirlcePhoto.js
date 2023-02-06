@@ -1,4 +1,4 @@
-import './ProductCirclePhoto.css';
+import './ProductCirclePhoto.scss';
 
 function ProductCirclePhoto({ photo, id, setSelectedStyle }) {
 

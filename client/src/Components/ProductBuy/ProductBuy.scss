@@ -1,0 +1,16 @@
+.productBuy {
+  border: 5px solid black;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.productBuy button,
+.productBuy select {
+  background-color: transparent;
+  border: 1px solid lightgrey;
+  height: 40px;
+  width: 150px;
+  margin: 5px;
+  width: 30%;
+}

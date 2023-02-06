@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import './WriteReviewPhotos.css';
+import './WriteReviewPhotos.scss';
 
 let WriteReviewPhotos = ({ photos, setPhotos }) => {
 

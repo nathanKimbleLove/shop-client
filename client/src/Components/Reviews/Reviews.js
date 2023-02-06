@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
-import './Reviews.css';
+import './Reviews.scss';
 import Review from '../Review/Review.js';
 
 function Reviews({ product, setShowModal, filterOptions })  {
@@ -104,7 +104,7 @@ function Reviews({ product, setShowModal, filterOptions })  {
             <option value="helpful">helpfulness</option>
           </select>
         </span>
-        <button className="reviewAdder borderColor" onClick={modalHandler}>Write a Review!</button>
+        <button className="reviewAdder" onClick={modalHandler}>Write a Review!</button>
       </div>
       <div id="reviewArray" >
         {reviewsArr.length !== 0 && reviewsArr}

@@ -1,5 +1,5 @@
 import axios from "axios";
-import "../../QuestionsAndAnswers.css";
+import "../../QuestionsAndAnswers.scss";
 
 function Answers({ product, questionsAndAnswers, answersObject }) {
   function handleReportAnswerClick(answer) {
