@@ -4,7 +4,7 @@ import axios from 'axios';
 import './RatingsBreakdown.css';
 import StarCounts from '../StarCounts/StarCounts.js'
 import BarRatings from '../BarRatings/BarRatings.js'
-import convertToStars from '../convertToStars.js'
+import convertToStars from '../../Utils/convertToStars.js'
 
 import { BsStarFill, BsStarHalf, BsStar} from 'react-icons/bs';
 import { IoMdArrowDropdown } from 'react-icons/io';
@@ -13,6 +13,9 @@ function RatingsBreakdown({ product, filterOptions, setFilterOptions }) {
 
 
   let [breakDown, setBreakDown] = useState(<></>)
+  let [characteristicsArray, setCharacteristicsArray] = useState([]);
+  let [recoPercent, setRecoPercent] = useState(0);
+  let [averageRating, setAverageRating] = useState(2.5);
 
   const calculateStars = (ratings) => {
     //takes in ratings object
@@ -26,17 +29,23 @@ function RatingsBreakdown({ product, filterOptions, setFilterOptions }) {
      total += num;
      sum += keys[i] * num;
    }
-   let returnVal = Math.round(2 * sum/total) / 2;
+   let returnVal = Math.round(10 * sum/total) / 10;
    return returnVal;
 
     //spits out average score to the nearest half
+  }
+
+  let calculateReco = (data) => {
+    let ratio = (parseInt(data.true) / (parseInt(data.true) + parseInt(data.false)))
+    setRecoPercent(Math.round(100 * ratio))
   }
 
   useEffect(() => {
     if (product) {
       axios.get(`http://localhost:8080/reviews/meta?product_id=${product.id}`)
       .then(res => {
-        let tempNum = calculateStars(res.data.ratings);
+        console.log(res.data);
+        setAverageRating(calculateStars(res.data.ratings));
 
         let chars = res.data.characteristics
         let keys = Object.keys(chars);
@@ -44,14 +53,11 @@ function RatingsBreakdown({ product, filterOptions, setFilterOptions }) {
         for (let i = 0; i < keys.length; i++) {
           charMap.push(<BarRatings data={chars[keys[i]]} dataName={keys[i]} key={keys[i]} />)
         }
+        setCharacteristicsArray(charMap)
+        calculateReco(res.data.recommended)
 
         setBreakDown(<>
-        <div className="averageStars">
-          <span className="primaryText averageStarsNumber">{tempNum}</span>
-          <span className="averageStarsStars">{convertToStars(tempNum)}</span>
-        </div>
         <StarCounts data={res.data.ratings} filterOptions={filterOptions} setFilterOptions={setFilterOptions}/>
-        {charMap}
         </>)
       })
     }
@@ -59,7 +65,15 @@ function RatingsBreakdown({ product, filterOptions, setFilterOptions }) {
 
   return (
     <div className="ratingsBreakdown">
+      <div className="averageStars">
+        <span className="primaryText averageStarsNumber">{averageRating}</span>
+        <span className="averageStarsStars">{convertToStars(averageRating)}</span>
+      </div>
     {breakDown}
+    <div>
+      {recoPercent}% of reviewers recommend this product.
+    </div>
+    {characteristicsArray}
     </div>
   );
 }

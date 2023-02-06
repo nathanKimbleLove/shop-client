@@ -1,6 +1,8 @@
 import { BsStarFill, BsStarHalf, BsStar} from 'react-icons/bs';
 
-let convertToStars = (num, classes) => {
+let convertToStars = (val) => {
+  const num = Math.round(2 * val) / 2;
+
   const returnSpan = [];
   const halves = Math.round(num * 2);
 
