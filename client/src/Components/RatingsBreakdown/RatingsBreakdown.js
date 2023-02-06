@@ -4,7 +4,7 @@ import axios from 'axios';
 import './RatingsBreakdown.css';
 import StarCounts from '../StarCounts/StarCounts.js'
 import BarRatings from '../BarRatings/BarRatings.js'
-import convertToStars from '../convertToStars.js'
+import convertToStars from '../../Utils/convertToStars.js'
 
 import { BsStarFill, BsStarHalf, BsStar} from 'react-icons/bs';
 import { IoMdArrowDropdown } from 'react-icons/io';
@@ -67,7 +67,7 @@ function RatingsBreakdown({ product, filterOptions, setFilterOptions }) {
     <div className="ratingsBreakdown">
       <div className="averageStars">
         <span className="primaryText averageStarsNumber">{averageRating}</span>
-        <span className="averageStarsStars">{convertToStars(Math.round(2 * averageRating) / 2)}</span>
+        <span className="averageStarsStars">{convertToStars(averageRating)}</span>
       </div>
     {breakDown}
     <div>

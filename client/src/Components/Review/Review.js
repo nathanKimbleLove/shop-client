@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 
 import './Review.css';
-import convertToStars from '../convertToStars.js';
+import convertToStars from '../../Utils/convertToStars.js';
 
 import { BsStarFill, BsStar} from 'react-icons/bs';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
