@@ -44,7 +44,6 @@ function RatingsBreakdown({ product, filterOptions, setFilterOptions }) {
     if (product) {
       axios.get(`http://localhost:8080/reviews/meta?product_id=${product.id}`)
       .then(res => {
-        console.log(res.data);
         setAverageRating(calculateStars(res.data.ratings));
 
         let chars = res.data.characteristics

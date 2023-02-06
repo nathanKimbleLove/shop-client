@@ -76,7 +76,10 @@ let WriteReview = ({ product, exit }) => {
       })
       .catch(err => console.log(err.config.data));
     } else {
-      console.log('this is postcheck', postCheck)
+      for (let i = 0; i < postCheck.length; i++) {
+        document.querySelector(postCheck[i]).classList.add("unacceptable");
+        setTimeout(() => {document.querySelector(postCheck[i]).classList.remove("unacceptable");}, 3500);
+      }
     }
 
   }
@@ -100,23 +103,23 @@ let WriteReview = ({ product, exit }) => {
   return (
     <form className="WriteReview">
       <div className="writeTopbar">
-        <div className="writeReviewStars">
+        <div className="writeReviewStars" id="rating">
           {stars}
         </div>
         <div className="writeUserInfo">
-          <input type="text" className="writeName" placeholder="Your Name" onChange={e => {setName(e.target.value)}}></input>
-          <input type="text" className="writeEmail" placeholder="Your Email" onChange={e => {setEmail(e.target.value)}}></input>
+          <input type="text" className="writeName" id="name" placeholder="Your Name" onChange={e => {setName(e.target.value)}}></input>
+          <input type="text" className="writeEmail" id="email" placeholder="Your Email" onChange={e => {setEmail(e.target.value)}}></input>
         </div>
       </div>
       <div className="writeMidbar">
-        <input type="text" className="writeReviewSummary primaryText" placeholder="A clever summary" onChange={e => {setSummary(e.target.value)}}></input>
+        <input type="text" className="writeReviewSummary primaryText" id="summary" placeholder="A clever summary" onChange={e => {setSummary(e.target.value)}}></input>
         <span>
           Recommend?
           <input type="checkbox" id="recommend" name="recommend" value="recommend" onChange={e => setRecommend(e.target.checked)}></input>
         </span>
       </div>
       {summaryCount}
-      <textarea rows="rows" className="writeReviewContent" placeholder="This item was almost perfect, but ..." onChange={e => {setContent(e.target.value)}}></textarea>
+      <textarea rows="rows" className="writeReviewContent" id="body" placeholder="This item was almost perfect, but ..." onChange={e => {setContent(e.target.value)}}></textarea>
       {characterCountText}
       <div className="writeBottombar">
         <WriteReviewPhotos photos={photos} setPhotos={setPhotos} />
@@ -129,10 +132,40 @@ let WriteReview = ({ product, exit }) => {
 
 export default WriteReview;
 
-// write a function which takes in POST body
-// returns true if every criterion is met
-// otherwise, returns an array of elements which failed the test
+/* add to scss
 
+@keyframes shake {
+  0% {
+    color: red;
+    border-color: red;
+  }
 
+  2.5%, 22.5% {
+    transform: translate3d(-1px, 0, 0);
+  }
 
-// if returns true, continue with POST request passiong in body
+  5%, 20% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  7.5%, 12.5%, 17.5% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  10%, 15% {
+    transform: translate3d(4px, 0, 0);
+  }
+
+  70% {
+    color: red;
+  }
+}
+
+.unacceptable {
+  animation: shake 3.3s cubic-bezier(.36,.07,.19,.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+*/

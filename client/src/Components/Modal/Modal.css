@@ -28,6 +28,13 @@
   z-index: 4;
 
   overflow: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.Modal::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
 
 .modal-topbar {
