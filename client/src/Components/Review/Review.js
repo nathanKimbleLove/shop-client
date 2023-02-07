@@ -2,9 +2,8 @@ import Moment from 'react-moment'; //npm install react-moment
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
-import './Review.css';
-import convertToStars from '../../Utils/convertToStars.js';
-
+import './Review.scss';
+import convertToStars from '../../Utils/convertToStars';
 import { BsStarFill, BsStar} from 'react-icons/bs';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import { BsMegaphoneFill } from 'react-icons/bs'
@@ -46,10 +45,10 @@ function Review({ review, setShowModal }) {
   }, [review])
 
   return (
-    <div className="review borderColor">
+    <div className="review ">
       <div className= "reviewTopBar">
-        {reviewStars}
-        <span className="secondaryTextColor">{review.reviewer_name}, <Moment fromNow>{review.date}</Moment> </span>
+        <span>{convertToStars(review.rating)}</span>
+        <span>{review.reviewer_name}, <Moment fromNow>{review.date}</Moment> </span>
       </div>
       <div className="reviewTitle primaryText">{review.summary}</div>
       <div className="reviewContent">{review.body}</div>

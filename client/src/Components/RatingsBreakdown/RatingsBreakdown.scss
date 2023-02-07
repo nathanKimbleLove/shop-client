@@ -1,7 +1,9 @@
+@use '../../index' as i;
+
 .averageStars {
   display: flex;
   padding: 0 0 20px 0;
-  color: #bbb;
+  color: i.$borderColor;
 }
 
 .averageStarsNumber {
@@ -14,7 +16,7 @@
 }
 
 .emptyBar {
-  background-color: #bbb;
+  background-color: i.$backgroundColor;
   flex: 1;
   margin: 4px;
   z-index: 1;
@@ -34,7 +36,7 @@
 }
 
 .sizeBar {
-  background-color: #bbb;
+  background-color: i.$backgroundColor;
   flex-direction: row;
   height: 7px;
   margin: 5px 5px 5px 5px;

@@ -1,9 +1,22 @@
-import "./ProductHeader.css";
-import { useState, useEffect } from "react";
-import axios from "axios";
+import './ProductHeader.scss';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import convertToStars from '../../Utils/convertToStars';
+import calculateStars from '../../Utils/calculateStars';
 
 function ProductHeader({ product }) {
   const [totalRatings, setTotalRatings] = useState(null);
+  const [ratingStars, setRatingStars] = useState(0);
+
+
+  useEffect(() => {
+    if (product) {
+      axios.get(`http://localhost:8080/reviews/meta?product_id=${product.id}`)
+        .then(res => {
+          setRatingStars(calculateStars(res.data.ratings));
+        })
+    }
+  }, [product]);
 
   useEffect(() => {
     if (product) {
@@ -48,14 +61,23 @@ function ProductHeader({ product }) {
 
   return (
     <div className="productHeader">
-      {totalRatings > 0 && (
-        <>
-          <span>total ratings:</span>
-          <a href="#testscroll">{totalRatings}</a>
-        </>
-      )}
-      <h2>{getProductCategory()}</h2>
-      <h3>{getProductName()}</h3>${getProductPrice()}
+
+      {totalRatings > 0 &&
+        (<>
+          <div>{convertToStars(ratingStars)}</div>
+          <span>
+            Read all <a href="#ratingsScrollFromProduct">{totalRatings}</a> reviews
+          </span>
+        </>)
+      }
+
+      <h2>
+        {getProductCategory()}
+      </h2>
+      <h1>
+        {getProductName()}
+      </h1>
+      ${getProductPrice()}
     </div>
   );
 }

@@ -1,3 +1,5 @@
+@use '../../index' as i;
+
 .writeReviewStars {
   font-size: 8vw;
   width: 50%;
@@ -5,7 +7,7 @@
 }
 
 .submission {
-  border: 1px solid #bbb;
+  border: 1px solid i.$borderColor;
   border-radius: 4px;
   padding: 7px;
 }

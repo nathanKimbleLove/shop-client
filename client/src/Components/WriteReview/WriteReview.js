@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import submitReviewHandler from '../../Utils/submitReviewHandler.js'
 
-import './WriteReview.css'
+import './WriteReview.scss'
 import WriteReviewPhotos from '../WriteReviewPhotos/WriteReviewPhotos.js';
 import WriteCharacteristics from '../WriteCharacteristics/WriteCharacteristics.js';
 

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useState, useEffect, useRef, useCallback} from 'react';
 
-import './Reviews.css';
+import './Reviews.scss';
 import Review from '../Review/Review.js';
 
 function Reviews({ product, setShowModal, filterOptions })  {
