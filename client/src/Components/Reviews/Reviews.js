@@ -1,28 +1,71 @@
 import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback} from 'react';
 
 import './Reviews.scss';
 import Review from '../Review/Review.js';
 
 function Reviews({ product, setShowModal, filterOptions })  {
 
-  let baseQuery;
+  let baseQuery = `http://localhost:8080/reviews?count=10&product_id=`;
   let [reviewsArr, setReviewsArr] = useState([]);
-  let [query, setQuery] = useState(null);
-  let [reviewsArrLength, setReviewsArrLength] = useState(0);
+  let [displayedReviews, setDisplayedReviews] = useState([]);
+  let [productId, setProductId] = useState('');
+  let [page, setPage] = useState(1);
+  let [sort, setSort] = useState('&sort=relevant');
+
+  let observer = useRef()
 
   const modalHandler = () => {
     setShowModal("WriteReview", product);
   }
 
   const sortByHandler = (e) => {
-    console.log(e.target.value)
-    setQuery(baseQuery + `&sort=${e.target.value}`)
+    setSort(`&sort=${e.target.value}`)
   }
 
-  const filterReviews = (reviews) => {
-    // takes in a gaggle of reviews
-    // returns all reviews that meet the criteria in the same order
+
+
+  const addReviews = useCallback((add = true) => {
+
+    axios.get(`http://localhost:8080/reviews/?product_id=${product.id}&count=10&page=${page}${sort}`)
+    .then(res => {
+      setPage(page + 1)
+      if (!add) {
+        reviewsArr = [];
+        setPage(1)
+      }
+      setReviewsArr([...reviewsArr, ...res.data.results]);
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }, [product, page, reviewsArr]);
+
+
+  // reset state / call add reviews
+  useEffect(() => {
+    if (sort && product) {
+      addReviews(false)
+    }
+  }, [sort, product])
+
+  // create observer which calls addReviews when @ btm of list
+  useEffect(() => {
+    observer.current = new IntersectionObserver((entries) => {
+      const entry = entries[0]
+        if (entry.isIntersecting) {
+          addReviews()
+        }
+      })
+      observer.current.observe(document.querySelector('#loadMoreDetector'));
+
+    return () => {
+      observer.current.disconnect();
+    }
+  }, [addReviews]);
+
+  // filter al results
+  useEffect(() => {
     let accept = []
     for (let option in filterOptions) {
       if (filterOptions[option]) {
@@ -32,82 +75,34 @@ function Reviews({ product, setShowModal, filterOptions })  {
 
     if (accept.length > 0) {
       let temp = [];
-      for (let i = 0; i < reviews.length; i++) {
-        if (accept.indexOf(reviews[i].rating) !== -1) {
-          temp.push(reviews[i])
+      for (let i = 0; i < reviewsArr.length; i++) {
+        if (accept.indexOf(reviewsArr[i].rating) !== -1) {
+          temp.push(reviewsArr[i])
         }
       }
-      return temp;
+      setDisplayedReviews(temp);
     } else {
-      return reviews;
+      setDisplayedReviews(reviewsArr);
     }
-  }
-
-  const loadReviews = (reviews, add) => {
-    // console.log('hello from loadReveiws')
-    if (!add) {
-      reviewsArr = [];
-    }
-
-    let newArr = filterReviews(reviews);
-    setReviewsArrLength(newArr.length);
-
-    let temp = newArr.map((element, index) => {
-      return <Review review={element} key={element.review_id} setShowModal={setShowModal}/>
-    })
-    temp = [...reviewsArr, temp]
-    setReviewsArr(<>{temp}</>);
-  }
-
-  let addReviews = () => {
-    // console.log('hello from addReviews')
-    axios.get(query)
-    .then(res => {
-      // console.log('hello')
-      loadReviews(res.data.results, true);
-    })
-    .catch(err => console.log(err));
-  }
-
-  useEffect(() => {
-    if (product) {
-      baseQuery = `http://localhost:8080/reviews?product_id=${product.id}&count=5`;
-      let query = baseQuery + '&sort=relevant'
-      setQuery(baseQuery + '&sort=relevant');
-      axios.get(query)
-      .then(res => {
-        loadReviews(res.data.results)
-      })
-      .catch(err => console.log(err));
-    }
-  }, [product, query, filterOptions])
-
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      const entry = entries[0];
-      if (entry.isIntersecting) {
-        // console.log('hit the bottom');
-        // addReviews();
-      }
-    });
-      observer.observe(document.querySelector('#loadMoreDetector'));
-  }, []);
+  }, [addReviews, filterOptions, sort])
 
   return (
     <div className="reviews" >
       <div className="reviewsInteractions">
         <span className="reviewSorter primaryText">
-          {reviewsArrLength} reviews, sorted by
+          {displayedReviews.length} reviews, sorted by
           <select name="sort-options" className="sortOptions accentColor primaryText" onChange={sortByHandler}>
             <option value="relevant">relevance</option>
             <option value="newest">newness</option>
             <option value="helpful">helpfulness</option>
           </select>
         </span>
-        <button className="reviewAdder" onClick={modalHandler}>Write a Review!</button>
+        <button onClick={() => {addReviews()}}> load more reviews test</button>
+        <button className="reviewAdder borderColor" onClick={modalHandler}>Write a Review!</button>
       </div>
       <div id="reviewArray" >
-        {reviewsArr.length !== 0 && reviewsArr}
+        {displayedReviews.length !== 0 &&
+        displayedReviews.map(element => <Review review={element} key={element.review_id} setShowModal={setShowModal}/>)}
         <div id="loadMoreDetector"></div>
       </div>
     </div>

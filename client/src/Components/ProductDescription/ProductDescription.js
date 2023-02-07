@@ -36,12 +36,12 @@ function ProductDescription({ product }) {
       </a>
 
       <a className="socialMediaButton"
-          href="https://www.twitter.com">
+          href={`https://twitter.com/intent/tweet?text=Check%20out%20this%20product!%20${getProductDescription()}`}>
       <AiFillTwitterCircle />
       </a>
 
       <a className="socialMediaButton"
-          href="https://www.pinterest.com">
+          href="https://www.pinterest.com/pin/create/link/?url=localhost:3000">
 
       <BsPinterest />
       </a>

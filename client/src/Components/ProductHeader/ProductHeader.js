@@ -1,72 +1,82 @@
 import './ProductHeader.scss';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import convertToStars from '../convertToStars';
+import convertToStars from '../../Utils/convertToStars';
+import calculateStars from '../../Utils/calculateStars';
 
 function ProductHeader({ product }) {
   const [totalRatings, setTotalRatings] = useState(null);
+  const [ratingStars, setRatingStars] = useState(0);
+
 
   useEffect(() => {
-    console.log('use effect ran, product is:', product)
     if (product) {
-       axios.get(
-      `http://localhost:8080/reviews/meta?product_id=${product.id}`
-      ).then(
-        (res) => {
+      axios.get(`http://localhost:8080/reviews/meta?product_id=${product.id}`)
+        .then(res => {
+          setRatingStars(calculateStars(res.data.ratings));
+        })
+    }
+  }, [product]);
+
+  useEffect(() => {
+    if (product) {
+      axios
+        .get(`http://localhost:8080/reviews/meta?product_id=${product.id}`)
+        .then((res) => {
           let summedRatings = 0;
           for (let key in res.data.ratings) {
             summedRatings += parseInt(res.data.ratings[key]);
           }
           setTotalRatings(summedRatings);
-        }
-      ).catch(
-        (err) => {
+        })
+        .catch((err) => {
           console.log(err);
-        }
-      )
+        });
     }
   }, [product]);
 
   const getProductName = () => {
     if (product === null) {
-      return
-    }
-    else {
+      return;
+    } else {
       return product.name;
     }
   };
 
   const getProductCategory = () => {
     if (product === null) {
-      return
-    }
-    else {
+      return;
+    } else {
       return product.category;
     }
   };
 
   const getProductPrice = () => {
     if (product === null) {
-      return
-    }
-    else {
+      return;
+    } else {
       return product.default_price;
     }
   };
 
-
-
   return (
     <div className="productHeader">
-      <div>{convertToStars(4)}</div>
+
       {totalRatings > 0 &&
-        (<><span>total ratings:</span><a href="#testscroll">{totalRatings}</a></>)}
+        (<>
+          <div>{convertToStars(ratingStars)}</div>
+          <span>
+            Read all <a href="#ratingsScrollFromProduct">{totalRatings}</a> reviews
+          </span>
+        </>)
+      }
+
       <h2>
         {getProductCategory()}
       </h2>
-      <h3>
+      <h1>
         {getProductName()}
-      </h3>
+      </h1>
       ${getProductPrice()}
     </div>
   );

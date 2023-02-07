@@ -18,12 +18,9 @@ function ProductDetails({ product }) {
     setSelectedStyle(productStyles[0]);
   }, [productStyles]);
 
-
   useEffect(() => {
     if (product) {
-      console.log(`new product id: ${product.id}`);
-
-     axios
+      axios
         .get(`http://localhost:8080/products/${product.id}/styles`)
        .then((res) => {
         console.log('product details use effect results:');
@@ -33,20 +30,22 @@ function ProductDetails({ product }) {
        .catch((err) => {
           console.log('product details use effect error:');
           console.log(err);
-      });
-
+        });
     }
-
   }, [product]);
 
-  useEffect(() => {
-    console.log('selected style: ', selectedStyle);
-  }, [selectedStyle]);
+  // useEffect(() => {
+  //   console.log('selected style: ', selectedStyle);
+  // }, [selectedStyle]);
 
   return (
     <div className="productWidget">
       <ProductPhotos />
-      <ProductOptions product={product} productStyles={productStyles} setSelectedStyle={setSelectedStyle} />
+      <ProductOptions
+        product={product}
+        productStyles={productStyles}
+        setSelectedStyle={setSelectedStyle}
+      />
       <ProductDecription product={product} />
       <ProductPerks />
     </div>

@@ -3,8 +3,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 
 import './Review.scss';
-import convertToStars from '../convertToStars.js';
-
+import convertToStars from '../../Utils/convertToStars';
 import { BsStarFill, BsStar} from 'react-icons/bs';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import { BsMegaphoneFill } from 'react-icons/bs'
@@ -12,12 +11,13 @@ import { BsMegaphoneFill } from 'react-icons/bs'
 function Review({ review, setShowModal }) {
 
   let [photos, setPhotos] = useState(<></>)
+  let [reviewStars, setReviewStars] = useState(<></>)
 
   let helpfulHandler = (e) => {
     // review.review_id
     axios.put(`http://localhost:8080/reviews/${review.review_id}/helpful`)
       .then(res => {
-        setHelpful(<button className="heartOutline heartFilled" ><AiFillHeart /></button>)
+        setHelpful(<button className="heartOutline heartFilled" >Helpful! ({review.helpfulness}) |</button>)
       })
       .catch(err => console.log(err));
   }
@@ -26,17 +26,13 @@ function Review({ review, setShowModal }) {
     // review.review_id
     axios.put(`http://localhost:8080/reviews/${review.review_id}/report`)
       .then(res => {
-        setReport(<button className="report reported"><BsMegaphoneFill /></button>)
+        setReport(<button className="report reported">Reported.</button>)
       })
       .catch(err => console.log(err));
   }
 
-  let [helpful, setHelpful] = useState(<button className="heartOutline" onClick={helpfulHandler}><AiOutlineHeart /></button>)
-  let [report, setReport] = useState(<button className="report" onClick={reportHandler}><BsMegaphoneFill /></button>)
-
-  let modalHandler = () =>  {
-    setShowModal("Review", review);
-  }
+  let [helpful, setHelpful] = useState(<button className="heartOutline" onClick={helpfulHandler}>Helpful? ({review.helpfulness}) |</button>)
+  let [report, setReport] = useState(<button className="report" onClick={reportHandler}>Report.</button>)
 
   useEffect(() => {
     if (review.photos[0]) {
@@ -45,6 +41,7 @@ function Review({ review, setShowModal }) {
       })
       setPhotos(temp)
     }
+    setReviewStars(<span>{convertToStars(review.rating)}</span>);
   }, [review])
 
   return (
@@ -61,14 +58,10 @@ function Review({ review, setShowModal }) {
       <div className="reviewBottomBar">
         {helpful}
         {report}
-        <button className="showModalTemp" onClick={modalHandler}>Temp -- Show Modal</button>
+        {review.recommend && "I recommend this product!"}
       </div>
     </div>
   );
 }
-
-// need to display photos somewhere
-  // review.photos =  [ { id, url }, { id, url }, { id, url }]
-  // url is http://res.cloudinary.com/abcdefg
 
 export default Review;
