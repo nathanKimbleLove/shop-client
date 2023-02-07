@@ -21,7 +21,7 @@ let WriteCharacteristic = ({ characteristic, characteristicId, charObj, characte
     <div className="characteristic" key={characteristic}>
       <p className="characteristicName">{characteristic}</p>
       <input type="range" name={characteristic} min={1} max={5} step={1} characteristicid={characteristic} className="slider" onChange={slideHandler}></input>
-      <p>{charDisplay}</p>
+      <p className="characteristicDescriptor" >{charDisplay}</p>
     </div>
   )
 }
