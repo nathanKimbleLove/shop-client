@@ -6,10 +6,8 @@ import Review from '../Review/Review.js';
 
 function Reviews({ product, setShowModal, filterOptions })  {
 
-  let baseQuery = `http://localhost:8080/reviews?count=10&product_id=`;
   let [reviewsArr, setReviewsArr] = useState([]);
   let [displayedReviews, setDisplayedReviews] = useState([]);
-  let [productId, setProductId] = useState('');
   let [page, setPage] = useState(1);
   let [sort, setSort] = useState('&sort=relevant');
 
@@ -97,7 +95,6 @@ function Reviews({ product, setShowModal, filterOptions })  {
             <option value="helpful">helpfulness</option>
           </select>
         </span>
-        <button onClick={() => {addReviews()}}> load more reviews test</button>
         <button className="reviewAdder borderColor" onClick={modalHandler}>Write a Review!</button>
       </div>
       <div id="reviewArray" >
