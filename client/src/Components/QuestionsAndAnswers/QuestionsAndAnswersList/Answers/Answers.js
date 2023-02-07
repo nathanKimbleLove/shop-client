@@ -1,5 +1,5 @@
 import axios from "axios";
-import "../../QuestionsAndAnswers.css";
+import "../../QuestionsAndAnswers.scss";
 import { useState, useEffect } from "react";
 
 function Answers({ product, questionsAndAnswers, answersObject, question, setShowModal }) {

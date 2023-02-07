@@ -1,3 +1,6 @@
+
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -27,26 +30,20 @@ code {
 
 /* our stylings */
 
-.accentColor {
-  color: #b90e0a;
-  text-decoration-line: underline;
-}
+$backgroundColor: #bbb;
 
-.borderColor {
-  border-color: #bbb;
-}
+$accentColor: #b90e0a;
 
-.mainTextColor {
-  color: #1e1e1e;
-}
+$borderColor: #bbb;
+
+$mainTextColor: #1E1E1E;
 
 .primaryText {
   font-family: 'Merriweather', serif;
   font-weight: 700;
 }
 
-.secondaryTextColor {
-  color: #bbb;
-}
+$secondaryTextColor: rgb(51, 50, 50);
+
 
 

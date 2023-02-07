@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useState, useEffect, useRef, useCallback} from 'react';
 
-import './Reviews.css';
+import './Reviews.scss';
 import Review from '../Review/Review.js';
 
 function Reviews({ product, setShowModal, filterOptions })  {
@@ -20,14 +20,12 @@ function Reviews({ product, setShowModal, filterOptions })  {
   }
 
   const sortByHandler = (e) => {
-    console.log(e.target.value)
     setSort(`&sort=${e.target.value}`)
   }
 
 
 
   const addReviews = useCallback((add = true) => {
-    console.log(page)
 
     axios.get(`http://localhost:8080/reviews/?product_id=${product.id}&count=10&page=${page}${sort}`)
     .then(res => {
@@ -43,12 +41,13 @@ function Reviews({ product, setShowModal, filterOptions })  {
     })
   }, [product, page, reviewsArr]);
 
+
   // reset state / call add reviews
   useEffect(() => {
     if (sort && product) {
       addReviews(false)
     }
-  }, [sort])
+  }, [sort, product])
 
   // create observer which calls addReviews when @ btm of list
   useEffect(() => {
@@ -85,30 +84,7 @@ function Reviews({ product, setShowModal, filterOptions })  {
     } else {
       setDisplayedReviews(reviewsArr);
     }
-  }, [addReviews, filterOptions])
-
-  // const filterReviews = (reviews) => {
-  //   // takes in a gaggle of reviews
-  //   // returns all reviews that meet the criteria in the same order
-  //   let accept = []
-  //   for (let option in filterOptions) {
-  //     if (filterOptions[option]) {
-  //       accept.push(parseInt(option));
-  //     }
-  //   }
-
-  //   if (accept.length > 0) {
-  //     let temp = [];
-  //     for (let i = 0; i < reviews.length; i++) {
-  //       if (accept.indexOf(reviews[i].rating) !== -1) {
-  //         temp.push(reviews[i])
-  //       }
-  //     }
-  //     return temp;
-  //   } else {
-  //     return reviews;
-  //   }
-  // }
+  }, [addReviews, filterOptions, sort])
 
   return (
     <div className="reviews" >

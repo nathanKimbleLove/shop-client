@@ -1,4 +1,4 @@
-import "./QuestionsAndAnswers.css";
+import "./QuestionsAndAnswers.scss";
 import QuestionsAndAnswersList from "./QuestionsAndAnswersList/QuestionsAndAnswersList";
 import { GiMagnifyingGlass } from "react-icons/gi";
 import axios from "axios";

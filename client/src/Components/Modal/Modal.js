@@ -1,10 +1,11 @@
 import { useEffect } from "react";
+import AnswerModal from '../AnswerModal/AnswerModal';
+import QuestionModal from '../QuestionModal/QuestionModal';
 
-import "./Modal.css";
-import Review from "../Review/Review.js";
-import WriteReview from "../WriteReview/WriteReview.js";
-import AnswerModal from "../AnswerModal/AnswerModal.js";
-import QuestionModal from "../QuestionModal/QuestionModal";
+import './Modal.scss';
+import Review from '../Review/Review.js';
+import WriteReview from '../WriteReview/WriteReview.js';
+
 
 //is passed a component to serve, and the content
 // meant to be within that component
