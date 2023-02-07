@@ -84,7 +84,7 @@ function Reviews({ product, setShowModal, filterOptions })  {
     } else {
       setDisplayedReviews(reviewsArr);
     }
-  }, [addReviews, filterOptions, sort])
+  }, [addReviews, filterOptions, sort, reviewsArr])
 
   return (
     <div className="reviews" >
