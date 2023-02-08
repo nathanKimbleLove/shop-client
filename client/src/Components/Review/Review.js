@@ -4,9 +4,6 @@ import { useState, useEffect } from 'react';
 
 import './Review.scss';
 import convertToStars from '../../Utils/convertToStars';
-import { BsStarFill, BsStar} from 'react-icons/bs';
-import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
-import { BsMegaphoneFill } from 'react-icons/bs'
 
 function Review({ review, setShowModal }) {
 
@@ -17,7 +14,7 @@ function Review({ review, setShowModal }) {
     // review.review_id
     axios.put(`http://localhost:8080/reviews/${review.review_id}/helpful`)
       .then(res => {
-        setHelpful(<button className="heartOutline heartFilled" >Helpful! ({review.helpfulness}) |</button>)
+        setHelpful(<button className="helpful">Helpful! ({review.helpfulness}) |</button>)
       })
       .catch(err => console.log(err));
   }
@@ -31,13 +28,13 @@ function Review({ review, setShowModal }) {
       .catch(err => console.log(err));
   }
 
-  let [helpful, setHelpful] = useState(<button className="heartOutline" onClick={helpfulHandler}>Helpful? ({review.helpfulness}) |</button>)
+  let [helpful, setHelpful] = useState(<button className="helpful" onClick={helpfulHandler}>Helpful? ({review.helpfulness}) |</button>)
   let [report, setReport] = useState(<button className="report" onClick={reportHandler}>Report.</button>)
 
   useEffect(() => {
     if (review.photos[0]) {
       let temp = review.photos.map((element, index) => {
-        return <img className="reviewPhoto" key={index} src={element.url} alt="photo"></img>
+        return <img className="reviewPhoto" key={index} src={element.url} alt="idek"></img>
       })
       setPhotos(temp)
     }
@@ -56,8 +53,10 @@ function Review({ review, setShowModal }) {
         {photos}
       </div>
       <div className="reviewBottomBar">
-        {helpful}
-        {report}
+        <div className="reviewButtons">
+          {helpful}
+          {report}
+        </div>
         {review.recommend && "I recommend this product!"}
       </div>
     </div>

@@ -1,35 +1,38 @@
 @use '../../index' as i;
 
-.heartOutline {
+.helpful {
   background-color: transparent;
   border: 0px;
-  color: i.$borderColor;
-  font-size: 20px;
-  padding:0 5px;
+  color: i.$tertiaryTextColor;
+  font-size: 12px;
 }
 
 .report {
   background-color: transparent;
   border: 0px;
-  color: i.$borderColor;
-  font-size: 20px;
-  padding:0 5px;
+  color: i.$tertiaryTextColor;
+  font-size: 12px;
 }
 
 .review {
   border-bottom: 1px solid i.$borderColor;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   width: 100%;
 }
 
 .reviewBottomBar {
+  color: i.$tertiaryTextColor;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   font-size: 12px;
-  padding: 5px 10px 5px 10px;
+  padding: 0 10px 0 5px;
 }
 
 .reviewContent {
-  padding: 2px 10px
+  padding: 0 10px 5px 10px;
 }
 
 .reviewPhoto {
@@ -42,7 +45,7 @@
 .reviewPhotos {
   display: flex;
   flex-direction: row;
-  padding: 5px;
+  padding: 0 5px;
   width: 100%;
   flex-flow: row wrap;
 }
@@ -50,6 +53,7 @@
 .reviewTitle {
   font-size: 20px;
   padding: 0 10px;
+  overflow-x:hidden;
 }
 
 .reviewTopBar {
