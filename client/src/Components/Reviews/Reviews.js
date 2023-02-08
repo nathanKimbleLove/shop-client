@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, useCallback} from 'react';
 import './Reviews.scss';
 import Review from '../Review/Review.js';
 
-function Reviews({ product, setShowModal, filterOptions })  {
+function Reviews({ product, setShowModal, filterOptions, photoFullScreen, setPhotoFullScreen })  {
 
   let [reviewsArr, setReviewsArr] = useState([]);
   let [displayedReviews, setDisplayedReviews] = useState([]);
@@ -99,7 +99,7 @@ function Reviews({ product, setShowModal, filterOptions })  {
       </div>
       <div id="reviewArray" >
         {displayedReviews.length !== 0 &&
-        displayedReviews.map(element => <Review review={element} key={element.review_id} setShowModal={setShowModal}/>)}
+        displayedReviews.map(element => <Review review={element} key={element.review_id} setShowModal={setShowModal} photoFullScreen={photoFullScreen} setPhotoFullScreen={setPhotoFullScreen}/>)}
         <div id="loadMoreDetector"></div>
       </div>
     </div>

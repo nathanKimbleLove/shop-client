@@ -12,6 +12,7 @@ function App() {
   const [product, setProduct] = useState(null);
   const [questionsAndAnswers, setQuestionsAndAnswers] = useState([]);
   const [modal, setModal] = useState(<></>);
+  const [photoFullScreen, setPhotoFullScreen] = useState(false);
 
   let setShowModal = (comp, content) => {
     setModal(<Modal serve={comp} content={content} setModal={setModal} />);
@@ -49,7 +50,7 @@ function App() {
       <NavBar changeProduct={handleChangeProduct} />
       <ProductWidget product={product} />
       <QuestionsAndAnswers product={product} setShowModal={setShowModal} />
-      <RatingsAndReviews product={product} setShowModal={setShowModal} />
+      <RatingsAndReviews product={product} setShowModal={setShowModal} photoFullScreen={photoFullScreen} setPhotoFullScreen={setPhotoFullScreen} />
       <p className="accentColor">Current Product is {JSON.stringify(product)}</p>
     </>
   );

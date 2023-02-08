@@ -5,13 +5,25 @@ import { useState, useEffect } from 'react';
 import './Review.scss';
 import convertToStars from '../../Utils/convertToStars';
 
-function Review({ review, setShowModal }) {
+function Review({ review, setShowModal, photoFullScreen, setPhotoFullScreen }) {
 
-  let [photos, setPhotos] = useState(<></>)
-  let [reviewStars, setReviewStars] = useState(<></>)
+  const [photos, setPhotos] = useState([])
+  const [reviewStars, setReviewStars] = useState(<></>)
 
-  let helpfulHandler = (e) => {
-    // review.review_id
+  const handlePhotoClick = (e) => {
+    const t = e.target
+    if (t.classList.contains('reviewPhoto') && !photoFullScreen) {
+      setPhotoFullScreen(true);
+      t.classList.remove('reviewPhoto');
+      t.classList.add('fullScreenPhoto');
+    } else if (t.classList.contains('fullScreenPhoto') && photoFullScreen) {
+      setPhotoFullScreen(false)
+      t.classList.remove('fullScreenPhoto');
+      t.classList.add('reviewPhoto');
+    }
+  }
+
+  const helpfulHandler = (e) => {
     axios.put(`http://localhost:8080/reviews/${review.review_id}/helpful`)
       .then(res => {
         setHelpful(<button className="helpful">Helpful! ({review.helpfulness}) |</button>)
@@ -19,8 +31,7 @@ function Review({ review, setShowModal }) {
       .catch(err => console.log(err));
   }
 
-  let reportHandler = (e) => {
-    // review.review_id
+  const reportHandler = (e) => {
     axios.put(`http://localhost:8080/reviews/${review.review_id}/report`)
       .then(res => {
         setReport(<button className="report reported">Reported.</button>)
@@ -33,10 +44,7 @@ function Review({ review, setShowModal }) {
 
   useEffect(() => {
     if (review.photos[0]) {
-      let temp = review.photos.map((element, index) => {
-        return <img className="reviewPhoto" key={index} src={element.url} alt="idek"></img>
-      })
-      setPhotos(temp)
+      setPhotos(review.photos);
     }
     setReviewStars(<span>{convertToStars(review.rating)}</span>);
   }, [review])
@@ -50,7 +58,12 @@ function Review({ review, setShowModal }) {
       <div className="reviewTitle primaryText">{review.summary}</div>
       <div className="reviewContent">{review.body}</div>
       <div className="reviewPhotos">
-        {photos}
+        {photos.map((element, index) => (
+        <img className="reviewPhoto" key={index}
+          src={element.url} alt="idek"
+          onClick={handlePhotoClick}>
+        </img>
+      ))}
       </div>
       <div className="reviewBottomBar">
         <div className="reviewButtons">

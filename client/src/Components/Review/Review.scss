@@ -37,9 +37,19 @@
 
 .reviewPhoto {
   border-radius: 15%;
-  max-height: 100px;
+  height: 100px;
   width: auto;
   padding:5px;
+}
+
+.fullScreenPhoto {
+  position: fixed;
+  width: auto;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index:3;
 }
 
 .reviewPhotos {
