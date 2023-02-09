@@ -9,13 +9,36 @@ import { useEffect, useState } from 'react';
 
 function ProductDetails({ product }) {
   const [productStyles, setProductStyles] = useState([]);
-  const [selectedStyle, setSelectedStyle] = useState(null);
+  const [selectedStyle, setSelectedStyle] = useState(null); // this should be an id
   const [productPrice, setProductPrice] = useState(null);
   const [productSizes, setProductSizes] = useState([]);
+  const [selectedStylePhotoUrls, setSelectedStylePhotoUrls] = useState([]);
+
+  // whenecver the styles change, change available photo urls
+  useEffect(() => {
+    if (productStyles.length === 0) return;
+
+    const productPhotos = [];
+
+    for (let product of productStyles) {
+      if (product.style_id === selectedStyle) {
+        console.log(product.photos);
+        for (let photo of product.photos) {
+          productPhotos.push(photo.url);
+        }
+      }
+    }
+    // console.log(productPhotos);
+    setSelectedStylePhotoUrls(productPhotos);
+
+  }, [productStyles, selectedStyle]);
 
   // whenever all of the product styles change (new product), set the selected one to be the first product style
   useEffect(() => {
-    setSelectedStyle(productStyles[0]);
+    if (productStyles.length !== 0) {
+      setSelectedStyle(productStyles[0].style_id);
+      console.log(productStyles)
+      }
   }, [productStyles]);
 
   useEffect(() => {
@@ -40,11 +63,12 @@ function ProductDetails({ product }) {
 
   return (
     <div className="productWidget">
-      <ProductPhotos />
+      <ProductPhotos productPhotos={selectedStylePhotoUrls} />
       <ProductOptions
         product={product}
         productStyles={productStyles}
         setSelectedStyle={setSelectedStyle}
+        selectedStyle={selectedStyle}
       />
       <ProductDecription product={product} />
       <ProductPerks />

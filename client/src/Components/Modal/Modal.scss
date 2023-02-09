@@ -1,9 +1,10 @@
+@use '../../index' as i;
+
 .answerModal {
   display: flex;
   flex: 1;
 }
 
-@use '../../index' as i;
 
 .backdrop {
   position: absolute;

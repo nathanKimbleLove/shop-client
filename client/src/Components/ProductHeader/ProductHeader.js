@@ -4,9 +4,14 @@ import axios from 'axios';
 import convertToStars from '../../Utils/convertToStars';
 import calculateStars from '../../Utils/calculateStars';
 
-function ProductHeader({ product }) {
+function ProductHeader({ product, selectedStyle, activeStyleName }) {
   const [totalRatings, setTotalRatings] = useState(null);
   const [ratingStars, setRatingStars] = useState(0);
+
+  // whenever the selected style changes change the text
+  useEffect(() => {
+
+  }, [selectedStyle]);
 
 
   useEffect(() => {
@@ -61,7 +66,6 @@ function ProductHeader({ product }) {
 
   return (
     <div className="productHeader">
-
       {totalRatings > 0 &&
         (<>
           <div>{convertToStars(ratingStars)}</div>
@@ -72,7 +76,7 @@ function ProductHeader({ product }) {
       }
 
       <h2>
-        {getProductCategory()}
+        {getProductCategory()}: {activeStyleName}
       </h2>
       <h1>
         {getProductName()}

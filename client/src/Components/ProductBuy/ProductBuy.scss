@@ -1,16 +1,36 @@
+@use '../../index' as i;
+
 .productBuy {
   border: 5px solid black;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+  justify-content: center;
+  flex: 1;
 }
 
 .productBuy button,
 .productBuy select {
   background-color: transparent;
-  border: 1px solid lightgrey;
+  border: 2px solid i.$borderColor;
   height: 40px;
-  width: 150px;
   margin: 5px;
+  color: i.$mainTextColor;
+  font-size: 16px;
+}
+
+.sizeSelector {
+  width: 55%;
+}
+
+.quantity {
   width: 30%;
+}
+
+.addToBag {
+  width: 70%;
+}
+
+.star {
+  width: 15%;
 }
