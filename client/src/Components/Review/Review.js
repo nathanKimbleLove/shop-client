@@ -1,4 +1,4 @@
-import Moment from 'react-moment'; //npm install react-moment
+import dateformat from 'dateformat';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
@@ -14,7 +14,6 @@ function Review({ review, setShowModal }) {
   const handlePhotoClick = (e) => {
     handleFullScreen(e.target, 'reviewPhoto');
   }
-
 
   const helpfulHandler = (e) => {
     axios.put(`http://localhost:8080/reviews/${review.review_id}/helpful`)
@@ -46,7 +45,7 @@ function Review({ review, setShowModal }) {
     <div className="review ">
       <div className= "reviewTopBar">
         <span>{convertToStars(review.rating)}</span>
-        <span>{review.reviewer_name}, <Moment fromNow>{review.date}</Moment> </span>
+        <span>{review.reviewer_name}, {dateformat(review.date, 'mmmm dd, yyyy')} </span>
       </div>
       <div className="reviewTitle primaryText">{review.summary}</div>
       <div className="reviewContent">{review.body}</div>
