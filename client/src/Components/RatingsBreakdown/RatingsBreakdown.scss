@@ -3,7 +3,7 @@
 .averageStars {
   display: flex;
   padding: 0 0 20px 0;
-  color: i.$borderColor;
+  color: i.$tertiaryTextColor;
 }
 
 .averageStarsNumber {
@@ -23,7 +23,7 @@
 }
 
 .fullBar {
-  background-color: #555;
+  background-color: i.$tertiaryTextColor;
   height: 8px;
 }
 
@@ -54,6 +54,10 @@
   padding-top: 20px;
 }
 
+.starCounts {
+  padding-bottom: 15px;
+}
+
 .stars {
   display:flex;
 }
@@ -61,7 +65,7 @@
 .starFilter {
   background-color: transparent;
   border: 0px;
-  color: #444;
+  color: i.$secondaryTextColor;
   font-size: 12px;
   padding: 1px 6px 1px 0;
   text-decoration-line: underline;
@@ -70,7 +74,8 @@
 .ratingsBreakdown {
   display: flex;
   flex-direction: column;
-  min-width: 275px
+  min-width: 275px;
+  max-width: 275px;
  }
 
 @media(max-width: 900px) {

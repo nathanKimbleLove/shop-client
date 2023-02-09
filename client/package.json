@@ -25,7 +25,9 @@
     "format": "prettier -w ."
   },
   "jest": {
-    "transformIgnorePatterns": ["node_modules/(?!axios)/"]
+    "transformIgnorePatterns": [
+      "node_modules/(?!(axios|sass))/"
+    ]
   },
   "eslintConfig": {
     "extends": [

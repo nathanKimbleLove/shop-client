@@ -4,7 +4,7 @@ import submitReviewHandler from '../../Utils/submitReviewHandler.js'
 
 import './WriteReview.scss'
 import WriteReviewPhotos from '../WriteReviewPhotos/WriteReviewPhotos.js';
-import WriteCharacteristics from '../WriteCharacteristics/WriteCharacteristics.js';
+import WriteCharacteristicsList from '../WriteCharacteristicsList/WriteCharacteristicsList.js';
 
 import { BsStarFill, BsStar} from 'react-icons/bs';
 
@@ -66,7 +66,7 @@ let WriteReview = ({ product, exit }) => {
       photos: tempPhotos,
       characteristics: characteristics
     }
-
+    console.log(characteristics);
     let postCheck = submitReviewHandler(body);
     if (postCheck === true) {
       axios.post("http://localhost:8080/reviews", body)
@@ -122,8 +122,8 @@ let WriteReview = ({ product, exit }) => {
       <textarea rows="rows" className="writeReviewContent" id="body" placeholder="This item was almost perfect, but ..." onChange={e => {setContent(e.target.value)}}></textarea>
       {characterCountText}
       <div className="writeBottombar">
+        <WriteCharacteristicsList product={product} characteristics={characteristics} setCharacteristics={setCharacteristics}/>
         <WriteReviewPhotos photos={photos} setPhotos={setPhotos} />
-        <WriteCharacteristics product={product} characteristics={characteristics} setCharacteristics={setCharacteristics}/>
         <input type="submit" className="submission" value="Share your review!" onClick={handleSubmit} ></input>
       </div>
     </form>
