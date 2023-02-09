@@ -4,24 +4,17 @@ import { useState, useEffect } from 'react';
 
 import './Review.scss';
 import convertToStars from '../../Utils/convertToStars';
+import handleFullScreen from '../../Utils/handleFullScreen';
 
-function Review({ review, setShowModal, photoFullScreen, setPhotoFullScreen }) {
+function Review({ review, setShowModal }) {
 
   const [photos, setPhotos] = useState([])
   const [reviewStars, setReviewStars] = useState(<></>)
 
   const handlePhotoClick = (e) => {
-    const t = e.target
-    if (t.classList.contains('reviewPhoto') && !photoFullScreen) {
-      setPhotoFullScreen(true);
-      t.classList.remove('reviewPhoto');
-      t.classList.add('fullScreenPhoto');
-    } else if (t.classList.contains('fullScreenPhoto') && photoFullScreen) {
-      setPhotoFullScreen(false)
-      t.classList.remove('fullScreenPhoto');
-      t.classList.add('reviewPhoto');
-    }
+    handleFullScreen(e.target, 'reviewPhoto');
   }
+
 
   const helpfulHandler = (e) => {
     axios.put(`http://localhost:8080/reviews/${review.review_id}/helpful`)

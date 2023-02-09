@@ -9,7 +9,7 @@ import Reviews from '../Reviews/Reviews.js';
   // give Reviews component an array of reviews
   //give RatingsBreakdown review meta data?
 
-function RatingsAndReviews({product, setShowModal, photoFullScreen, setPhotoFullScreen}) {
+function RatingsAndReviews({product, setShowModal}) {
 
   let [filterOptions, setFilterOptions] = useState({1: false, 2: false, 3: false, 4: false, 5: false})
 
@@ -18,7 +18,7 @@ function RatingsAndReviews({product, setShowModal, photoFullScreen, setPhotoFull
       <h4>RATINGS & REVIEWS</h4>
       <div className="ratingsAndReviews">
         <RatingsBreakdown product={product} filterOptions={filterOptions} setFilterOptions={setFilterOptions}/>
-        <Reviews product={product} setShowModal={setShowModal} filterOptions={filterOptions} photoFullScreen={photoFullScreen} setPhotoFullScreen={setPhotoFullScreen}/>
+        <Reviews product={product} setShowModal={setShowModal} filterOptions={filterOptions} />
       </div>
     </div>
   );

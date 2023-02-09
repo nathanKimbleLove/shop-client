@@ -28,6 +28,18 @@ code {
   padding: 0 5%;
 }
 
+.fullScreenPhoto {
+  position: fixed;
+  width: auto;
+  max-width: 90vw;
+  height: auto;
+  max-height: 90vh;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index:3;
+}
+
 .primaryText {
   font-family: 'Merriweather', serif;
   font-weight: 700;
