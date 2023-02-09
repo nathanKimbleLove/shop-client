@@ -13,7 +13,7 @@ import QuestionModal from "../QuestionModal/QuestionModal";
 //may want to create Modal versions of these
 // components to fit style
 
-let Modal = ({ serve, content, setModal }) => {
+let Modal = ({ serve, content, setModal, globalProduct }) => {
   let exit = () => {
     setModal(<></>);
   };
@@ -21,7 +21,7 @@ let Modal = ({ serve, content, setModal }) => {
   let components = {
     Review: <Review review={content} />,
     WriteReview: <WriteReview product={content} exit={exit} />,
-    AnswerModal: <AnswerModal question={content} exit={exit} />,
+    AnswerModal: <AnswerModal question={content} exit={exit} product={globalProduct} />,
     QuestionModal: <QuestionModal product={content} exit={exit} />
   };
 

@@ -1,13 +1,15 @@
-import "./QuestionsAndAnswers.css";
-import QuestionsAndAnswersList from "./QuestionsAndAnswersList/QuestionsAndAnswersList";
+import "../QuestionsAndAnswers/QuestionsAndAnswers.css";
+import QuestionsAndAnswersList from "../QuestionsAndAnswersList/QuestionsAndAnswersList";
+import HelpfulAnswer from "../HelpfulAnswer/HelpfulAnswer";
 import { GiMagnifyingGlass } from "react-icons/gi";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-function QuestionsAndAnswers({ product, questionsAndAnswers, setShowModal }) {
+function QuestionsAndAnswers({ product, questionsAndAnswers, setShowModal, user, setUser }) {
   // get questions from API
   const [questions, setQuestions] = useState([]);
   const [searchTerms, setSearchTerms] = useState("");
+  const [questionsShown, setQuestionsShown] = useState(4);
 
   useEffect(() => {
     if (product) {
@@ -22,37 +24,20 @@ function QuestionsAndAnswers({ product, questionsAndAnswers, setShowModal }) {
     }
   }, [product]);
 
-  function handleNewQuestionClick() {
-    let username = prompt("What is your username");
-    username += "";
-    let question = prompt("What is your question");
-    let email = prompt("What is your email");
-
-    let request = {
-      body: question,
-      name: username,
-      email: email,
-      product_id: product.id
-    };
-
-    axios
-      .post("http://localhost:8080/qa/questions", request)
-      .then((res) => {
-        // console.log("successfully posted new question");
-      })
-      .catch((err) => {
-        // console.log("failing in questionsAndAnswers componenet");
-      });
-
-    // how to renrender answers for question?
-    // another get request?
-  }
-  // console.log("in questionsAndAnswers questions is ", questions);
+  let handleMoreQuestionsClick = () => {
+    // fix so we don't go out of bounds / stay accurate
+    setQuestionsShown(questionsShown + 2);
+  };
 
   const handleSearchTermChange = (event) => {
     // console.log("you're in handleSearchTermChange ", event.target.value);
     setSearchTerms(event.target.value);
   };
+
+  let buttons;
+  if (questions.length !== 0) {
+    buttons = <button onClick={handleMoreQuestionsClick}>More answered questions</button>;
+  }
 
   return (
     <div className="questionsAndAnswers">
@@ -69,14 +54,20 @@ function QuestionsAndAnswers({ product, questionsAndAnswers, setShowModal }) {
           <GiMagnifyingGlass />
         </form>{" "}
       </div>
-      <QuestionsAndAnswersList
-        product={product}
-        questionsAndAnswers={questions}
-        searchTerms={searchTerms}
-        setShowModal={setShowModal}
-      />
+      <div className="questionsArray">
+        <QuestionsAndAnswersList
+          product={product}
+          questionsAndAnswers={questions}
+          searchTerms={searchTerms}
+          setShowModal={setShowModal}
+          questionsShown={questionsShown}
+          user={user}
+          setUser={setUser}
+        />
+        <div id="loadMoreDetectorQA"></div>
+      </div>
       <div className="lastButtons">
-        <button>More answered questions</button>
+        {buttons}
         <button
           onClick={(e) => {
             setShowModal("QuestionModal", product);
