@@ -1,12 +1,15 @@
 .productPhotos {
   align-items: center;
-  border: 5px solid green;
+  /* border: 5px solid green; */
   display: flex;
   justify-content: center;
   width: 50%;
+  position: relative;
 }
 
 .productPicture {
-  height: 400px;
-  max-width: 100%;
+  max-width: 70%;
+  position: relative;
+  left: 25px;
 }
+

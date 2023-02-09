@@ -1,11 +1,17 @@
+@use '../../../index.scss' as i;
+
 .productCirclePhoto {
   width: 100%;
   aspect-ratio : 1 / 1;
   border-radius: 100%;
-  border: 2px solid grey;
+  border: 2px solid i.$borderColor;
 }
 
 .productCircleContainer {
   width: 25%;
   padding: 5px;
+}
+
+.selectedStyle {
+  border-color: blue;
 }
