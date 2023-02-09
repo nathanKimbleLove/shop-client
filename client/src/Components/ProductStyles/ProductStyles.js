@@ -1,7 +1,7 @@
 import './ProductStyles.scss';
 import ProductCirclePhoto from './ProductCirclePhoto/ProductCirlcePhoto';
 
-function ProductStyles({ productStyles, setSelectedStyle }) {
+function ProductStyles({ productStyles, setSelectedStyle, selectedStyle }) {
   const createProductCirclePhotos = () => {
     const productCirclePhotoJsx = [];
     // product styles: [{photos: [thumbail_url: link, thumbnail_url: link]}, {photos: []}, {photos: []}, {photos: []}]
@@ -9,6 +9,7 @@ function ProductStyles({ productStyles, setSelectedStyle }) {
     for (let style of productStyles) {
       productCirclePhotoJsx.push(
         <ProductCirclePhoto
+          selectedStyle={selectedStyle}
           photo={style.photos[0].thumbnail_url}
           setSelectedStyle={setSelectedStyle}
           id={style.style_id}
