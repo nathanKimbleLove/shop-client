@@ -5,6 +5,8 @@
 }
 
 .answerDetails {
+  display: flex;
+  align-items: normal;
   padding-top: 2%;
 }
 
@@ -22,12 +24,22 @@
   padding-top: 2%;
 }
 
+.qaSearchBar {
+  padding-bottom: .2%;
+}
+
 .questionsAndAnswers {
   display: flex;
   flex-direction: column;
-  height: auto;
+  width: 100%;
+  padding: 0 2%;
 }
 
+.questionsArray {
+  max-height: 300px;
+  overflow-y: scroll;
+
+}
 .questionOptions {
   display: flex;
   flex-direction: row;
@@ -38,4 +50,19 @@
 .helpAndAdd {
   display: flex;
   align-items: baseline;
+}
+
+.usernameBold {
+  font-weight: bold;
+  padding-left: 2%;
+}
+
+.usernameRegular {
+  font-weight: normal;
+  padding-left: 2%;
+}
+
+.boldAndUnderline {
+  font-weight: bold;
+  text-decoration: underline;
 }
