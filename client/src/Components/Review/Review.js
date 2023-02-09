@@ -4,26 +4,27 @@ import { useState, useEffect } from 'react';
 
 import './Review.scss';
 import convertToStars from '../../Utils/convertToStars';
-import { BsStarFill, BsStar} from 'react-icons/bs';
-import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
-import { BsMegaphoneFill } from 'react-icons/bs'
+import handleFullScreen from '../../Utils/handleFullScreen';
 
 function Review({ review, setShowModal }) {
 
-  let [photos, setPhotos] = useState(<></>)
-  let [reviewStars, setReviewStars] = useState(<></>)
+  const [photos, setPhotos] = useState([])
+  const [reviewStars, setReviewStars] = useState(<></>)
 
-  let helpfulHandler = (e) => {
-    // review.review_id
+  const handlePhotoClick = (e) => {
+    handleFullScreen(e.target, 'reviewPhoto');
+  }
+
+
+  const helpfulHandler = (e) => {
     axios.put(`http://localhost:8080/reviews/${review.review_id}/helpful`)
       .then(res => {
-        setHelpful(<button className="heartOutline heartFilled" >Helpful! ({review.helpfulness}) |</button>)
+        setHelpful(<button className="helpful">Helpful! ({review.helpfulness}) |</button>)
       })
       .catch(err => console.log(err));
   }
 
-  let reportHandler = (e) => {
-    // review.review_id
+  const reportHandler = (e) => {
     axios.put(`http://localhost:8080/reviews/${review.review_id}/report`)
       .then(res => {
         setReport(<button className="report reported">Reported.</button>)
@@ -31,15 +32,12 @@ function Review({ review, setShowModal }) {
       .catch(err => console.log(err));
   }
 
-  let [helpful, setHelpful] = useState(<button className="heartOutline" onClick={helpfulHandler}>Helpful? ({review.helpfulness}) |</button>)
+  let [helpful, setHelpful] = useState(<button className="helpful" onClick={helpfulHandler}>Helpful? ({review.helpfulness}) |</button>)
   let [report, setReport] = useState(<button className="report" onClick={reportHandler}>Report.</button>)
 
   useEffect(() => {
     if (review.photos[0]) {
-      let temp = review.photos.map((element, index) => {
-        return <img className="reviewPhoto" key={index} src={element.url} alt="photo"></img>
-      })
-      setPhotos(temp)
+      setPhotos(review.photos);
     }
     setReviewStars(<span>{convertToStars(review.rating)}</span>);
   }, [review])
@@ -53,11 +51,18 @@ function Review({ review, setShowModal }) {
       <div className="reviewTitle primaryText">{review.summary}</div>
       <div className="reviewContent">{review.body}</div>
       <div className="reviewPhotos">
-        {photos}
+        {photos.map((element, index) => (
+        <img className="reviewPhoto" key={index}
+          src={element.url} alt="idek"
+          onClick={handlePhotoClick}>
+        </img>
+      ))}
       </div>
       <div className="reviewBottomBar">
-        {helpful}
-        {report}
+        <div className="reviewButtons">
+          {helpful}
+          {report}
+        </div>
         {review.recommend && "I recommend this product!"}
       </div>
     </div>

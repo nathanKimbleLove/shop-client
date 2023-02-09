@@ -1,0 +1,14 @@
+.answerPhoto {
+  border-radius: 15%;
+  height: 100px;
+  width: auto;
+  padding:5px;
+}
+
+.answerPhotos {
+  display: flex;
+  flex-direction: row;
+  padding: 0 5px;
+  width: 100%;
+  flex-flow: row wrap;
+}

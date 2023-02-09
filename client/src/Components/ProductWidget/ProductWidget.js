@@ -10,8 +10,6 @@ import { useEffect, useState } from 'react';
 function ProductDetails({ product }) {
   const [productStyles, setProductStyles] = useState([]);
   const [selectedStyle, setSelectedStyle] = useState(null); // this should be an id
-  const [productPrice, setProductPrice] = useState(null);
-  const [productSizes, setProductSizes] = useState([]);
   const [selectedStylePhotoUrls, setSelectedStylePhotoUrls] = useState([]);
 
   // whenecver the styles change, change available photo urls
@@ -46,8 +44,8 @@ function ProductDetails({ product }) {
       axios
         .get(`http://localhost:8080/products/${product.id}/styles`)
        .then((res) => {
-        console.log('product details use effect results:');
-         console.log(res.data.results); // the 6 items
+        // console.log('product details use effect results:');
+        //  console.log(res.data.results); // the 6 items
          setProductStyles(res.data.results);
           })
        .catch((err) => {

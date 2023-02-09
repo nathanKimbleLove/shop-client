@@ -12,9 +12,18 @@ function App() {
   const [product, setProduct] = useState(null);
   const [questionsAndAnswers, setQuestionsAndAnswers] = useState([]);
   const [modal, setModal] = useState(<></>);
+  const [user, setUser] = useState(undefined);
 
   let setShowModal = (comp, content) => {
-    setModal(<Modal serve={comp} content={content} setModal={setModal} />);
+    setModal(
+      <Modal
+        serve={comp}
+        content={content}
+        setModal={setModal}
+        setUser={setUser}
+        globalProduct={product}
+      />
+    );
   };
 
   useEffect(() => {
@@ -48,7 +57,12 @@ function App() {
       {modal}
       <NavBar changeProduct={handleChangeProduct} />
       <ProductWidget product={product} />
-      <QuestionsAndAnswers product={product} setShowModal={setShowModal} />
+      <QuestionsAndAnswers
+        product={product}
+        setShowModal={setShowModal}
+        user={user}
+        setUser={setUser}
+      />
       <RatingsAndReviews product={product} setShowModal={setShowModal} />
       <p className="accentColor">Current Product is {JSON.stringify(product)}</p>
     </>

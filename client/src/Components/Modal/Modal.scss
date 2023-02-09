@@ -1,18 +1,30 @@
 @use '../../index' as i;
-
 .answerModal {
   display: flex;
   flex: 1;
 }
 
-
 .backdrop {
-  position: absolute;
-  /* try fixed */
+  position: absolute; /* try fixed */
+  height: 100vh;
+  width: 100%;
+  z-index: 3;
+
+  backdrop-filter: blur(5px);
+}
+
+.Modal {
+  height: 90vh;
+  left: 5%;
+  position: absolute; /* try fixed */
+  top: 5vh;
+  width: 90%;
+
+  display: flex;
   flex-direction: column;
 
   background-color: white;
-  border: 1px solid i.$borderColor;
+  border: 1px solid #bbb;
   border-radius: 2%;
   z-index: 4;
 
@@ -31,7 +43,7 @@
   justify-content: space-between;
   height: 3%;
   min-height: 25px;
-  border-bottom: 1px solid i.$borderColor;
+  border-bottom: 1px solid #bbb;
   background-color: #777;
   width: 100%;
 }
@@ -41,3 +53,24 @@
   border: 0;
   padding: 0 3%;
 }
+
+
+// .backdrop {
+//   position: absolute;
+//   /* try fixed */
+//   flex-direction: column;
+
+//   background-color: white;
+//   border: 1px solid i.$borderColor;
+//   border-radius: 2%;
+//   z-index: 4;
+
+//   overflow: auto;
+//   scrollbar-width: none;
+//   -ms-overflow-style: none;
+// }
+
+// .Modal::-webkit-scrollbar {
+//   width: 0;
+//   height: 0;
+// }

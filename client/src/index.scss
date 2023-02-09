@@ -1,6 +1,3 @@
-
-
-
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,6 +7,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   /* our stylings */
   font-family: 'Poppins', sans-serif;
+  background-color: #fbfbfb;
+  color: #1e1e1e;
 }
 
 /* react boilerplate */
@@ -18,6 +17,7 @@ code {
     monospace;
 }
 
+/* our stylings */
 #root {
   align-items: center;
   display: flex;
@@ -28,22 +28,33 @@ code {
   padding: 0 5%;
 }
 
-/* our stylings */
-
-$backgroundColor: #bbb;
-
-$accentColor: #b90e0a;
-
-$borderColor: #bbb;
-
-$mainTextColor: #1E1E1E;
+.fullScreenPhoto {
+  position: fixed;
+  width: auto;
+  max-width: 90vw;
+  height: auto;
+  max-height: 90vh;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index:3;
+}
 
 .primaryText {
   font-family: 'Merriweather', serif;
   font-weight: 700;
 }
 
-$secondaryTextColor: rgb(51, 50, 50);
+$accentColor: #b90e0a;
+$backgroundColor: #bbb;
+$borderColor: #d7d7d7;
+$mainTextColor: #1E1E1E;
+$secondaryTextColor: #333232;
+$tertiaryTextColor: #6b6a6a;
 
+$darkAccentColor: #fb2548;
 
-
+.dark body {
+  background-color: #141414;
+  color: #ffffff;
+}

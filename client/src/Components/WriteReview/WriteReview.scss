@@ -1,15 +1,16 @@
 @use '../../index' as i;
 
-.writeReviewStars {
-  font-size: 8vw;
-  width: 50%;
-  max-width: 350px;
+.starButton {
+  background-color: transparent;
+  border: 0;
+  font-size: 40px;
 }
 
 .submission {
   border: 1px solid i.$borderColor;
   border-radius: 4px;
   padding: 7px;
+  height: 75px;
 }
 
 .writeBottombar {
@@ -18,7 +19,11 @@
 }
 
 .writeEmail {
-  height: 40%;
+  border-radius: 10px;
+  border-width: 1px;
+  margin: 0 0 5px 0;
+  font-size: 100%;
+  padding: 7px;
   width: 80%;
 }
 
@@ -29,7 +34,11 @@
 }
 
 .writeName {
-  height: 40%;
+  border-radius: 10px;
+  border-width: 1px;
+  margin: 0 0 5px 0;
+  font-size: 100%;
+  padding: 7px;
   width: 60%;
 }
 
@@ -37,6 +46,14 @@
   display: flex;
   justify-content: space-between;
   padding: 0 0 15px 0;
+}
+
+.WriteReview {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 15px;
 }
 
 .writeReviewContent {
@@ -55,8 +72,15 @@
   justify-content: space-between;
 }
 
+.writeReviewStars {
+  min-width: 260px;
+  display: flex;
+  align-items: center;
+}
+
 .writeReviewSummary {
   border-radius: 10px;
+  border-width: 1px;
   margin: 0 0 15px 0;
   font-size: 150%;
   padding: 7px;
@@ -70,13 +94,6 @@
   flex-direction: column;
 }
 
-.WriteReview {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 15px;
-}
 
 @keyframes shake {
   0% {
