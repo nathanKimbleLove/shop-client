@@ -1,6 +1,6 @@
 import { useState, useEffect} from 'react';
 
-import './StarCounts.css'
+import './StarCounts.scss'
 
 function StarCounts({ data, filterOptions, setFilterOptions })  {
 

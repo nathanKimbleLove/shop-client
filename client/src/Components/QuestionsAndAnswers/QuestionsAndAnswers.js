@@ -1,6 +1,5 @@
-import "../QuestionsAndAnswers/QuestionsAndAnswers.css";
+import "./QuestionsAndAnswers.scss";
 import QuestionsAndAnswersList from "../QuestionsAndAnswersList/QuestionsAndAnswersList";
-import HelpfulAnswer from "../HelpfulAnswer/HelpfulAnswer";
 import { GiMagnifyingGlass } from "react-icons/gi";
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -35,9 +34,9 @@ function QuestionsAndAnswers({ product, questionsAndAnswers, setShowModal, user,
   };
 
   let buttons;
-  if (questions.length !== 0) {
-    buttons = <button onClick={handleMoreQuestionsClick}>More answered questions</button>;
-  }
+  // if (questions.length !== 0) {
+  //   buttons = <button onClick={handleMoreQuestionsClick}>More answered questions</button>;
+  // }
 
   return (
     <div className="questionsAndAnswers">

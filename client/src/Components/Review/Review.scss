@@ -1,38 +1,43 @@
-.heartOutline {
+@use '../../index' as i;
+
+.helpful {
   background-color: transparent;
   border: 0px;
-  color: #bbb;
-  font-size: 20px;
-  padding:0 5px;
+  color: i.$tertiaryTextColor;
+  font-size: 12px;
 }
 
 .report {
   background-color: transparent;
   border: 0px;
-  color: #bbb;
-  font-size: 20px;
-  padding:0 5px;
+  color: i.$tertiaryTextColor;
+  font-size: 12px;
 }
 
 .review {
-  border-bottom: 1px solid #bbb;
+  border-bottom: 1px solid i.$borderColor;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   width: 100%;
 }
 
 .reviewBottomBar {
+  color: i.$tertiaryTextColor;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   font-size: 12px;
-  padding: 5px 10px 5px 10px;
+  padding: 0 10px 0 5px;
 }
 
 .reviewContent {
-  padding: 2px 10px
+  padding: 0 10px 5px 10px;
 }
 
 .reviewPhoto {
   border-radius: 15%;
-  max-height: 100px;
+  height: 100px;
   width: auto;
   padding:5px;
 }
@@ -40,7 +45,7 @@
 .reviewPhotos {
   display: flex;
   flex-direction: row;
-  padding: 5px;
+  padding: 0 5px;
   width: 100%;
   flex-flow: row wrap;
 }
@@ -48,6 +53,7 @@
 .reviewTitle {
   font-size: 20px;
   padding: 0 10px;
+  overflow-x:hidden;
 }
 
 .reviewTopBar {

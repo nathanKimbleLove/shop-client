@@ -1,21 +1,23 @@
 import dateFormat, { masks } from "dateformat";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
+import handleFullScreen from "../../Utils/handleFullScreen";
+import "./Answer.scss";
 
 function Answer({ answer, user }) {
   const [helpfulAnswerClicked, setHelpfulAnswerClicked] = useState(false);
   const [reportAnswerClicked, setReportAnswerClicked] = useState(false);
-  const [reported, setReported] = useState("Report");
+  const [reportedAnswer, setReportedAnswer] = useState("Report");
   const [usernameTextStyle, setUsernameTextStyle] = useState("usernameNormal");
   const [answerHelpfulness, setAnswerHelpfulness] = useState(0);
+  const [photos, setPhotos] = useState([[]]);
+
   function handleReportAnswerClick(answer) {
-    // console.log("in handle report answer clicked " + answer.answer_id);
     if (!reportAnswerClicked) {
       setReportAnswerClicked(true);
       axios
         .put(`http://localhost:8080/qa/answers/${answer.answer_id}/report`)
         .then((res) => {
-          // console.log("successfully sent put request answer reported");
           res.sendStatus(res.status);
         })
         .catch((err) => {
@@ -24,40 +26,53 @@ function Answer({ answer, user }) {
     } else {
       // console.log("did not execute put request for answer reported");
     }
-    // change button to "reported"
   }
 
   function handleHelpfulAnswerClick(answer) {
-    // console.log("in handle helpful answer clicked " + answer.answer_id);
     setAnswerHelpfulness(answerHelpfulness + 1);
     if (!helpfulAnswerClicked) {
       setHelpfulAnswerClicked(true);
-      // console.log("put request attempted for helpful answer click");
       axios
         .put(`http://localhost:8080/qa/answers/${answer.answer_id}/helpful`)
         .then((res) => {
-          // console.log("successfully sent put request helpful answer click");
           res.sendStatus(res.status);
         })
         .catch((err) => {
           console.log(err);
         });
     } else {
-      // console.log("did not execute put request");
     }
   }
-  // console.log("helpfullness is ", answer.helpfulness);
-  // if (user === answer.answerer_name) {
-  //   setUsernameTextStyle("usernameBold");
-  // } else {
-  //   setUsernameTextStyle("usernameNormal");
-  // }
-  // setAnswerHelpfulness(answer.helpfulness);
+
+  const handlePhotoClick = (e) => {
+    handleFullScreen(e.target, "answerPhoto");
+  };
+
+  useEffect(() => {
+    if (answer.photos[0]) {
+      setPhotos(answer.photos);
+    }
+  }, [answer]);
+
+  // add username bold if it matches user
   return (
-    <div className="answer" key={answer.answer_id}>
+    <div className={`answer ${answer.answer_id}`} key={answer.answer_id}>
       <h3 className="answerLabel">A: </h3>
       <div className="answerRightSide">
         <div>{answer.body}</div>
+        <div className="answerPhotos">
+          {photos.map((element, index) => {
+            return (
+              <img
+                className="answerPhoto"
+                key={index}
+                src={element.url}
+                alt="Bad format"
+                onClick={handlePhotoClick}
+              ></img>
+            );
+          })}{" "}
+        </div>
         <div className="answerDetails">
           by <div className={usernameTextStyle}> {answer.answerer_name}</div>,{" "}
           {dateFormat(answer.date, "mmmm dd, yyyy")} | Helpful?{" "}
@@ -66,8 +81,6 @@ function Answer({ answer, user }) {
             onClick={(e) => {
               console.log("answer is ", answer);
               handleHelpfulAnswerClick(answer);
-              // e.target.value = "Reported";
-              // console.log("in handlehelpfulanswerclick ", e.innerText);
             }}
             onChange={(e) => console.log("there was a change")}
           >
@@ -78,13 +91,12 @@ function Answer({ answer, user }) {
             className="boldAndUnderline"
             onClick={(e) => {
               handleReportAnswerClick(answer);
-              setReported("Reported");
+              setReportedAnswer("Reported");
             }}
           >
-            {reported}
+            {reportedAnswer}
           </div>
         </div>
-        <div>Pictures here</div>
       </div>
     </div>
   );

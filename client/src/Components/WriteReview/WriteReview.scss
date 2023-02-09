@@ -1,0 +1,130 @@
+@use '../../index' as i;
+
+.starButton {
+  background-color: transparent;
+  border: 0;
+  font-size: 40px;
+}
+
+.submission {
+  border: 1px solid i.$borderColor;
+  border-radius: 4px;
+  padding: 7px;
+  height: 75px;
+}
+
+.writeBottombar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.writeEmail {
+  border-radius: 10px;
+  border-width: 1px;
+  margin: 0 0 5px 0;
+  font-size: 100%;
+  padding: 7px;
+  width: 80%;
+}
+
+.writeMidbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.writeName {
+  border-radius: 10px;
+  border-width: 1px;
+  margin: 0 0 5px 0;
+  font-size: 100%;
+  padding: 7px;
+  width: 60%;
+}
+
+.writeTopbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0 15px 0;
+}
+
+.WriteReview {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 15px;
+}
+
+.writeReviewContent {
+  border-radius: 10px;
+  flex:1;
+  font-size: 150%;
+  min-height: 20vh;
+  margin: 0 0 15px 0;
+  padding: 7px;
+}
+
+.writeReviewForm {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-between;
+}
+
+.writeReviewStars {
+  min-width: 260px;
+  display: flex;
+  align-items: center;
+}
+
+.writeReviewSummary {
+  border-radius: 10px;
+  border-width: 1px;
+  margin: 0 0 15px 0;
+  font-size: 150%;
+  padding: 7px;
+  width: 70%;
+}
+
+.writeUserInfo {
+  align-items: flex-end;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+
+@keyframes shake {
+  0% {
+    color: red;
+    border-color: red;
+  }
+
+  2.5%, 22.5% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  5%, 20% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  7.5%, 12.5%, 17.5% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  10%, 15% {
+    transform: translate3d(4px, 0, 0);
+  }
+
+  70% {
+    color: red;
+  }
+}
+
+.unacceptable {
+  animation: shake 3.3s cubic-bezier(.36,.07,.19,.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}

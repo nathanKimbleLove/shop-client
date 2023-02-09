@@ -1,10 +1,10 @@
 import { useEffect } from "react";
+import AnswerModal from "../AnswerModal/AnswerModal";
+import QuestionModal from "../QuestionModal/QuestionModal";
 
-import "./Modal.css";
+import "./Modal.scss";
 import Review from "../Review/Review.js";
 import WriteReview from "../WriteReview/WriteReview.js";
-import AnswerModal from "../AnswerModal/AnswerModal.js";
-import QuestionModal from "../QuestionModal/QuestionModal";
 
 //is passed a component to serve, and the content
 // meant to be within that component
@@ -13,7 +13,7 @@ import QuestionModal from "../QuestionModal/QuestionModal";
 //may want to create Modal versions of these
 // components to fit style
 
-let Modal = ({ serve, content, setModal, globalProduct }) => {
+let Modal = ({ serve, content, setModal, globalProduct, setUser }) => {
   let exit = () => {
     setModal(<></>);
   };
@@ -21,8 +21,10 @@ let Modal = ({ serve, content, setModal, globalProduct }) => {
   let components = {
     Review: <Review review={content} />,
     WriteReview: <WriteReview product={content} exit={exit} />,
-    AnswerModal: <AnswerModal question={content} exit={exit} product={globalProduct} />,
-    QuestionModal: <QuestionModal product={content} exit={exit} />
+    AnswerModal: (
+      <AnswerModal question={content} exit={exit} product={globalProduct} setUser={setUser} />
+    ),
+    QuestionModal: <QuestionModal product={content} exit={exit} setUser={setUser} />
   };
 
   let serveComponent = () => {

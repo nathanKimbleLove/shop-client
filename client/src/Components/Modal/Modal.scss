@@ -1,3 +1,4 @@
+@use '../../index' as i;
 .answerModal {
   display: flex;
   flex: 1;
@@ -28,6 +29,13 @@
   z-index: 4;
 
   overflow: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.Modal::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
 
 .modal-topbar {
@@ -45,3 +53,24 @@
   border: 0;
   padding: 0 3%;
 }
+
+
+// .backdrop {
+//   position: absolute;
+//   /* try fixed */
+//   flex-direction: column;
+
+//   background-color: white;
+//   border: 1px solid i.$borderColor;
+//   border-radius: 2%;
+//   z-index: 4;
+
+//   overflow: auto;
+//   scrollbar-width: none;
+//   -ms-overflow-style: none;
+// }
+
+// .Modal::-webkit-scrollbar {
+//   width: 0;
+//   height: 0;
+// }

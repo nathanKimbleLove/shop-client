@@ -1,4 +1,4 @@
-import "./AnswerModal.css";
+import "./AnswerModal.scss";
 import { useState } from "react";
 import axios from "axios";
 
@@ -7,11 +7,11 @@ let AnswerModal = ({ question, setUser, product }) => {
   const [answer, setAnswer] = useState("");
   const [email, setEmail] = useState("");
   const [urls, setUrls] = useState("");
-  console.log("on mount this is question ", question);
+  // console.log("on mount this is question ", question);
 
   let handleSubmit = (question) => {
-    console.log("made it into handleSubmit");
-    console.log("the question in AnswerModal is ", question);
+    // console.log("made it into handleSubmit");
+    // console.log("the question in AnswerModal is ", question);
     let arrayOfImageURLs;
     if (urls.length === 0) {
       arrayOfImageURLs = [];
@@ -27,19 +27,18 @@ let AnswerModal = ({ question, setUser, product }) => {
       email: email,
       photos: arrayOfImageURLs
     };
-    console.log("the request is ", request);
-    console.log(question);
+    // console.log("the request is ", request);
+    // console.log(question);
     axios
       .post(`http://localhost:8080/qa/questions/${question.question_id}/answers`, request)
       .then((res) => {
-        console.log("successfully made answer post request with modal");
+        // console.log("successfully made answer post request with modal");
         res.send(res.status);
       })
       .catch((err) => {
-        console.log("answer modal post failed");
+        console.log(err);
       });
   };
-  console.log("question body is ", question);
   return (
     <div className="answerModal">
       <div>Submit your Answer</div>
@@ -66,8 +65,6 @@ let AnswerModal = ({ question, setUser, product }) => {
             required="required"
             value={username}
             onChange={(e) => {
-              console.log("made it into onChange");
-              console.log("on change this is question ", question);
               setUsername(e.target.value);
               setUser(e.target.value);
             }}

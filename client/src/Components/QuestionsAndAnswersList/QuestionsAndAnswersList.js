@@ -1,4 +1,4 @@
-import "./QuestionsAndAnswers.css";
+import "./QuestionsAndAnswersList.scss";
 import Answers from "../Answers/Answers";
 import Question from "../Question/Question";
 import axios from "axios";
@@ -28,6 +28,7 @@ function QuestionsAndAnswersList({
   let observer = useRef();
   let [helpfulQuestion, setHelpfulQuestion] = useState([]);
   let [reportQuestion, setReportQuestion] = useState([]);
+
   const addQuestions = useCallback(
     (add = true) => {
       // console.log(product);
@@ -96,7 +97,7 @@ function QuestionsAndAnswersList({
     // console.log("the question is ", question);
     return (
       <div className="questionAndAnswerCard" key={question.question_body} hidden={hidden}>
-        <Question question={question} setShowModal={setShowModal} />
+        <Question question={question} setShowModal={setShowModal} searchTerms={searchTerms} />
         <div className="answers">
           <Answers
             product={product}

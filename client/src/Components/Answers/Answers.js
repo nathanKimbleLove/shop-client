@@ -1,5 +1,5 @@
 import axios from "axios";
-import "./Answers.css";
+import "./Answers.scss";
 import Answer from "../Answer/Answer";
 import { useState, useEffect, useReducer } from "react";
 import dateFormat, { masks } from "dateformat";
@@ -96,12 +96,10 @@ function Answers({
   };
 
   let answers = Object.values(answersContainer.slice(0, answersShown)).map((answer) => {
-    // console.log("answer name is ", answer);
-    // console.log("answer id is ", answer.answer_id);
-
-    // console.log("the user is " + user + " and the answer name is " + answer.answerer_name);
     return <Answer answer={answer} user={user} />;
   });
+
+  // will probably need to re-factor
   let loadDivs;
   if (answers.length === 0) {
     loadDivs = <div>There are no answers for this question</div>;

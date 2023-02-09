@@ -1,7 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
-function Question({ question, setShowModal }) {
+import Highlighter from "react-highlight-words";
+
+function Question({ question, setShowModal, searchTerms }) {
   const [reportedQuestion, setReportedQuestion] = useState(false);
+  const [reported, setReported] = useState("Report");
   const [markedHelpfulQuestion, setMarkedHelpfulQuestion] = useState(false);
   function handleReportQuestionClick(question_id) {
     console.log("in handle report question clicked " + question_id);
@@ -42,9 +45,22 @@ function Question({ question, setShowModal }) {
     }
   }
 
+  let searchTermArray = searchTerms.split(" ");
+
   return (
-    <div className="questionOptions">
-      <h3>Q: {question.question_body}</h3>
+    <div className={`questionOptions ${question.question_id}`}>
+      <h3>
+        Q:{" "}
+        {
+          <Highlighter
+            className="highlighter"
+            highlightClassName="YourHighLightClass"
+            searchWords={searchTermArray}
+            autoEscape={true}
+            textToHighlight={question.question_body}
+          />
+        }
+      </h3>
       <div className="helpAndAdd">
         <div>Helpful?</div>{" "}
         <div
@@ -58,9 +74,12 @@ function Question({ question, setShowModal }) {
         {` (${question.question_helpfulness + 1 * markedHelpfulQuestion}) | `}
         <div
           className="boldAndUnderline"
-          onClick={(e) => handleReportQuestionClick(question.question_id)}
+          onClick={(e) => {
+            handleReportQuestionClick(question.question_id);
+            setReported("Reported");
+          }}
         >
-          Report Question
+          {reported} Question
         </div>
         {" | "}
         <div

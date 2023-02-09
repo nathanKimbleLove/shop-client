@@ -1,7 +1,7 @@
 import { GiMagnifyingGlass } from 'react-icons/gi';
 import { MdDarkMode } from 'react-icons/md';
 import { useCallback } from 'react';
-import './NavBar.css';
+import './NavBar.scss';
 import '../../Utils/Hooks/useLocalStorage.js';
 import cx from '../../Utils/cx.js';
 import useLocalStorage from '../../Utils/Hooks/useLocalStorage.js';
@@ -12,13 +12,14 @@ function NavBar({ changeProduct }) {
   const handleDarkModeChange = useCallback(() => {
     if (darkModeState === 'dark') {
       setDarkModeState('light');
+      // change sass variable
     } else {
       setDarkModeState('dark');
     }
   }, [darkModeState, setDarkModeState]);
 
   return (
-    <div className={cx('navbar', 'secondaryTextColor', darkModeState === 'dark' && 'darkTest')}>
+    <div className={cx('navbar', darkModeState === 'dark' && 'darkTest')}>
 
       <img
         className="spider"
@@ -26,7 +27,7 @@ function NavBar({ changeProduct }) {
         alt="black widow"
       ></img>
 
-      <div className="changeProduct borderColor" onClick={changeProduct}>
+      <div className="changeProduct" onClick={changeProduct}>
         <GiMagnifyingGlass /> Search for a product or brand
       </div>
       <button className="darkModeToggle" onClick={handleDarkModeChange}>
@@ -37,3 +38,5 @@ function NavBar({ changeProduct }) {
 }
 
 export default NavBar;
+
+<div className="ratings">...</div>

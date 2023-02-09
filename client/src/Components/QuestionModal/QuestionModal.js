@@ -1,17 +1,14 @@
-import "./QuestionModal.css";
+import "./QuestionModal.scss";
 import { useState } from "react";
 import axios from "axios";
 
-let QuestionModal = ({ product }) => {
+let QuestionModal = ({ product, setUser }) => {
   const [question, setQuestion] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [images, setImages] = useState([]);
 
   let handleSubmit = (product) => {
-    // console.log("made it into handleSubmit in Question Modal");
-    // console.log("the product in handleSubmit is ", product);
-
     let request = {
       body: question,
       name: username,
@@ -44,8 +41,6 @@ let QuestionModal = ({ product }) => {
               required="required"
               className="questionTextBox"
               onChange={(e) => {
-                // console.log("made it into onChange");
-                // console.log("on change this is product ", product);
                 setQuestion(e.target.value);
               }}
               placeholder="Enter your question"
@@ -58,7 +53,10 @@ let QuestionModal = ({ product }) => {
               maxLength={60}
               value={username}
               required="required"
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={(e) => {
+                setUsername(e.target.value);
+                setUser(e.target.value);
+              }}
               placeholder="Example: jackson11!"
               size="34"
             ></input>

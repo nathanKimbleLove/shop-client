@@ -1,15 +1,13 @@
 import axios from 'axios';
 import { useState, useEffect, useRef, useCallback} from 'react';
 
-import './Reviews.css';
+import './Reviews.scss';
 import Review from '../Review/Review.js';
 
 function Reviews({ product, setShowModal, filterOptions })  {
 
-  let baseQuery = `http://localhost:8080/reviews?count=10&product_id=`;
   let [reviewsArr, setReviewsArr] = useState([]);
   let [displayedReviews, setDisplayedReviews] = useState([]);
-  let [productId, setProductId] = useState('');
   let [page, setPage] = useState(1);
   let [sort, setSort] = useState('&sort=relevant');
 
@@ -20,22 +18,21 @@ function Reviews({ product, setShowModal, filterOptions })  {
   }
 
   const sortByHandler = (e) => {
-    console.log(e.target.value)
     setSort(`&sort=${e.target.value}`)
   }
 
 
 
   const addReviews = useCallback((add = true) => {
-    console.log(page)
+    if (!add) {
+      reviewsArr = [];
+      setPage(1);
+      page = 1;
+    }
 
     axios.get(`http://localhost:8080/reviews/?product_id=${product.id}&count=10&page=${page}${sort}`)
     .then(res => {
       setPage(page + 1)
-      if (!add) {
-        reviewsArr = [];
-        setPage(1)
-      }
       setReviewsArr([...reviewsArr, ...res.data.results]);
     })
     .catch(err => {
@@ -49,7 +46,7 @@ function Reviews({ product, setShowModal, filterOptions })  {
     if (sort && product) {
       addReviews(false)
     }
-  }, [sort])
+  }, [sort, product])
 
   // create observer which calls addReviews when @ btm of list
   useEffect(() => {
@@ -86,7 +83,7 @@ function Reviews({ product, setShowModal, filterOptions })  {
     } else {
       setDisplayedReviews(reviewsArr);
     }
-  }, [addReviews, filterOptions])
+  }, [addReviews, filterOptions, sort, reviewsArr])
 
   return (
     <div className="reviews" >
@@ -99,12 +96,16 @@ function Reviews({ product, setShowModal, filterOptions })  {
             <option value="helpful">helpfulness</option>
           </select>
         </span>
-        <button onClick={() => {addReviews()}}> load more reviews test</button>
+
+        <button onClick={() => {
+          console.log(reviewsArr, displayedReviews, page);
+        }}>check reviews lists</button>
+
         <button className="reviewAdder borderColor" onClick={modalHandler}>Write a Review!</button>
       </div>
       <div id="reviewArray" >
         {displayedReviews.length !== 0 &&
-        displayedReviews.map(element => <Review review={element} key={element.review_id} setShowModal={setShowModal}/>)}
+        displayedReviews.map(element => <Review review={element} key={element.review_id} setShowModal={setShowModal} />)}
         <div id="loadMoreDetector"></div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import './WriteReviewPhotos.css';
+import './WriteReviewPhotos.scss';
 
 let WriteReviewPhotos = ({ photos, setPhotos }) => {
 
@@ -14,9 +14,18 @@ let WriteReviewPhotos = ({ photos, setPhotos }) => {
     setPhotos(temp);
   }
 
+  let removeImageHandler = (e) => {
+    let num = e.target.getAttribute('name');
+    e.preventDefault();
+    let temp = [];
+    for (let i = 0; i < photoInputs.length; i++) {
+      temp[i] = temp[i+1] || null;
+    }
+  }
+
   let addImageHandler = (e) => {
     e.preventDefault();
-    let temp = [...photoInputs, <input type="text" className="photoInputs" placeholder="photo url" key={incrementKey} name={incrementKey} onChange={updatePhotos}></input>]
+    let temp = [...photoInputs, <div><input type="text" className="photoInputs" placeholder="photo url" key={incrementKey} name={incrementKey} onChange={updatePhotos}></input><button name={incrementKey} onClick={removeImageHandler}> - </button></div>]
     setPhotoInputs(temp);
   }
 

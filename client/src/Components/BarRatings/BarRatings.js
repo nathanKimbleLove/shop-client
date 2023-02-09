@@ -2,7 +2,7 @@ import { useState, useEffect} from 'react';
 
 import { IoMdArrowDropdown } from 'react-icons/io';
 
-import './BarRatings.css'
+import './BarRatings.scss'
 
 // CHANGE ALL OF THIS TO DISABLED SLIDERS
 
@@ -12,7 +12,7 @@ function BarRatings({ data, dataName })  {
   let movePointer = (char) => {
     if(data) {
       let num = data.value;
-      let temp = (num * 85 /4)
+      let temp = (num * 85 / 5)
       return {"paddingLeft": `${temp}%`}
     }
   }

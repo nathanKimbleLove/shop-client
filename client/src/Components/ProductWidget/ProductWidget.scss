@@ -1,5 +1,7 @@
+@use '../../index' as i;
+
 .productWidget {
-  border: 1px solid #bbb;
+  border: 1px solid i.$borderColor;
   display: flex;
   flex-wrap: wrap;
   margin-top: 30px;

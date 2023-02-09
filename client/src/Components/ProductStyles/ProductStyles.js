@@ -1,5 +1,5 @@
-import "./ProductStyles.css";
-import ProductCirclePhoto from "./ProductCirclePhoto/ProductCirlcePhoto";
+import './ProductStyles.scss';
+import ProductCirclePhoto from './ProductCirclePhoto/ProductCirlcePhoto';
 
 function ProductStyles({ productStyles, setSelectedStyle }) {
   const createProductCirclePhotos = () => {

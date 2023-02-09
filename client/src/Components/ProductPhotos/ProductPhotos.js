@@ -1,4 +1,4 @@
-import './ProductPhotos.css';
+import './ProductPhotos.scss';
 function ProductPhotos() {
 
   return (
