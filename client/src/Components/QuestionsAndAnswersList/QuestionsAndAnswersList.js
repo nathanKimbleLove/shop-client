@@ -30,8 +30,8 @@ function QuestionsAndAnswersList({
   let [reportQuestion, setReportQuestion] = useState([]);
   const addQuestions = useCallback(
     (add = true) => {
-      console.log(product);
-      console.log("we are printing the page: " + page);
+      // console.log(product);
+      // console.log("we are printing the page: " + page);
       if (product) {
         axios
           .get("http://localhost:8080/qa/questions?product_id=" + product.id + "&page=" + page)
@@ -42,7 +42,7 @@ function QuestionsAndAnswersList({
               setPage(1);
             }
             setQuestionsArr([...questionsArr, ...res.data.results]);
-            console.log("successfully retried questions");
+            // console.log("successfully retried questions");
           })
           .catch((err) => {
             console.log(err);
@@ -62,7 +62,7 @@ function QuestionsAndAnswersList({
   useEffect(() => {
     observer.current = new IntersectionObserver((entries) => {
       const entry = entries[0];
-      console.log("calling for the observer");
+      // console.log("calling for the observer");
       if (entry.isIntersecting) {
         addQuestions();
       }

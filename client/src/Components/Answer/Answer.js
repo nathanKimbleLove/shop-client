@@ -9,44 +9,44 @@ function Answer({ answer, user }) {
   const [usernameTextStyle, setUsernameTextStyle] = useState("usernameNormal");
   const [answerHelpfulness, setAnswerHelpfulness] = useState(0);
   function handleReportAnswerClick(answer) {
-    console.log("in handle report answer clicked " + answer.answer_id);
+    // console.log("in handle report answer clicked " + answer.answer_id);
     if (!reportAnswerClicked) {
       setReportAnswerClicked(true);
       axios
         .put(`http://localhost:8080/qa/answers/${answer.answer_id}/report`)
         .then((res) => {
-          console.log("successfully sent put request answer reported");
+          // console.log("successfully sent put request answer reported");
           res.sendStatus(res.status);
         })
         .catch((err) => {
           console.log(err);
         });
     } else {
-      console.log("did not execute put request for answer reported");
+      // console.log("did not execute put request for answer reported");
     }
     // change button to "reported"
   }
 
   function handleHelpfulAnswerClick(answer) {
-    console.log("in handle helpful answer clicked " + answer.answer_id);
+    // console.log("in handle helpful answer clicked " + answer.answer_id);
     setAnswerHelpfulness(answerHelpfulness + 1);
     if (!helpfulAnswerClicked) {
       setHelpfulAnswerClicked(true);
-      console.log("put request attempted for helpful answer click");
+      // console.log("put request attempted for helpful answer click");
       axios
         .put(`http://localhost:8080/qa/answers/${answer.answer_id}/helpful`)
         .then((res) => {
-          console.log("successfully sent put request helpful answer click");
+          // console.log("successfully sent put request helpful answer click");
           res.sendStatus(res.status);
         })
         .catch((err) => {
           console.log(err);
         });
     } else {
-      console.log("did not execute put request");
+      // console.log("did not execute put request");
     }
   }
-  console.log("helpfullness is ", answer.helpfulness);
+  // console.log("helpfullness is ", answer.helpfulness);
   // if (user === answer.answerer_name) {
   //   setUsernameTextStyle("usernameBold");
   // } else {

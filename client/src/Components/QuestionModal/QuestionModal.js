@@ -9,8 +9,8 @@ let QuestionModal = ({ product }) => {
   const [images, setImages] = useState([]);
 
   let handleSubmit = (product) => {
-    console.log("made it into handleSubmit in Question Modal");
-    console.log("the product in handleSubmit is ", product);
+    // console.log("made it into handleSubmit in Question Modal");
+    // console.log("the product in handleSubmit is ", product);
 
     let request = {
       body: question,
@@ -22,11 +22,11 @@ let QuestionModal = ({ product }) => {
     axios
       .post("http://localhost:8080/qa/questions", request)
       .then((res) => {
-        console.log("successfully posted new question");
+        // console.log("successfully posted new question");
       })
       .catch((err) => {
         console.log(err);
-        console.log("failing in QuestionModal componenet");
+        // console.log("failing in QuestionModal componenet");
       });
   };
   return (
@@ -44,8 +44,8 @@ let QuestionModal = ({ product }) => {
               required="required"
               className="questionTextBox"
               onChange={(e) => {
-                console.log("made it into onChange");
-                console.log("on change this is product ", product);
+                // console.log("made it into onChange");
+                // console.log("on change this is product ", product);
                 setQuestion(e.target.value);
               }}
               placeholder="Enter your question"

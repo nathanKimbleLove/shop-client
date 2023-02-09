@@ -9,7 +9,7 @@ export default function useLocalStorage(key, initialValue) {
   });
   const setStateAndUpdateLocalStorage = (newState) => {
     if ([...state].includes(newState)) {
-      console.log("key already in container");
+      // console.log("key already in container");
     } else {
       setState([...state, newState]);
       localStorage.setItem(key, JSON.stringify([...state, newState]));

@@ -45,13 +45,13 @@ function Answers({
   }, []);
 
   function handleReportAnswerClick(answer) {
-    console.log("in handle report answer clicked " + answer.answer_id);
+    // console.log("in handle report answer clicked " + answer.answer_id);
     if (!JSON.parse(localStorage.getItem("reportAnswerClicked")).includes(answer.answer_id)) {
       setReportAnswerClicked(answer.answer_id);
       axios
         .put(`http://localhost:8080/qa/answers/${answer.answer_id}/report`)
         .then((res) => {
-          console.log("successfully sent put request (changed)");
+          // console.log("successfully sent put request (changed)");
           res.sendStatus(res.status);
         })
         .catch((err) => {
@@ -59,13 +59,13 @@ function Answers({
         });
       // setReported("Reported");
     } else {
-      console.log("did not execute put request");
+      // console.log("did not execute put request");
     }
     // change button to "reported"
   }
 
   function handleHelpfulAnswerClick(answer) {
-    console.log("in handle helpful answer clicked " + answer.answer_id);
+    // console.log("in handle helpful answer clicked " + answer.answer_id);
     let answerID = answer.answer_id;
     setHelpfulObj({
       ...helpfulObj,
@@ -73,18 +73,18 @@ function Answers({
     });
     if (!JSON.parse(localStorage.getItem("helpfulAnswerClicked")).includes(answer.answer_id)) {
       setHelpfulAnswerClicked(answer.answer_id);
-      console.log("put request attempted for helpful answer click");
+      // console.log("put request attempted for helpful answer click");
       axios
         .put(`http://localhost:8080/qa/answers/${answer.answer_id}/helpful`)
         .then((res) => {
-          console.log("successfully sent put request (changed)");
+          // console.log("successfully sent put request (changed)");
           res.sendStatus(res.status);
         })
         .catch((err) => {
           console.log(err);
         });
     } else {
-      console.log("did not execute put request");
+      // console.log("did not execute put request");
     }
   }
 
@@ -100,43 +100,7 @@ function Answers({
     // console.log("answer id is ", answer.answer_id);
 
     // console.log("the user is " + user + " and the answer name is " + answer.answerer_name);
-    return (
-      <Answer answer={answer} user={user} />
-      // <div className="answer" key={answer.answer_id}>
-      //   <h3 className="answerLabel">A: </h3>
-      //   <div className="answerRightSide">
-      //     <div>{answer.body}</div>
-      //     <div className="answerDetails">
-      //       by <div className={usernameAnswer}> {answer.answerer_name}</div>,{" "}
-      //       {dateFormat(answer.date, "mmmm dd, yyyy")} | Helpful?{" "}
-      //       <div
-      //         className="boldAndUnderline"
-      //         onClick={(e) => {
-      //           console.log("answer is ", answer);
-      //           handleHelpfulAnswerClick(answer);
-      //           console.log("answer id is currently ", helpfulObj);
-      //           // e.target.value = "Reported";
-      //           // console.log("in handlehelpfulanswerclick ", e.innerText);
-      //         }}
-      //         onChange={(e) => console.log("there was a change")}
-      //       >
-      //         Yes{" "}
-      //       </div>{" "}
-      //       <div>{` (${answer.helpfulness + helpfulValue}) `}</div> |{" "}
-      //       <div
-      //         onClick={(e) => {
-      //           handleReportAnswerClick(answer);
-      //           // doesn't work. When I use state it changes all buttons to reported
-      //           reported = "Reported";
-      //         }}
-      //       >
-      //         {reported}
-      //       </div>
-      //     </div>
-      //     <div>Pictures here</div>
-      //   </div>
-      // </div>
-    );
+    return <Answer answer={answer} user={user} />;
   });
   let loadDivs;
   if (answers.length === 0) {
