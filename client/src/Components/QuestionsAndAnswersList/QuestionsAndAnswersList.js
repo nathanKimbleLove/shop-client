@@ -79,7 +79,8 @@ function QuestionsAndAnswersList({
     };
   }, [addQuestions, questionsArr]);
 
-  var answer = questionsArr.slice(0, questionsShown).map((question) => {
+  // changed below from var answer = questionsArr.slice(0, questionsShown).map((question) => {
+  var answer = questionsArr.map((question) => {
     // check if search contains >=3 letters
     // console.log("question is here", question.question_helpfulness);
     var hidden = false;
