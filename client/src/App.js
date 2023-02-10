@@ -28,7 +28,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("/products")
+      .get("3.236.130.140:8080/products")
       .then((res) => {
         console.log(`/products get repsonse: ${res.data}`);
         const clothing = res.data;
