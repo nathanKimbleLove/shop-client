@@ -1,7 +1,7 @@
 /* eslint-disable */
 const express = require("express");
 const path = require("path");
-require("dotenv").config({ path: path.join(__dirname, "./.env") });
+require("dotenv").config({ path: path.join(__dirname, "../.env") });
 const cors = require("cors");
 const axios = require("axios");
 // const { application } = require("express"); // what is this doing?
@@ -16,9 +16,8 @@ app.use("/", express.static(path.join(__dirname, "../client/build/")));
 
 console.log("path " + path.join(__dirname, "../.env"));
 console.log("port " + port);
-console.log("process.env port " + process.env.PORT);
 console.log("process api " + process.env.REACT_APP_API);
-console.log("authoptions " + authOptions);
+console.log("authoptions ", authOptions);
 
 app.post("/*", (req, res) => {
   axios
