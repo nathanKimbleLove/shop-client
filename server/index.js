@@ -11,6 +11,7 @@ const app = express();
 
 app.use(cors({ origin: "http://localhost:3000" }));
 app.use(express.json());
+app.use("/", express.static(path.join(__dirname, "../client/build/")));
 const authOptions = { headers: { Authorization: process.env.REACT_APP_AUTH } };
 
 app.post("/*", (req, res) => {
