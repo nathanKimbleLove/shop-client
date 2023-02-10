@@ -28,7 +28,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("3.236.130.140:8080/products")
+      .get("/products")
       .then((res) => {
         console.log(`/products get repsonse: ${res.data}`);
         const clothing = res.data;
@@ -44,7 +44,7 @@ function App() {
     setProduct(products[random]);
 
     axios
-      .get("3.236.130.140:8080/qa/questions?product_id=" + products[random].id)
+      .get("/qa/questions?product_id=" + products[random].id)
       .then((res) => {
         console.log(res.data.results); // added to view in ec2
         setQuestionsAndAnswers(res.data.results);

@@ -30,7 +30,7 @@ let AnswerModal = ({ question, setUser, product }) => {
     // console.log("the request is ", request);
     // console.log(question);
     axios
-      .post(`http://localhost:8080/qa/questions/${question.question_id}/answers`, request)
+      .post(`/qa/questions/${question.question_id}/answers`, request)
       .then((res) => {
         // console.log("successfully made answer post request with modal");
         res.send(res.status);

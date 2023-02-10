@@ -34,7 +34,7 @@ function Answers({
     setHelpfulAnswerClicked();
     setReportAnswerClicked();
     axios
-      .get(`http://localhost:8080/qa/questions/${question.question_id}/answers`)
+      .get(`/qa/questions/${question.question_id}/answers`)
       .then((res) => {
         // console.log("in answers.js the res.data is ", res.data);
         setAnswersContainer(res.data.results);
@@ -49,7 +49,7 @@ function Answers({
     if (!JSON.parse(localStorage.getItem("reportAnswerClicked")).includes(answer.answer_id)) {
       setReportAnswerClicked(answer.answer_id);
       axios
-        .put(`http://localhost:8080/qa/answers/${answer.answer_id}/report`)
+        .put(`/qa/answers/${answer.answer_id}/report`)
         .then((res) => {
           // console.log("successfully sent put request (changed)");
           res.sendStatus(res.status);
@@ -75,7 +75,7 @@ function Answers({
       setHelpfulAnswerClicked(answer.answer_id);
       // console.log("put request attempted for helpful answer click");
       axios
-        .put(`http://localhost:8080/qa/answers/${answer.answer_id}/helpful`)
+        .put(`/qa/answers/${answer.answer_id}/helpful`)
         .then((res) => {
           // console.log("successfully sent put request (changed)");
           res.sendStatus(res.status);

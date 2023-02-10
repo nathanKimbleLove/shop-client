@@ -16,7 +16,7 @@ function Answer({ answer, user }) {
     if (!reportAnswerClicked) {
       setReportAnswerClicked(true);
       axios
-        .put(`http://localhost:8080/qa/answers/${answer.answer_id}/report`)
+        .put(`/qa/answers/${answer.answer_id}/report`)
         .then((res) => {
           res.sendStatus(res.status);
         })
@@ -33,7 +33,7 @@ function Answer({ answer, user }) {
     if (!helpfulAnswerClicked) {
       setHelpfulAnswerClicked(true);
       axios
-        .put(`http://localhost:8080/qa/answers/${answer.answer_id}/helpful`)
+        .put(`/qa/answers/${answer.answer_id}/helpful`)
         .then((res) => {
           res.sendStatus(res.status);
         })
