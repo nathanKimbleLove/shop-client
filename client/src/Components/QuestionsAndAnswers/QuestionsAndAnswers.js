@@ -34,9 +34,9 @@ function QuestionsAndAnswers({ product, questionsAndAnswers, setShowModal, user,
   };
 
   let buttons;
-  // if (questions.length !== 0) {
-  //   buttons = <button onClick={handleMoreQuestionsClick}>More answered questions</button>;
-  // }
+  if (questions.length !== 0) {
+    buttons = <button onClick={handleMoreQuestionsClick}>More answered questions</button>;
+  }
 
   return (
     <div className="questionsAndAnswers">

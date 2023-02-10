@@ -11,6 +11,7 @@ function Answer({ answer, user }) {
   const [usernameTextStyle, setUsernameTextStyle] = useState("usernameNormal");
   const [answerHelpfulness, setAnswerHelpfulness] = useState(0);
   const [photos, setPhotos] = useState([[]]);
+  const [photosElements, setPhotosElements] = useState(<></>);
 
   function handleReportAnswerClick(answer) {
     if (!reportAnswerClicked) {
@@ -53,25 +54,29 @@ function Answer({ answer, user }) {
     }
   }, [answer]);
 
+  if (photos.length === 0) {
+    setPhotosElements(<div>There are no images for this answer</div>);
+  } else {
+    let photosVar = photos.map((element, index) => {
+      return (
+        <img
+          className="answerPhoto"
+          key={index}
+          src={element.url}
+          alt="Bad format"
+          onClick={handlePhotoClick}
+        ></img>
+      );
+    });
+    setPhotosElements(photosVar);
+  }
   // add username bold if it matches user
   return (
     <div className={`answer ${answer.answer_id}`} key={answer.answer_id}>
       <h3 className="answerLabel">A: </h3>
       <div className="answerRightSide">
         <div>{answer.body}</div>
-        <div className="answerPhotos">
-          {photos.map((element, index) => {
-            return (
-              <img
-                className="answerPhoto"
-                key={index}
-                src={element.url}
-                alt="Bad format"
-                onClick={handlePhotoClick}
-              ></img>
-            );
-          })}{" "}
-        </div>
+        <div className="answerPhotos">{photosElements} </div>
         <div className="answerDetails">
           by <div className={usernameTextStyle}> {answer.answerer_name}</div>,{" "}
           {dateFormat(answer.date, "mmmm dd, yyyy")} | Helpful?{" "}
