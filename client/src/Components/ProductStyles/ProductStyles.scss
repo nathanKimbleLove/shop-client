@@ -1,5 +1,7 @@
+@use '../../index' as i;
+
 .productStyles {
-  border: 5px solid darkblue;
+  /* border: 5px solid darkblue; */
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -9,4 +11,8 @@
   width: 70%;
   display: flex;
   flex-wrap: wrap;
+}
+
+.productStyles h3 {
+  color: i.$mainTextColor;
 }

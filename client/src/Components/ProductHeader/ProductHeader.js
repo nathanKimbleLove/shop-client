@@ -4,9 +4,12 @@ import axios from "axios";
 import convertToStars from "../../Utils/convertToStars";
 import calculateStars from "../../Utils/calculateStars";
 
-function ProductHeader({ product }) {
+function ProductHeader({ product, selectedStyle, activeStyleName }) {
   const [totalRatings, setTotalRatings] = useState(null);
   const [ratingStars, setRatingStars] = useState(0);
+
+  // whenever the selected style changes change the text
+  useEffect(() => {}, [selectedStyle]);
 
   useEffect(() => {
     if (product) {
@@ -67,7 +70,9 @@ function ProductHeader({ product }) {
           </span>
         </>
       )}
-      <h2>{getProductCategory()}</h2>
+      <h2>
+        {getProductCategory()}: {activeStyleName}
+      </h2>
       <h1>{getProductName()}</h1>${getProductPrice()}
     </div>
   );
