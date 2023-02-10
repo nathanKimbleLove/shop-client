@@ -7,6 +7,8 @@ import QuestionsAndAnswers from "./Components/QuestionsAndAnswers/QuestionsAndAn
 import NavBar from "./Components/NavBar/NavBar.js";
 import Modal from "./Components/Modal/Modal.js";
 
+import prependRequests from './Utils/prependRequests.js';
+
 function App() {
   const [products, setProducts] = useState([]);
   const [product, setProduct] = useState(null);
@@ -28,7 +30,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("/products")
+      .get(prependRequests() + "/products")
       .then((res) => {
         console.log(`/products get repsonse: ${res.data}`);
         const clothing = res.data;
@@ -44,7 +46,7 @@ function App() {
     setProduct(products[random]);
 
     axios
-      .get("/qa/questions?product_id=" + products[random].id)
+      .get(prependRequests() + "/qa/questions?product_id=" + products[random].id)
       .then((res) => {
         console.log(res.data.results); // added to view in ec2
         setQuestionsAndAnswers(res.data.results);

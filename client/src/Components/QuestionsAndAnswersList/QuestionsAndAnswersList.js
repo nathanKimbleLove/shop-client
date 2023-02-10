@@ -4,6 +4,8 @@ import Question from "../Question/Question";
 import axios from "axios";
 import { useState, useEffect, useRef, useCallback } from "react";
 
+import prependRequests from '../../Utils/prependRequests.js';
+
 function QuestionsAndAnswersList({
   product,
   questionsAndAnswers,
@@ -35,7 +37,7 @@ function QuestionsAndAnswersList({
       // console.log("we are printing the page: " + page);
       if (product) {
         axios
-          .get("/qa/questions?product_id=" + product.id + "&page=" + page)
+          .get(prependRequests() + "/qa/questions?product_id=" + product.id + "&page=" + page)
           .then((res) => {
             setPage(page + 1);
             if (!add) {

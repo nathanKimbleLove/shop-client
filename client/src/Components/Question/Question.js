@@ -2,6 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import Highlighter from "react-highlight-words";
 
+import prependRequests from '../../Utils/prependRequests.js';
+
 function Question({ question, setShowModal, searchTerms }) {
   const [reportedQuestion, setReportedQuestion] = useState(false);
   const [reported, setReported] = useState("Report");
@@ -12,7 +14,7 @@ function Question({ question, setShowModal, searchTerms }) {
     if (!reportedQuestion) {
       setReportedQuestion(true);
       axios
-        .put(`/qa/questions/${question_id}/report`)
+        .put(prependRequests() + `/qa/questions/${question_id}/report`)
         .then((res) => {
           // console.log("successfully sent put request question report");
           res.send(res.status);
@@ -32,7 +34,7 @@ function Question({ question, setShowModal, searchTerms }) {
     if (!markedHelpfulQuestion) {
       setMarkedHelpfulQuestion(true);
       axios
-        .put(`/qa/questions/${question_id}/helpful`)
+        .put(prependRequests() + `/qa/questions/${question_id}/helpful`)
         .then((res) => {
           // console.log("successfully sent put helpful in handlehelpfulquestionclick");
           res.sendStatus(res.status);

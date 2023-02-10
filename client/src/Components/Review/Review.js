@@ -1,10 +1,11 @@
-import Moment from 'react-moment'; //npm install react-moment
+import dateformat from 'dateformat';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
 import './Review.scss';
 import convertToStars from '../../Utils/convertToStars';
 import handleFullScreen from '../../Utils/handleFullScreen';
+import prependRequests from '../../Utils/prependRequests.js';
 
 function Review({ review, setShowModal }) {
 
@@ -15,9 +16,8 @@ function Review({ review, setShowModal }) {
     handleFullScreen(e.target, 'reviewPhoto');
   }
 
-
   const helpfulHandler = (e) => {
-    axios.put(`/reviews/${review.review_id}/helpful`)
+    axios.put(prependRequests + `/reviews/${review.review_id}/helpful`)
       .then(res => {
         setHelpful(<button className="helpful">Helpful! ({review.helpfulness}) |</button>)
       })
@@ -25,7 +25,7 @@ function Review({ review, setShowModal }) {
   }
 
   const reportHandler = (e) => {
-    axios.put(`/reviews/${review.review_id}/report`)
+    axios.put(prependRequests + `/reviews/${review.review_id}/report`)
       .then(res => {
         setReport(<button className="report reported">Reported.</button>)
       })
@@ -46,7 +46,7 @@ function Review({ review, setShowModal }) {
     <div className="review ">
       <div className= "reviewTopBar">
         <span>{convertToStars(review.rating)}</span>
-        <span>{review.reviewer_name}, <Moment fromNow>{review.date}</Moment> </span>
+        <span>{review.reviewer_name}, {dateformat(review.date, 'mmmm dd, yyyy')} </span>
       </div>
       <div className="reviewTitle primaryText">{review.summary}</div>
       <div className="reviewContent">{review.body}</div>

@@ -2,6 +2,8 @@ import "./QuestionModal.scss";
 import { useState } from "react";
 import axios from "axios";
 
+import prependRequests from '../../Utils/prependRequests.js';
+
 let QuestionModal = ({ product, setUser }) => {
   const [question, setQuestion] = useState("");
   const [username, setUsername] = useState("");
@@ -17,7 +19,7 @@ let QuestionModal = ({ product, setUser }) => {
     };
 
     axios
-      .post("/qa/questions", request)
+      .post(prependRequests + "/qa/questions", request)
       .then((res) => {
         // console.log("successfully posted new question");
       })
