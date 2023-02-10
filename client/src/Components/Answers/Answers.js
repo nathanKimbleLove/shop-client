@@ -31,8 +31,8 @@ function Answers({
     localStorage.clear();
     localStorage.removeItem("helpfulAnswerClicked");
     localStorage.removeItem("reportAnswerClicked");
-    // setHelpfulAnswerClicked();
-    // setReportAnswerClicked();
+    setHelpfulAnswerClicked();
+    setReportAnswerClicked();
     axios
       .get(`http://localhost:8080/qa/questions/${question.question_id}/answers`)
       .then((res) => {
