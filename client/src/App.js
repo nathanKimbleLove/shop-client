@@ -46,6 +46,7 @@ function App() {
     axios
       .get("/qa/questions?product_id=" + products[random].id)
       .then((res) => {
+        console.log(res.data.results); // added to view in ec2
         setQuestionsAndAnswers(res.data.results);
       })
       .catch((err) => {

@@ -13,11 +13,8 @@ app.use(cors({ origin: "http://localhost:3000" }));
 app.use(express.json());
 const authOptions = { headers: { Authorization: process.env.REACT_APP_AUTH } };
 app.use("/", express.static(path.join(__dirname, "../client/build/")));
-
-console.log("path " + path.join(__dirname, "../.env"));
-console.log("port " + port);
-console.log("process api " + process.env.REACT_APP_API);
-console.log("authoptions ", authOptions);
+console.log("dirname " + __dirname);
+console.log(path.join(__dirname, "../client/build/"));
 
 app.post("/*", (req, res) => {
   axios

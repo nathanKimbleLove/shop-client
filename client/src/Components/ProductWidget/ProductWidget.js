@@ -27,15 +27,14 @@ function ProductDetails({ product }) {
     }
     // console.log(productPhotos);
     setSelectedStylePhotoUrls(productPhotos);
-
   }, [productStyles, selectedStyle]);
 
   // whenever all of the product styles change (new product), set the selected one to be the first product style
   useEffect(() => {
     if (productStyles.length !== 0) {
       setSelectedStyle(productStyles[0].style_id);
-      console.log(productStyles)
-      }
+      console.log(productStyles);
+    }
   }, [productStyles]);
 
   useEffect(() => {
