@@ -1,7 +1,7 @@
 import dateFormat, { masks } from "dateformat";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import handleFullScreen from "../../Utils/handleFullScreen";
+// import handleFullScreen from "../../Utils/handleFullScreen";
 import "./Answer.scss";
 import AnswerImage from "../AnswerImage/AnswerImage";
 
@@ -44,9 +44,9 @@ function Answer({ answer, user }) {
     }
   }
 
-  const handlePhotoClick = (e) => {
-    handleFullScreen(e.target, "answerPhoto");
-  };
+  // const handlePhotoClick = (e) => {
+  //   handleFullScreen(e.target, "answerPhoto");
+  // };
 
   useEffect(() => {
     if (answer.photos[0]) {
@@ -63,12 +63,7 @@ function Answer({ answer, user }) {
         <div className="answerPhotos">
           {photos.map((element, index) => {
             return (
-              <AnswerImage
-                index={index}
-                username={answer.answerer_name}
-                url={element.url}
-                onClick={handlePhotoClick}
-              />
+              <AnswerImage index={index} username={answer.answerer_name} url={element.url} />
               // <img
               //   className="answerPhoto"
               //   key={index}

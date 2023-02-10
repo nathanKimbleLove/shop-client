@@ -1,4 +1,9 @@
-function AnswerImage({ index, url, username, handlePhotoClick }) {
+import handleFullScreen from "../../Utils/handleFullScreen";
+
+function AnswerImage({ index, url, username }) {
+  const handlePhotoClick = (e) => {
+    handleFullScreen(e.target, "answerPhoto");
+  };
   return (
     <img
       className="answerPhoto"
