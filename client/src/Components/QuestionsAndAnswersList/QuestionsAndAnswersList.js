@@ -77,7 +77,7 @@ function QuestionsAndAnswersList({
     return () => {
       observer.current.disconnect();
     };
-  }, [addQuestions]);
+  }, [addQuestions, questionsArr]);
 
   var answer = questionsArr.slice(0, questionsShown).map((question) => {
     // check if search contains >=3 letters
