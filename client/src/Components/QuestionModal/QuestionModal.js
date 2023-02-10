@@ -17,7 +17,7 @@ let QuestionModal = ({ product, setUser }) => {
     };
 
     axios
-      .post("http://localhost:8080/qa/questions", request)
+      .post("/qa/questions", request)
       .then((res) => {
         // console.log("successfully posted new question");
       })

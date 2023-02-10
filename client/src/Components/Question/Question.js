@@ -12,7 +12,7 @@ function Question({ question, setShowModal, searchTerms }) {
     if (!reportedQuestion) {
       setReportedQuestion(true);
       axios
-        .put(`http://localhost:8080/qa/questions/${question_id}/report`)
+        .put(`/qa/questions/${question_id}/report`)
         .then((res) => {
           // console.log("successfully sent put request question report");
           res.send(res.status);
@@ -32,7 +32,7 @@ function Question({ question, setShowModal, searchTerms }) {
     if (!markedHelpfulQuestion) {
       setMarkedHelpfulQuestion(true);
       axios
-        .put(`http://localhost:8080/qa/questions/${question_id}/helpful`)
+        .put(`/qa/questions/${question_id}/helpful`)
         .then((res) => {
           // console.log("successfully sent put helpful in handlehelpfulquestionclick");
           res.sendStatus(res.status);

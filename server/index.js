@@ -14,6 +14,12 @@ app.use(express.json());
 const authOptions = { headers: { Authorization: process.env.REACT_APP_AUTH } };
 app.use("/", express.static(path.join(__dirname, "../client/build/")));
 
+console.log("path " + path.join(__dirname, "../.env"));
+console.log("port " + port);
+console.log("process.env port " + process.env.PORT);
+console.log("process api " + process.env.REACT_APP_API);
+console.log("authoptions " + authOptions);
+
 app.post("/*", (req, res) => {
   axios
     .post(process.env.REACT_APP_API + req.url, req.body, authOptions)
@@ -25,6 +31,7 @@ app.post("/*", (req, res) => {
 });
 
 app.get("/*", (req, res) => {
+  console.log("in app.get the request ", req);
   axios
     .get(process.env.REACT_APP_API + req.url, authOptions)
     .then((answer) => {

@@ -1,71 +1,71 @@
-import axios from 'axios';
-import { useState, useEffect, useRef, useCallback} from 'react';
+import axios from "axios";
+import { useState, useEffect, useRef, useCallback } from "react";
 
-import './Reviews.scss';
-import Review from '../Review/Review.js';
+import "./Reviews.scss";
+import Review from "../Review/Review.js";
 
-function Reviews({ product, setShowModal, filterOptions })  {
-
+function Reviews({ product, setShowModal, filterOptions }) {
   let [reviewsArr, setReviewsArr] = useState([]);
   let [displayedReviews, setDisplayedReviews] = useState([]);
   let [page, setPage] = useState(1);
-  let [sort, setSort] = useState('&sort=relevant');
+  let [sort, setSort] = useState("&sort=relevant");
 
-  let observer = useRef()
+  let observer = useRef();
 
   const modalHandler = () => {
     setShowModal("WriteReview", product);
-  }
+  };
 
   const sortByHandler = (e) => {
-    setSort(`&sort=${e.target.value}`)
-  }
+    setSort(`&sort=${e.target.value}`);
+  };
 
+  const addReviews = useCallback(
+    (add = true) => {
+      if (!add) {
+        reviewsArr = [];
+        setPage(1);
+        page = 1;
+      }
 
-
-  const addReviews = useCallback((add = true) => {
-    if (!add) {
-      reviewsArr = [];
-      setPage(1);
-      page = 1;
-    }
-
-    axios.get(`http://localhost:8080/reviews/?product_id=${product.id}&count=10&page=${page}${sort}`)
-    .then(res => {
-      setPage(page + 1)
-      setReviewsArr([...reviewsArr, ...res.data.results]);
-    })
-    .catch(err => {
-      console.log(err);
-    })
-  }, [product, page, reviewsArr]);
-
+      axios
+        .get(`/reviews/?product_id=${product.id}&count=10&page=${page}${sort}`)
+        .then((res) => {
+          setPage(page + 1);
+          setReviewsArr([...reviewsArr, ...res.data.results]);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    [product, page, reviewsArr]
+  );
 
   // reset state / call add reviews
   useEffect(() => {
     if (sort && product) {
-      addReviews(false)
+      addReviews(false);
     }
-  }, [sort, product])
+  }, [sort, product]);
 
   // create observer which calls addReviews when @ btm of list
   useEffect(() => {
     observer.current = new IntersectionObserver((entries) => {
-      const entry = entries[0]
-        if (entry.isIntersecting) {
-          addReviews()
-        }
-      })
-      observer.current.observe(document.querySelector('#loadMoreDetector'));
+      const entry = entries[0];
+      if (entry.isIntersecting) {
+        addReviews();
+      }
+    });
+    observer.current.observe(document.querySelector("#loadMoreDetector"));
 
     return () => {
       observer.current.disconnect();
-    }
+    };
   }, [addReviews]);
 
   // filter al results
   useEffect(() => {
-    let accept = []
+    let accept = [];
     for (let option in filterOptions) {
       if (filterOptions[option]) {
         accept.push(parseInt(option));
@@ -76,36 +76,48 @@ function Reviews({ product, setShowModal, filterOptions })  {
       let temp = [];
       for (let i = 0; i < reviewsArr.length; i++) {
         if (accept.indexOf(reviewsArr[i].rating) !== -1) {
-          temp.push(reviewsArr[i])
+          temp.push(reviewsArr[i]);
         }
       }
       setDisplayedReviews(temp);
     } else {
       setDisplayedReviews(reviewsArr);
     }
-  }, [addReviews, filterOptions, sort, reviewsArr])
+  }, [addReviews, filterOptions, sort, reviewsArr]);
 
   return (
-    <div className="reviews" >
+    <div className="reviews">
       <div className="reviewsInteractions">
         <span className="reviewSorter primaryText">
           {displayedReviews.length} reviews, sorted by
-          <select name="sort-options" className="sortOptions accentColor primaryText" onChange={sortByHandler}>
+          <select
+            name="sort-options"
+            className="sortOptions accentColor primaryText"
+            onChange={sortByHandler}
+          >
             <option value="relevant">relevance</option>
             <option value="newest">newness</option>
             <option value="helpful">helpfulness</option>
           </select>
         </span>
 
-        <button onClick={() => {
-          console.log(reviewsArr, displayedReviews, page);
-        }}>check reviews lists</button>
+        <button
+          onClick={() => {
+            console.log(reviewsArr, displayedReviews, page);
+          }}
+        >
+          check reviews lists
+        </button>
 
-        <button className="reviewAdder borderColor" onClick={modalHandler}>Write a Review!</button>
+        <button className="reviewAdder borderColor" onClick={modalHandler}>
+          Write a Review!
+        </button>
       </div>
-      <div id="reviewArray" >
+      <div id="reviewArray">
         {displayedReviews.length !== 0 &&
-        displayedReviews.map(element => <Review review={element} key={element.review_id} setShowModal={setShowModal} />)}
+          displayedReviews.map((element) => (
+            <Review review={element} key={element.review_id} setShowModal={setShowModal} />
+          ))}
         <div id="loadMoreDetector"></div>
       </div>
     </div>

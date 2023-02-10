@@ -13,7 +13,7 @@ function QuestionsAndAnswers({ product, questionsAndAnswers, setShowModal, user,
   useEffect(() => {
     if (product) {
       axios
-        .get("http://localhost:8080/qa/questions?product_id=" + product.id)
+        .get("/qa/questions?product_id=" + product.id)
         .then((res) => {
           setQuestions(res.data.results);
         })
