@@ -32,11 +32,13 @@ function QuestionsAndAnswersList({
   const addQuestions = useCallback(
     (add = true) => {
       // console.log(product);
-      // console.log("we are printing the page: " + page);
+      console.log("we are printing the page: " + page);
       if (product) {
+        console.log("I'm making a request");
         axios
           .get("/qa/questions?product_id=" + product.id + "&page=" + page)
           .then((res) => {
+            console.log("I came from request fired by observer ", res.data.results);
             setPage(page + 1);
             if (!add) {
               questionsArr = [];
@@ -66,6 +68,7 @@ function QuestionsAndAnswersList({
       const entry = entries[0];
       // console.log("calling for the observer");
       if (entry.isIntersecting) {
+        console.log("I'm intersection");
         addQuestions();
       }
     });
