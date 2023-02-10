@@ -13,7 +13,7 @@ function ProductHeader({ product, selectedStyle, activeStyleName }) {
 
   useEffect(() => {
     if (product) {
-      axios.get(`/reviews/meta?product_id=${product.id}`).then((res) => {
+      axios.get(prependRequests() + `/reviews/meta?product_id=${product.id}`).then((res) => {
         setRatingStars(calculateStars(res.data.ratings));
       });
     }
@@ -22,7 +22,7 @@ function ProductHeader({ product, selectedStyle, activeStyleName }) {
   useEffect(() => {
     if (product) {
       axios
-        .get(`/reviews/meta?product_id=${product.id}`)
+        .get(prependRequests() + `/reviews/meta?product_id=${product.id}`)
         .then((res) => {
           let summedRatings = 0;
           for (let key in res.data.ratings) {

@@ -4,6 +4,8 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import "./Reviews.scss";
 import Review from "../Review/Review.js";
 
+import prependRequests from "../../Utils/prependRequests.js";
+
 function Reviews({ product, setShowModal, filterOptions }) {
   let [reviewsArr, setReviewsArr] = useState([]);
   let [displayedReviews, setDisplayedReviews] = useState([]);
@@ -29,7 +31,7 @@ function Reviews({ product, setShowModal, filterOptions }) {
       }
 
       axios
-        .get(`/reviews/?product_id=${product.id}&count=10&page=${page}${sort}`)
+        .get(prependRequests() + `/reviews/?product_id=${product.id}&count=10&page=${page}${sort}`)
         .then((res) => {
           setPage(page + 1);
           setReviewsArr([...reviewsArr, ...res.data.results]);

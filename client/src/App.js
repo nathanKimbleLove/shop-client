@@ -7,6 +7,8 @@ import QuestionsAndAnswers from "./Components/QuestionsAndAnswers/QuestionsAndAn
 import NavBar from "./Components/NavBar/NavBar.js";
 import Modal from "./Components/Modal/Modal.js";
 
+import prependRequests from './Utils/prependRequests.js';
+
 function App() {
   const [products, setProducts] = useState([]);
   const [product, setProduct] = useState(null);
@@ -28,7 +30,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("/products")
+      .get(prependRequests() + "/products")
       .then((res) => {
         const clothing = res.data;
         setProducts(clothing);
@@ -43,7 +45,7 @@ function App() {
     setProduct(products[random]);
 
     axios
-      .get("/qa/questions?product_id=" + products[random].id)
+      .get(prependRequests() + "/qa/questions?product_id=" + products[random].id)
       .then((res) => {
         setQuestionsAndAnswers(res.data.results);
       })

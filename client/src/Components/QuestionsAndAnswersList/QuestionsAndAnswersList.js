@@ -4,6 +4,8 @@ import Question from "../Question/Question";
 import axios from "axios";
 import { useState, useEffect, useRef, useCallback } from "react";
 
+import prependRequests from '../../Utils/prependRequests.js';
+
 function QuestionsAndAnswersList({
   product,
   questionsAndAnswers,
@@ -36,7 +38,7 @@ function QuestionsAndAnswersList({
       if (product) {
         console.log("I'm making a request");
         axios
-          .get("/qa/questions?product_id=" + product.id + "&page=" + page)
+          .get(prependRequests() + "/qa/questions?product_id=" + product.id + "&page=" + page)
           .then((res) => {
             console.log("I came from request fired by observer ", res.data.results);
             setPage(page + 1);

@@ -4,6 +4,8 @@ import { GiMagnifyingGlass } from "react-icons/gi";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
+import prependRequests from '../../Utils/prependRequests.js';
+
 function QuestionsAndAnswers({ product, questionsAndAnswers, setShowModal, user, setUser }) {
   // get questions from API
   const [questions, setQuestions] = useState([]);
@@ -13,7 +15,7 @@ function QuestionsAndAnswers({ product, questionsAndAnswers, setShowModal, user,
   useEffect(() => {
     if (product) {
       axios
-        .get("/qa/questions?product_id=" + product.id)
+        .get(prependRequests() + "/qa/questions?product_id=" + product.id)
         .then((res) => {
           setQuestions(res.data.results);
         })

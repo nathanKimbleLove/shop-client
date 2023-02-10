@@ -3,6 +3,10 @@ import "./Answers.scss";
 import Answer from "../Answer/Answer";
 import { useState, useEffect, useReducer } from "react";
 import dateFormat, { masks } from "dateformat";
+import useLocalStorage from "./useLocalStorage";
+
+import prependRequests from "../../Utils/prependRequests.js";
+
 function Answers({
   product,
   questionsAndAnswers,
@@ -32,7 +36,7 @@ function Answers({
     // setHelpfulAnswerClicked();
     // setReportAnswerClicked();
     axios
-      .get(`/qa/questions/${question.question_id}/answers`)
+      .get(prependRequests() + `/qa/questions/${question.question_id}/answers`)
       .then((res) => {
         setAnswersContainer(res.data.results);
       })
@@ -40,6 +44,50 @@ function Answers({
         console.log(err);
       });
   }, []);
+
+  function handleReportAnswerClick(answer) {
+    // console.log("in handle report answer clicked " + answer.answer_id);
+    if (!JSON.parse(localStorage.getItem("reportAnswerClicked")).includes(answer.answer_id)) {
+      setReportAnswerClicked(answer.answer_id);
+      axios
+        .put(prependRequests() + `/qa/answers/${answer.answer_id}/report`)
+        .then((res) => {
+          // console.log("successfully sent put request (changed)");
+          res.sendStatus(res.status);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      // setReported("Reported");
+    } else {
+      // console.log("did not execute put request");
+    }
+    // change button to "reported"
+  }
+
+  function handleHelpfulAnswerClick(answer) {
+    // console.log("in handle helpful answer clicked " + answer.answer_id);
+    let answerID = answer.answer_id;
+    setHelpfulObj({
+      ...helpfulObj,
+      answerID: 1
+    });
+    if (!JSON.parse(localStorage.getItem("helpfulAnswerClicked")).includes(answer.answer_id)) {
+      setHelpfulAnswerClicked(answer.answer_id);
+      // console.log("put request attempted for helpful answer click");
+      axios
+        .put(prependRequests() + `/qa/answers/${answer.answer_id}/helpful`)
+        .then((res) => {
+          // console.log("successfully sent put request (changed)");
+          res.sendStatus(res.status);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      // console.log("did not execute put request");
+    }
+  }
 
   let handleMoreAnswersClick = () => {
     setMoreAnswersClicked(true);

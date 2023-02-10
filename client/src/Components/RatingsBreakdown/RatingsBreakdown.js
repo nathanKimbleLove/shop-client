@@ -6,6 +6,8 @@ import StarCounts from "../StarCounts/StarCounts.js";
 import BarRatings from "../BarRatings/BarRatings.js";
 import convertToStars from "../../Utils/convertToStars.js";
 
+import prependRequests from "../../Utils/prependRequests.js";
+
 import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
 import { IoMdArrowDropdown } from "react-icons/io";
 
@@ -40,7 +42,7 @@ function RatingsBreakdown({ product, filterOptions, setFilterOptions }) {
 
   useEffect(() => {
     if (product) {
-      axios.get(`/reviews/meta?product_id=${product.id}`).then((res) => {
+      axios.get(prependRequests() + `/reviews/meta?product_id=${product.id}`).then((res) => {
         setAverageRating(calculateStars(res.data.ratings));
 
         let chars = res.data.characteristics;

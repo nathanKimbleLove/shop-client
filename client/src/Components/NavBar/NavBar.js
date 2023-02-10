@@ -12,11 +12,13 @@ function NavBar({ changeProduct }) {
   const handleDarkModeChange = useCallback(() => {
     if (darkModeState === 'dark') {
       setDarkModeState('light');
-      // change sass variable
+      document.body.classList.remove('dark');
     } else {
       setDarkModeState('dark');
+      document.body.className += 'dark';
     }
   }, [darkModeState, setDarkModeState]);
+
 
   return (
     <div className={cx('navbar', darkModeState === 'dark' && 'darkTest')}>

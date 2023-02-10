@@ -6,6 +6,8 @@ import ProductPhotos from "../ProductPhotos/ProductPhotos.js";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
+import prependRequests from "../../Utils/prependRequests.js";
+
 function ProductDetails({ product }) {
   const [productStyles, setProductStyles] = useState([]);
   const [selectedStyle, setSelectedStyle] = useState(null); // this should be an id
@@ -40,14 +42,14 @@ function ProductDetails({ product }) {
   useEffect(() => {
     if (product) {
       axios
-        .get(`/products/${product.id}/styles`)
+        .get(prependRequests() + `/products/${product.id}/styles`)
         .then((res) => {
           // console.log('product details use effect results:');
           //  console.log(res.data.results); // the 6 items
           setProductStyles(res.data.results);
         })
         .catch((err) => {
-          // console.log("product details use effect error:");
+          console.log("product details use effect error:");
           console.log(err);
         });
     }

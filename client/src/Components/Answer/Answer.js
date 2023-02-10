@@ -5,6 +5,8 @@ import axios from "axios";
 import "./Answer.scss";
 import AnswerImage from "../AnswerImage/AnswerImage";
 
+import prependRequests from '../../Utils/prependRequests.js';
+
 function Answer({ answer, user }) {
   const [helpfulAnswerClicked, setHelpfulAnswerClicked] = useState(false);
   const [reportAnswerClicked, setReportAnswerClicked] = useState(false);
@@ -17,7 +19,7 @@ function Answer({ answer, user }) {
     if (!reportAnswerClicked) {
       setReportAnswerClicked(true);
       axios
-        .put(`/qa/answers/${answer.answer_id}/report`)
+        .put(prependRequests() + `/qa/answers/${answer.answer_id}/report`)
         .then((res) => {
           res.sendStatus(res.status);
         })
@@ -33,7 +35,7 @@ function Answer({ answer, user }) {
     if (!helpfulAnswerClicked) {
       setHelpfulAnswerClicked(true);
       axios
-        .put(`/qa/answers/${answer.answer_id}/helpful`)
+        .put(prependRequests() + `/qa/answers/${answer.answer_id}/helpful`)
         .then((res) => {
           res.sendStatus(res.status);
         })
