@@ -5,6 +5,8 @@ import { useState, useEffect, useReducer } from "react";
 import dateFormat, { masks } from "dateformat";
 import useLocalStorage from "./useLocalStorage";
 
+import prependRequests from '../../Utils/prependRequests.js';
+
 function Answers({
   product,
   questionsAndAnswers,
@@ -34,7 +36,7 @@ function Answers({
     setHelpfulAnswerClicked();
     setReportAnswerClicked();
     axios
-      .get(`/qa/questions/${question.question_id}/answers`)
+      .get(prependRequests() + `/qa/questions/${question.question_id}/answers`)
       .then((res) => {
         // console.log("in answers.js the res.data is ", res.data);
         setAnswersContainer(res.data.results);
@@ -49,7 +51,7 @@ function Answers({
     if (!JSON.parse(localStorage.getItem("reportAnswerClicked")).includes(answer.answer_id)) {
       setReportAnswerClicked(answer.answer_id);
       axios
-        .put(`/qa/answers/${answer.answer_id}/report`)
+        .put(prependRequests() + `/qa/answers/${answer.answer_id}/report`)
         .then((res) => {
           // console.log("successfully sent put request (changed)");
           res.sendStatus(res.status);
@@ -75,7 +77,7 @@ function Answers({
       setHelpfulAnswerClicked(answer.answer_id);
       // console.log("put request attempted for helpful answer click");
       axios
-        .put(`/qa/answers/${answer.answer_id}/helpful`)
+        .put(prependRequests() + `/qa/answers/${answer.answer_id}/helpful`)
         .then((res) => {
           // console.log("successfully sent put request (changed)");
           res.sendStatus(res.status);

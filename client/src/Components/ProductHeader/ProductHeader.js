@@ -4,6 +4,8 @@ import axios from 'axios';
 import convertToStars from '../../Utils/convertToStars';
 import calculateStars from '../../Utils/calculateStars';
 
+import prependRequests from '../../Utils/prependRequests.js';
+
 function ProductHeader({ product, selectedStyle, activeStyleName }) {
   const [totalRatings, setTotalRatings] = useState(null);
   const [ratingStars, setRatingStars] = useState(0);
@@ -16,7 +18,7 @@ function ProductHeader({ product, selectedStyle, activeStyleName }) {
 
   useEffect(() => {
     if (product) {
-      axios.get(`/reviews/meta?product_id=${product.id}`)
+      axios.get(prependRequests() + `/reviews/meta?product_id=${product.id}`)
         .then(res => {
           setRatingStars(calculateStars(res.data.ratings));
         })
@@ -26,7 +28,7 @@ function ProductHeader({ product, selectedStyle, activeStyleName }) {
   useEffect(() => {
     if (product) {
       axios
-        .get(`/reviews/meta?product_id=${product.id}`)
+        .get(prependRequests() + `/reviews/meta?product_id=${product.id}`)
         .then((res) => {
           let summedRatings = 0;
           for (let key in res.data.ratings) {

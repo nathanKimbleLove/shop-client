@@ -6,6 +6,8 @@ import './WriteReview.scss'
 import WriteReviewPhotos from '../WriteReviewPhotos/WriteReviewPhotos.js';
 import WriteCharacteristicsList from '../WriteCharacteristicsList/WriteCharacteristicsList.js';
 
+import prependRequests from '../../Utils/prependRequests.js';
+
 import { BsStarFill, BsStar} from 'react-icons/bs';
 
 let WriteReview = ({ product, exit }) => {
@@ -69,7 +71,7 @@ let WriteReview = ({ product, exit }) => {
     console.log(characteristics);
     let postCheck = submitReviewHandler(body);
     if (postCheck === true) {
-      axios.post("http://localhost:8080/reviews", body)
+      axios.post(prependRequests() + "http://localhost:8080/reviews", body)
       .then(res => {
         console.log(res);
         exit();

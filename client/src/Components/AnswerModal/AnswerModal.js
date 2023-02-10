@@ -2,6 +2,8 @@ import "./AnswerModal.scss";
 import { useState } from "react";
 import axios from "axios";
 
+import prependRequests from '../../Utils/prependRequests.js';
+
 let AnswerModal = ({ question, setUser, product }) => {
   const [username, setUsername] = useState("");
   const [answer, setAnswer] = useState("");
@@ -30,7 +32,7 @@ let AnswerModal = ({ question, setUser, product }) => {
     // console.log("the request is ", request);
     // console.log(question);
     axios
-      .post(`/qa/questions/${question.question_id}/answers`, request)
+      .post(prependRequests() + `/qa/questions/${question.question_id}/answers`, request)
       .then((res) => {
         // console.log("successfully made answer post request with modal");
         res.send(res.status);

@@ -2,6 +2,8 @@ import axios from "axios";
 import "../../QuestionsAndAnswers.scss";
 import { useState, useEffect } from "react";
 
+import prependRequests from '../../Utils/prependRequests.js';
+
 function Answers({ product, questionsAndAnswers, answersObject, question, setShowModal }) {
   const [answersContainer, setAnswersContainer] = useState([]);
   const [answersRendered, shownAnswersRendered] = useState(0);
@@ -9,7 +11,7 @@ function Answers({ product, questionsAndAnswers, answersObject, question, setSho
   // this makes a lot of API requests? Seems fixed for now
   useEffect(() => {
     axios
-      .get(`/qa/questions/${question.question_id}/answers`)
+      .get(prependRequests() + `/qa/questions/${question.question_id}/answers`)
       .then((res) => {
         // console.log("in answers.js the res.data is ", res.data);
         setAnswersContainer(res.data.results);
@@ -21,7 +23,7 @@ function Answers({ product, questionsAndAnswers, answersObject, question, setSho
 
   function handleReportAnswerClick(answer) {
     axios
-      .put(`/qa/answers/${answer.id}/report`)
+      .put(prependRequests() + `/qa/answers/${answer.id}/report`)
       .then((res) => {
         res.send(res.status);
       })
@@ -32,7 +34,7 @@ function Answers({ product, questionsAndAnswers, answersObject, question, setSho
 
   function handleHelpfulAnswerClick(answer) {
     axios
-      .put(`/qa/answers/${answer.id}/helpful`)
+      .put(prependRequests() + `/qa/answers/${answer.id}/helpful`)
       .then((res) => {
         res.send(res.status);
       })

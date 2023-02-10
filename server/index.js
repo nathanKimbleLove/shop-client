@@ -1,7 +1,7 @@
 /* eslint-disable */
 const express = require("express");
 const path = require("path");
-require("dotenv").config({ path: path.join(__dirname, "./.env") });
+require("dotenv").config({ path: path.join(__dirname, "../.env") });
 const cors = require("cors");
 const axios = require("axios");
 // const { application } = require("express"); // what is this doing?
