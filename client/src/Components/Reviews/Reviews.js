@@ -30,7 +30,7 @@ function Reviews({ product, setShowModal, filterOptions })  {
       page = 1;
     }
 
-    axios.get(`http://localhost:8080/reviews/?product_id=${product.id}&count=10&page=${page}${sort}`)
+    axios.get(`/reviews/?product_id=${product.id}&count=10&page=${page}${sort}`)
     .then(res => {
       setPage(page + 1)
       setReviewsArr([...reviewsArr, ...res.data.results]);

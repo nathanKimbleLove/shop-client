@@ -42,7 +42,7 @@ function RatingsBreakdown({ product, filterOptions, setFilterOptions }) {
 
   useEffect(() => {
     if (product) {
-      axios.get(`http://localhost:8080/reviews/meta?product_id=${product.id}`)
+      axios.get(`/reviews/meta?product_id=${product.id}`)
       .then(res => {
         setAverageRating(calculateStars(res.data.ratings));
 

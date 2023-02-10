@@ -42,7 +42,7 @@ function ProductDetails({ product }) {
   useEffect(() => {
     if (product) {
       axios
-        .get(`http://localhost:8080/products/${product.id}/styles`)
+        .get(`/products/${product.id}/styles`)
        .then((res) => {
         // console.log('product details use effect results:');
         //  console.log(res.data.results); // the 6 items

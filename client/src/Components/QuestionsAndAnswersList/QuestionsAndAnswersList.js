@@ -35,7 +35,7 @@ function QuestionsAndAnswersList({
       // console.log("we are printing the page: " + page);
       if (product) {
         axios
-          .get("http://localhost:8080/qa/questions?product_id=" + product.id + "&page=" + page)
+          .get("/qa/questions?product_id=" + product.id + "&page=" + page)
           .then((res) => {
             setPage(page + 1);
             if (!add) {
