@@ -20,7 +20,7 @@ let WriteCharacteristicsList = ({ product, characteristics, setCharacteristics }
 
   useEffect(() => {
     if (product) {
-      axios.get(`http://localhost:8080/reviews/meta?product_id=${product.id}`)
+      axios.get(`/reviews/meta?product_id=${product.id}`)
       .then(res => {
         let temp = {};
         for (let char in res.data.characteristics) {

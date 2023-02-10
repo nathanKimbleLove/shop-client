@@ -16,7 +16,7 @@ function Review({ review, setShowModal }) {
   }
 
   const helpfulHandler = (e) => {
-    axios.put(`http://localhost:8080/reviews/${review.review_id}/helpful`)
+    axios.put(`/reviews/${review.review_id}/helpful`)
       .then(res => {
         setHelpful(<button className="helpful">Helpful! ({review.helpfulness}) |</button>)
       })
@@ -24,7 +24,7 @@ function Review({ review, setShowModal }) {
   }
 
   const reportHandler = (e) => {
-    axios.put(`http://localhost:8080/reviews/${review.review_id}/report`)
+    axios.put(`/reviews/${review.review_id}/report`)
       .then(res => {
         setReport(<button className="report reported">Reported.</button>)
       })
