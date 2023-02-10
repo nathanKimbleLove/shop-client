@@ -90,13 +90,13 @@ let WriteReview = ({ product, exit }) => {
       photos: tempPhotos,
       characteristics: characteristics
     };
-    console.log(characteristics);
+    // console.log(characteristics);
     let postCheck = submitReviewHandler(body);
     if (postCheck === true) {
       axios
         .post("/reviews", body)
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           exit();
         })
         .catch((err) => console.log(err.config.data));

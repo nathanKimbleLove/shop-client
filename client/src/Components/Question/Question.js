@@ -7,7 +7,7 @@ function Question({ question, setShowModal, searchTerms }) {
   const [reported, setReported] = useState("Report");
   const [markedHelpfulQuestion, setMarkedHelpfulQuestion] = useState(false);
   function handleReportQuestionClick(question_id) {
-    console.log("in handle report question clicked " + question_id);
+    // console.log("in handle report question clicked " + question_id);
     // console.log("report question is ", reportQuestion);
     if (!reportedQuestion) {
       setReportedQuestion(true);

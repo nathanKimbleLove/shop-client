@@ -27,7 +27,7 @@ app.post("/*", (req, res) => {
 });
 
 app.get("/*", (req, res) => {
-  console.log("in app.get the request ", req);
+  // console.log("in app.get the request ", req);
   axios
     .get(process.env.REACT_APP_API + req.url, authOptions)
     .then((answer) => {
@@ -43,7 +43,7 @@ app.post("/qa/questions*", (req, res) => {
   axios
     .post(url, req.body, authOptions)
     .then((answer) => {
-      console.log("successfully posted app.post in server/index.js");
+      // console.log("successfully posted app.post in server/index.js");
       res.statusCode = answer.status;
       res.send(answer.statusText);
     })
@@ -58,7 +58,7 @@ app.put("/*", (req, res) => {
   axios
     .put(url, {}, authOptions)
     .then((answer) => {
-      console.log("successfully put app.put in server/index.js");
+      // console.log("successfully put app.put in server/index.js");
       res.statusCode = answer.status;
       res.send(answer.statusText);
     })

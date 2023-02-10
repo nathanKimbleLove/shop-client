@@ -24,7 +24,6 @@ function Answer({ answer, user }) {
           console.log(err);
         });
     } else {
-      // console.log("did not execute put request for answer reported");
     }
   }
 
@@ -82,7 +81,6 @@ function Answer({ answer, user }) {
               console.log("answer is ", answer);
               handleHelpfulAnswerClick(answer);
             }}
-            onChange={(e) => console.log("there was a change")}
           >
             Yes{" "}
           </div>{" "}

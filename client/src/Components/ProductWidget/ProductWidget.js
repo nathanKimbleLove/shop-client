@@ -19,7 +19,7 @@ function ProductDetails({ product }) {
 
     for (let product of productStyles) {
       if (product.style_id === selectedStyle) {
-        console.log(product.photos);
+        // console.log(product.photos);
         for (let photo of product.photos) {
           productPhotos.push(photo.url);
         }
@@ -33,7 +33,7 @@ function ProductDetails({ product }) {
   useEffect(() => {
     if (productStyles.length !== 0) {
       setSelectedStyle(productStyles[0].style_id);
-      console.log(productStyles);
+      // console.log(productStyles);
     }
   }, [productStyles]);
 
@@ -47,7 +47,7 @@ function ProductDetails({ product }) {
           setProductStyles(res.data.results);
         })
         .catch((err) => {
-          console.log("product details use effect error:");
+          // console.log("product details use effect error:");
           console.log(err);
         });
     }

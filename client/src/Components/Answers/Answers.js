@@ -3,8 +3,6 @@ import "./Answers.scss";
 import Answer from "../Answer/Answer";
 import { useState, useEffect, useReducer } from "react";
 import dateFormat, { masks } from "dateformat";
-import useLocalStorage from "./useLocalStorage";
-
 function Answers({
   product,
   questionsAndAnswers,
@@ -18,75 +16,30 @@ function Answers({
   const [answersRendered, shownAnswersRendered] = useState(0);
   const [answersShown, setAnswersShown] = useState(2);
   const [moreAnswersClicked, setMoreAnswersClicked] = useState(false);
-  const [helpfulAnswerClicked, setHelpfulAnswerClicked] = useLocalStorage(
-    "helpfulAnswerClicked",
-    []
-  );
-  const [reportAnswerClicked, setReportAnswerClicked] = useLocalStorage("reportAnswerClicked", []);
-  const [helpfulObj, setHelpfulObj] = useState({});
-  const [ignored, forceUpdate] = useReducer((x) => x + 1, 0);
+  // const [helpfulAnswerClicked, setHelpfulAnswerClicked] = useLocalStorage(
+  //   "helpfulAnswerClicked",
+  //   []
+  // );
+  // const [reportAnswerClicked, setReportAnswerClicked] = useLocalStorage("reportAnswerClicked", []);
+  // const [helpfulObj, setHelpfulObj] = useState({});
+  // const [ignored, forceUpdate] = useReducer((x) => x + 1, 0);
 
   // this makes a lot of API requests? Seems fixed for now
   useEffect(() => {
     localStorage.clear();
-    localStorage.removeItem("helpfulAnswerClicked");
-    localStorage.removeItem("reportAnswerClicked");
-    setHelpfulAnswerClicked();
-    setReportAnswerClicked();
+    // localStorage.removeItem("helpfulAnswerClicked");
+    // localStorage.removeItem("reportAnswerClicked");
+    // setHelpfulAnswerClicked();
+    // setReportAnswerClicked();
     axios
       .get(`/qa/questions/${question.question_id}/answers`)
       .then((res) => {
-        // console.log("in answers.js the res.data is ", res.data);
         setAnswersContainer(res.data.results);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
-
-  function handleReportAnswerClick(answer) {
-    // console.log("in handle report answer clicked " + answer.answer_id);
-    if (!JSON.parse(localStorage.getItem("reportAnswerClicked")).includes(answer.answer_id)) {
-      setReportAnswerClicked(answer.answer_id);
-      axios
-        .put(`/qa/answers/${answer.answer_id}/report`)
-        .then((res) => {
-          // console.log("successfully sent put request (changed)");
-          res.sendStatus(res.status);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      // setReported("Reported");
-    } else {
-      // console.log("did not execute put request");
-    }
-    // change button to "reported"
-  }
-
-  function handleHelpfulAnswerClick(answer) {
-    // console.log("in handle helpful answer clicked " + answer.answer_id);
-    let answerID = answer.answer_id;
-    setHelpfulObj({
-      ...helpfulObj,
-      answerID: 1
-    });
-    if (!JSON.parse(localStorage.getItem("helpfulAnswerClicked")).includes(answer.answer_id)) {
-      setHelpfulAnswerClicked(answer.answer_id);
-      // console.log("put request attempted for helpful answer click");
-      axios
-        .put(`/qa/answers/${answer.answer_id}/helpful`)
-        .then((res) => {
-          // console.log("successfully sent put request (changed)");
-          res.sendStatus(res.status);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else {
-      // console.log("did not execute put request");
-    }
-  }
 
   let handleMoreAnswersClick = () => {
     setMoreAnswersClicked(true);

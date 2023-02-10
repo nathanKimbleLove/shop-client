@@ -30,7 +30,6 @@ function App() {
     axios
       .get("/products")
       .then((res) => {
-        console.log(`/products get repsonse: ${res.data}`);
         const clothing = res.data;
         setProducts(clothing);
         const random = Math.floor(Math.random() * clothing.length);
@@ -46,7 +45,6 @@ function App() {
     axios
       .get("/qa/questions?product_id=" + products[random].id)
       .then((res) => {
-        console.log(res.data.results); // added to view in ec2
         setQuestionsAndAnswers(res.data.results);
       })
       .catch((err) => {

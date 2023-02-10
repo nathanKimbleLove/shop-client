@@ -103,7 +103,7 @@ function Reviews({ product, setShowModal, filterOptions }) {
 
         <button
           onClick={() => {
-            console.log(reviewsArr, displayedReviews, page);
+            // console.log(reviewsArr, displayedReviews, page);
           }}
         >
           check reviews lists
