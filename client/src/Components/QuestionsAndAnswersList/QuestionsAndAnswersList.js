@@ -43,9 +43,10 @@ function QuestionsAndAnswersList({
               setPage(1);
             }
             setQuestionsArr([...questionsArr, ...res.data.results]);
-            // console.log("successfully retried questions");
+            console.log("successfully got more questions for infinite scroll");
           })
           .catch((err) => {
+            console.log("failed to get more questions for infinite scroll");
             console.log(err);
           });
       }
