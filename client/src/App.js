@@ -7,12 +7,11 @@ import QuestionsAndAnswers from "./Components/QuestionsAndAnswers/QuestionsAndAn
 import NavBar from "./Components/NavBar/NavBar.js";
 import Modal from "./Components/Modal/Modal.js";
 
-import prependRequests from './Utils/prependRequests.js';
+import prependRequests from "./Utils/prependRequests.js";
 
 function App() {
   const [products, setProducts] = useState([]);
   const [product, setProduct] = useState(null);
-  const [questionsAndAnswers, setQuestionsAndAnswers] = useState([]);
   const [modal, setModal] = useState(<></>);
   const [user, setUser] = useState(undefined);
 
@@ -46,9 +45,7 @@ function App() {
 
     axios
       .get(prependRequests() + "/qa/questions?product_id=" + products[random].id)
-      .then((res) => {
-        setQuestionsAndAnswers(res.data.results);
-      })
+      .then((res) => {})
       .catch((err) => {
         console.log(err);
       });

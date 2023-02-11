@@ -1,18 +1,14 @@
 import handleFullScreen from "../../Utils/handleFullScreen";
 
-function AnswerImage({ index, url, username }) {
+function AnswerImage({ index, url }) {
   const handlePhotoClick = (e) => {
     handleFullScreen(e.target, "answerPhoto");
   };
-  return (
-    <img
-      className="answerPhoto"
-      key={index}
-      src={url}
-      alt={username}
-      onClick={handlePhotoClick}
-    ></img>
-  );
+  if (url) {
+    return <img className="answerPhoto" src={url} alt="" onClick={handlePhotoClick}></img>;
+  } else {
+    return null;
+  }
 }
 
 export default AnswerImage;

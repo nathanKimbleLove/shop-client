@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import convertToStars from "../../Utils/convertToStars";
 import calculateStars from "../../Utils/calculateStars";
+import prependRequests from "../../Utils/prependRequests";
 
 function ProductHeader({ product, selectedStyle, activeStyleName }) {
   const [totalRatings, setTotalRatings] = useState(null);

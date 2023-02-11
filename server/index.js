@@ -27,10 +27,11 @@ app.post("/*", (req, res) => {
 });
 
 app.get("/*", (req, res) => {
-  // console.log("in app.get the request ", req);
+  console.log("in app.get the request url is " + req.url + " and body is " + req.body);
   axios
     .get(process.env.REACT_APP_API + req.url, authOptions)
     .then((answer) => {
+      console.log("answer is ", answer.data);
       res.statusCode = 200;
       res.send(answer.data);
     })
