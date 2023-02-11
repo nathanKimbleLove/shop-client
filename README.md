@@ -1,6 +1,13 @@
-# Getting Started with Create React App
+# Black Widow Shop Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Product Overview
+
+## Questions & Answers
+
+## Ratings and Reviews
+
+
+# This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
