@@ -27,22 +27,27 @@ function App() {
   };
 
   let callForProducts = (cb) => {
-    const rand = Math.ceil(Math.random() * 1011);
-    axios
-      .get(prependRequests() + `/products/?page=${rand}&count=1`)
-      .then((res) => {
-        setProduct(res.data[0]);
-        cb(res.data[0])
-      })
-      .catch((err) => console.log(err));
+    return new Promise((res, rej) => {
+      const rand = Math.ceil(Math.random() * 1011);
+      axios
+        .get(prependRequests() + `/products/?page=${rand}&count=1`)
+        .then((resp) => {
+          res(resp.data[0])
+        })
+        .catch((err) => rej(err));
+    });
   }
 
   useEffect(() => {
-    callForProducts();
+    callForProducts()
+    .then(product => setProduct(product))
+    .catch(err => console.log(err))
   }, []);
 
   const handleChangeProduct = () => {
-    callForProducts((product) => {
+    callForProducts()
+    .then(product => {
+      setProduct(product);
       axios
         .get(prependRequests() + "/qa/questions?product_id=" + product.id)
         .then((res) => {})
