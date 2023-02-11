@@ -10,7 +10,6 @@ import Modal from "./Components/Modal/Modal.js";
 import prependRequests from "./Utils/prependRequests.js";
 
 function App() {
-  const [products, setProducts] = useState([]);
   const [product, setProduct] = useState(null);
   const [modal, setModal] = useState(<></>);
   const [user, setUser] = useState(undefined);
@@ -27,28 +26,30 @@ function App() {
     );
   };
 
-  useEffect(() => {
+  let callForProducts = (cb) => {
+    const rand = Math.ceil(Math.random() * 1011);
     axios
-      .get(prependRequests() + "/products")
+      .get(prependRequests() + `/products/?page=${rand}&count=1`)
       .then((res) => {
-        const clothing = res.data;
-        setProducts(clothing);
-        const random = Math.floor(Math.random() * clothing.length);
-        setProduct(clothing[random]);
+        setProduct(res.data[0]);
+        cb(res.data[0])
       })
       .catch((err) => console.log(err));
+  }
+
+  useEffect(() => {
+    callForProducts();
   }, []);
 
   const handleChangeProduct = () => {
-    const random = Math.floor(Math.random() * products.length);
-    setProduct(products[random]);
-
-    axios
-      .get(prependRequests() + "/qa/questions?product_id=" + products[random].id)
-      .then((res) => {})
-      .catch((err) => {
-        console.log(err);
-      });
+    callForProducts((product) => {
+      axios
+        .get(prependRequests() + "/qa/questions?product_id=" + product.id)
+        .then((res) => {})
+        .catch((err) => {
+          console.log(err);
+        });
+    })
   };
 
   return (
