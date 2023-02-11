@@ -1,12 +1,10 @@
-import ProductHeader from '../ProductHeader/ProductHeader';
-import ProductStyles from '../ProductStyles/ProductStyles';
-import ProductBuy
-  from '../ProductBuy/ProductBuy';
-import './ProductOptions.scss';
-import { useEffect, useState } from 'react';
+import ProductHeader from "../ProductHeader/ProductHeader";
+import ProductStyles from "../ProductStyles/ProductStyles";
+import ProductBuy from "../ProductBuy/ProductBuy";
+import "./ProductOptions.scss";
+import { useEffect, useState } from "react";
 
 function ProductOptions({ product, productStyles, setSelectedStyle, selectedStyle }) {
-
   const [activeStyleName, setActiveStyleName] = useState(null);
   const [activeProductSkus, setActiveProductSkus] = useState(null);
 
@@ -18,10 +16,9 @@ function ProductOptions({ product, productStyles, setSelectedStyle, selectedStyl
         skus = product.skus;
       }
     }
-    console.log(`skus: ${JSON.stringify(skus)}`);
-    setActiveProductSkus(skus)
+    // console.log(`skus: ${JSON.stringify(skus)}`);
+    setActiveProductSkus(skus);
   }, [selectedStyle, productStyles]);
-
 
   // whenever the selected style changes, change the active name
   useEffect(() => {
@@ -31,19 +28,22 @@ function ProductOptions({ product, productStyles, setSelectedStyle, selectedStyl
         styleName = product.name;
       }
     }
-    setActiveStyleName(styleName)
+    setActiveStyleName(styleName);
   }, [selectedStyle, productStyles]);
 
   return (
     <div className="ProductOptions">
-      <ProductHeader product={product} selectedStyle={selectedStyle} activeStyleName={activeStyleName} />
-      <ProductStyles productStyles={productStyles}
+      <ProductHeader
+        product={product}
+        selectedStyle={selectedStyle}
+        activeStyleName={activeStyleName}
+      />
+      <ProductStyles
+        productStyles={productStyles}
         setSelectedStyle={setSelectedStyle}
         selectedStyle={selectedStyle}
       />
-      <ProductBuy productStyles={productStyles}
-                  skus={activeProductSkus}
-      />
+      <ProductBuy productStyles={productStyles} skus={activeProductSkus} />
     </div>
   );
 }

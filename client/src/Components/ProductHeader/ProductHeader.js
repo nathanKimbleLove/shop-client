@@ -1,27 +1,22 @@
-import './ProductHeader.scss';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import convertToStars from '../../Utils/convertToStars';
-import calculateStars from '../../Utils/calculateStars';
-
-import prependRequests from '../../Utils/prependRequests.js';
+import "./ProductHeader.scss";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import convertToStars from "../../Utils/convertToStars";
+import calculateStars from "../../Utils/calculateStars";
+import prependRequests from "../../Utils/prependRequests";
 
 function ProductHeader({ product, selectedStyle, activeStyleName }) {
   const [totalRatings, setTotalRatings] = useState(null);
   const [ratingStars, setRatingStars] = useState(0);
 
   // whenever the selected style changes change the text
-  useEffect(() => {
-
-  }, [selectedStyle]);
-
+  useEffect(() => {}, [selectedStyle]);
 
   useEffect(() => {
     if (product) {
-      axios.get(prependRequests() + `/reviews/meta?product_id=${product.id}`)
-        .then(res => {
-          setRatingStars(calculateStars(res.data.ratings));
-        })
+      axios.get(prependRequests() + `/reviews/meta?product_id=${product.id}`).then((res) => {
+        setRatingStars(calculateStars(res.data.ratings));
+      });
     }
   }, [product]);
 
@@ -68,22 +63,18 @@ function ProductHeader({ product, selectedStyle, activeStyleName }) {
 
   return (
     <div className="productHeader">
-      {totalRatings > 0 &&
-        (<>
+      {totalRatings > 0 && (
+        <>
           <div>{convertToStars(ratingStars)}</div>
           <span>
             Read all <a href="#ratingsScrollFromProduct">{totalRatings}</a> reviews
           </span>
-        </>)
-      }
-
+        </>
+      )}
       <h2>
         {getProductCategory()}: {activeStyleName}
       </h2>
-      <h1>
-        {getProductName()}
-      </h1>
-      ${getProductPrice()}
+      <h1>{getProductName()}</h1>${getProductPrice()}
     </div>
   );
 }

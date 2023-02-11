@@ -1,12 +1,13 @@
-import dateFormat, { masks } from "dateformat";
+import dateFormat from "dateformat";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import handleFullScreen from "../../Utils/handleFullScreen";
+// import handleFullScreen from "../../Utils/handleFullScreen";
 import "./Answer.scss";
+import AnswerImage from "../AnswerImage/AnswerImage";
 
-import prependRequests from '../../Utils/prependRequests.js';
+import prependRequests from "../../Utils/prependRequests.js";
 
-function Answer({ answer, user }) {
+function Answer({ answer, user, question }) {
   const [helpfulAnswerClicked, setHelpfulAnswerClicked] = useState(false);
   const [reportAnswerClicked, setReportAnswerClicked] = useState(false);
   const [reportedAnswer, setReportedAnswer] = useState("Report");
@@ -26,7 +27,6 @@ function Answer({ answer, user }) {
           console.log(err);
         });
     } else {
-      // console.log("did not execute put request for answer reported");
     }
   }
 
@@ -46,33 +46,23 @@ function Answer({ answer, user }) {
     }
   }
 
-  const handlePhotoClick = (e) => {
-    handleFullScreen(e.target, "answerPhoto");
-  };
-
   useEffect(() => {
     if (answer.photos[0]) {
       setPhotos(answer.photos);
     }
-  }, [answer]);
+    if (user === answer.answerer_name) {
+      setUsernameTextStyle("usernameBold");
+    }
+  }, [answer, user]);
 
-  // add username bold if it matches user
   return (
-    <div className={`answer ${answer.answer_id}`} key={answer.answer_id}>
+    <div className={`answer ${answer.answer_id}`}>
       <h3 className="answerLabel">A: </h3>
       <div className="answerRightSide">
         <div>{answer.body}</div>
         <div className="answerPhotos">
           {photos.map((element, index) => {
-            return (
-              <img
-                className="answerPhoto"
-                key={index}
-                src={element.url}
-                alt="Bad format"
-                onClick={handlePhotoClick}
-              ></img>
-            );
+            return <AnswerImage key={element.id + element.url} index={index} url={element.url} />;
           })}{" "}
         </div>
         <div className="answerDetails">
@@ -81,10 +71,8 @@ function Answer({ answer, user }) {
           <div
             className="boldAndUnderline"
             onClick={(e) => {
-              console.log("answer is ", answer);
               handleHelpfulAnswerClick(answer);
             }}
-            onChange={(e) => console.log("there was a change")}
           >
             Yes{" "}
           </div>{" "}

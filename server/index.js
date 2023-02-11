@@ -12,7 +12,7 @@ const app = express();
 app.use(cors({ origin: "http://localhost:3000" }));
 app.use(express.json());
 const authOptions = { headers: { Authorization: process.env.REACT_APP_AUTH } };
-app.use('/', express.static(path.join(__dirname, "../client/build/")));
+app.use("/", express.static(path.join(__dirname, "../client/build/")));
 console.log("dirname " + __dirname);
 console.log(path.join(__dirname, "../client/build/"));
 
@@ -27,9 +27,11 @@ app.post("/*", (req, res) => {
 });
 
 app.get("/*", (req, res) => {
+  console.log("in app.get the request url is " + req.url + " and body is " + req.body);
   axios
     .get(process.env.REACT_APP_API + req.url, authOptions)
     .then((answer) => {
+      console.log("answer is ", answer.data);
       res.statusCode = 200;
       res.send(answer.data);
     })
@@ -42,7 +44,7 @@ app.post("/qa/questions*", (req, res) => {
   axios
     .post(url, req.body, authOptions)
     .then((answer) => {
-      console.log("successfully posted app.post in server/index.js");
+      // console.log("successfully posted app.post in server/index.js");
       res.statusCode = answer.status;
       res.send(answer.statusText);
     })
@@ -57,7 +59,7 @@ app.put("/*", (req, res) => {
   axios
     .put(url, {}, authOptions)
     .then((answer) => {
-      console.log("successfully put app.put in server/index.js");
+      // console.log("successfully put app.put in server/index.js");
       res.statusCode = answer.status;
       res.send(answer.statusText);
     })
