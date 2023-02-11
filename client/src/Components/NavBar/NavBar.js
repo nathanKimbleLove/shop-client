@@ -1,6 +1,6 @@
 import { GiMagnifyingGlass } from 'react-icons/gi';
 import { MdDarkMode } from 'react-icons/md';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import './NavBar.scss';
 import '../../Utils/Hooks/useLocalStorage.js';
 import cx from '../../Utils/cx.js';
@@ -11,17 +11,24 @@ function NavBar({ changeProduct }) {
 
   const handleDarkModeChange = useCallback(() => {
     if (darkModeState === 'dark') {
+      // console.log('dark is current')
       setDarkModeState('light');
-      document.body.classList.remove('dark');
+      // document.body.classList.remove('dark');
     } else {
+      // console.log('light is current')
       setDarkModeState('dark');
-      document.body.className += 'dark';
+      // document.body.classList.add('dark');
     }
   }, [darkModeState, setDarkModeState]);
 
+  useEffect(() => {
+    console.log('dark mode state:', darkModeState);
+    if (darkModeState === 'dark') document.body.classList.add('dark');
+    else if (darkModeState === 'light') document.body.classList.remove('dark');
+  }, [darkModeState])
 
   return (
-    <div className={cx('navbar', darkModeState === 'dark' && 'darkTest')}>
+    <div className="navbar">
 
       <img
         className="spider"
