@@ -4,6 +4,7 @@
   background-color: transparent;
   border: 0px;
   font-size: 18px;
+  color: i.$accentColor;
 }
 
 .reviews {
@@ -38,4 +39,9 @@
   font-size: 18px;
   min-width: 310px;
   width: 66%;
+}
+
+// ===========DARK===========
+.dark .sortOptions {
+  color: i.$darkAccentColor;
 }

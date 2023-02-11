@@ -94,7 +94,7 @@ function Reviews({ product, setShowModal, filterOptions }) {
           {displayedReviews.length} reviews, sorted by
           <select
             name="sort-options"
-            className="sortOptions accentColor primaryText"
+            className="sortOptions primaryText"
             onChange={sortByHandler}
           >
             <option value="relevant">relevance</option>
