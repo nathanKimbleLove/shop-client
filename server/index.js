@@ -21,7 +21,6 @@ app.post("/*", (req, res) => {
     .post(process.env.REACT_APP_API + req.url, req.body, authOptions)
     .then((answer) => {
       res.sendStatus(202);
-      console.log(answer);
     })
     .catch((err) => console.log(err));
 });
@@ -31,7 +30,6 @@ app.get("/*", (req, res) => {
   axios
     .get(process.env.REACT_APP_API + req.url, authOptions)
     .then((answer) => {
-      console.log("answer is ", answer.data);
       res.statusCode = 200;
       res.send(answer.data);
     })
@@ -44,7 +42,6 @@ app.post("/qa/questions*", (req, res) => {
   axios
     .post(url, req.body, authOptions)
     .then((answer) => {
-      // console.log("successfully posted app.post in server/index.js");
       res.statusCode = answer.status;
       res.send(answer.statusText);
     })
@@ -59,7 +56,6 @@ app.put("/*", (req, res) => {
   axios
     .put(url, {}, authOptions)
     .then((answer) => {
-      // console.log("successfully put app.put in server/index.js");
       res.statusCode = answer.status;
       res.send(answer.statusText);
     })
