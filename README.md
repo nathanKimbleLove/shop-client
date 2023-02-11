@@ -15,8 +15,9 @@ This full stack web application communicates with an API to build a storefront. 
 
 ![](./readme/RatingsDemo.gif)
 
+# How to run this application on your computer
 
-# This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
