@@ -4,16 +4,16 @@ This full stack web application communicates with an API to build a storefront. 
 
 ## Product Overview
 
-![](../readme/ProductDemo.gif)
+![](./readme/ProductDemo.gif)
 
 
 ## Questions & Answers
 
-![](../readme/QAdemo.gif)
+![](./readme/QAdemo.gif)
 
 ## Ratings and Reviews
 
-![](../readme/ProductDemo.gif)
+![](./readme/ProductDemo.gif)
 
 
 # This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
