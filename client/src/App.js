@@ -32,21 +32,20 @@ function App() {
       axios
         .get(prependRequests() + `/products/?page=${rand}&count=1`)
         .then((resp) => {
-          res(resp.data[0])
+          res(resp.data[0]);
         })
         .catch((err) => rej(err));
     });
-  }
+  };
 
   useEffect(() => {
     callForProducts()
-    .then(product => setProduct(product))
-    .catch(err => console.log(err))
+      .then((product) => setProduct(product))
+      .catch((err) => console.log(err));
   }, []);
 
   const handleChangeProduct = () => {
-    callForProducts()
-    .then(product => {
+    callForProducts().then((product) => {
       setProduct(product);
       axios
         .get(prependRequests() + "/qa/questions?product_id=" + product.id)
@@ -54,7 +53,7 @@ function App() {
         .catch((err) => {
           console.log(err);
         });
-    })
+    });
   };
 
   return (
@@ -69,7 +68,7 @@ function App() {
         setUser={setUser}
       />
       <RatingsAndReviews product={product} setShowModal={setShowModal} />
-      <p className="accentColor">Current Product is {JSON.stringify(product)}</p>
+      <p className="accentColor"></p>
     </>
   );
 }
