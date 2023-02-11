@@ -13,7 +13,7 @@ This full stack web application communicates with an API to build a storefront. 
 
 ## Ratings and Reviews
 
-![](./readme/ProductDemo.gif)
+![](./readme/RatingsDemo.gif)
 
 
 # This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
